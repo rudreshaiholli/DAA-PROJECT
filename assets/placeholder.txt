@@ -1,0 +1,1 @@
+Place image files here named member1.jpg, member2.jpg, member3.jpg if desired.

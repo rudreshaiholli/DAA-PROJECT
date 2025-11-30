@@ -1,0 +1,44 @@
+:root{
+	--accent:#1e3a8a; /* deep indigo */
+	--muted:#9aa4b2;
+	--card:#0e1724; /* card background */
+	--bg:#071023; /* page background */
+}
+
+*{box-sizing:border-box}
+body{font-family:Inter,Segoe UI,system-ui,Arial,sans-serif;margin:0;background:var(--bg);color:#e6eef8}
+.container{max-width:980px;margin:0 auto;padding:24px}
+.site-header{background:linear-gradient(90deg,var(--accent),#0f1724);color:#fff;padding:28px 0}
+.site-header h1{margin:0;font-size:28px}
+.lead{margin-top:6px;color:rgba(230,238,248,0.9)}
+.overview,h2{margin-top:18px}
+.business-cases ul{columns:2;list-style:disc;padding-left:20px;color:var(--muted)}
+.cards{display:flex;gap:16px;margin-top:12px}
+.card{display:block;background:var(--card);padding:16px;border-radius:8px;text-decoration:none;color:inherit;flex:1;box-shadow:0 6px 18px rgba(2,6,23,0.6);transition:transform .18s ease,box-shadow .18s ease}
+.card img{width:100%;height:140px;object-fit:cover;border-radius:6px;filter:brightness(.9)}
+.card h3{margin:10px 0 6px}
+.card p{margin:0;color:var(--muted)}
+.card:hover{transform:translateY(-6px);box-shadow:0 18px 40px rgba(2,6,23,0.8)}
+.site-footer{padding:18px 0;text-align:center;color:var(--muted);font-size:14px}
+@media(max-width:720px){.cards{flex-direction:column}.business-cases ul{columns:1}}
+
+/* Header / nav */
+.header-grid{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{flex:1}
+.nav{display:flex;align-items:center;gap:10px}
+.nav a{color:inherit;text-decoration:none;padding:8px 10px;border-radius:6px;font-weight:600}
+.nav a:hover{background:rgba(255,255,255,0.03)}
+#theme-toggle{background:transparent;border:1px solid rgba(255,255,255,0.06);color:inherit;padding:6px 10px;border-radius:6px;cursor:pointer}
+#theme-toggle:focus{outline:2px solid rgba(255,255,255,0.06);outline-offset:2px}
+
+/* Light theme overrides */
+body[data-theme="light"]{
+	--accent:#2b6cb0;
+	--muted:#6b7280;
+	--card:#ffffff;
+	--bg:#f3f4f6;
+}
+body[data-theme="light"]{background:var(--bg);color:#111}
+body[data-theme="light"] .site-header{background:linear-gradient(90deg,var(--accent),#4c51bf);color:#fff}
+body[data-theme="light"] .card{box-shadow:0 6px 18px rgba(15,23,42,0.06)}
+body[data-theme="light"] #theme-toggle{border-color:rgba(2,6,23,0.06)}
