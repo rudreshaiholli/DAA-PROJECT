@@ -1,33 +1,94 @@
-document.addEventListener('DOMContentLoaded',()=>{
-  // Theme toggle: persist choice and initialize from preference/localStorage
-  const body = document.body;
-  const toggle = document.getElementById('theme-toggle');
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>City Data Structures & Algorithms — Home</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="home">
+  <header class="site-header">
+    <div class="container header-grid">
+      <div class="brand">
+        <h1>DESIGN And Analysis of Algorithm</h1>
+        <p class="lead">Applying DSA to city problems: traffic, utilities, planning and more.</p>
+      </div>
 
-  function applyTheme(theme){
-    body.setAttribute('data-theme', theme);
-    if(toggle){
-      toggle.textContent = theme === 'dark' ? '🌙' : '☀️';
-      toggle.setAttribute('aria-pressed', theme === 'dark' ? 'true' : 'false');
-    }
-    try{ localStorage.setItem('theme', theme); }catch(e){}
-  }
+      <nav class="nav" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="member1.html">Rudresh Aiholli</a>
+        <a href="member2.html">Royal . P</a>
+        <a href="member3.html">Prajwal R</a>
+        <button id="theme-toggle" aria-pressed="false" title="Toggle theme">🌙</button>
+      </nav>
+    </div>
+  </header>
+  <div class="bit-structure" aria-hidden="true">
+    <svg viewBox="0 0 600 120" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+      <g fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round">
+        <line x1="40" y1="20" x2="180" y2="60"></line>
+        <line x1="180" y1="60" x2="320" y2="20"></line>
+        <line x1="320" y1="20" x2="460" y2="60"></line>
+        <line x1="100" y1="90" x2="240" y2="50"></line>
+        <circle cx="40" cy="20" r="8" fill="var(--accent)"></circle>
+        <circle cx="180" cy="60" r="8" fill="var(--accent)"></circle>
+        <circle cx="320" cy="20" r="8" fill="var(--accent)"></circle>
+        <circle cx="460" cy="60" r="8" fill="var(--accent)"></circle>
+        <rect x="92" y="82" width="12" height="12" fill="var(--accent)"></rect>
+        <rect x="232" y="42" width="12" height="12" fill="var(--accent)"></rect>
+      </g>
+    </svg>
+  </div>
+  <main class="container">
+    <section class="overview">
+      <h2>Project Overview</h2>
+      <p>This project explores real-world business cases across a city and applies data structure and algorithm techniques to solve them. Each team member owns an area and provides business cases and analysis.</p>
+    </section>
 
-  const stored = (()=>{ try { return localStorage.getItem('theme') } catch(e){ return null } })();
-  const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-  applyTheme(stored || (prefersDark ? 'dark' : 'light'));
+    <section class="business-cases">
+      <h2>Sample Business Cases</h2>
+      <ul>
+        <li>Traffic management and route optimization</li>
+        <li>Smart parking allocation</li>
+        <li>Public transport scheduling</li>
+        <li>Emergency response routing</li>
+        <li>Population and resource analytics</li>
+        <li>Retail footfall prediction</li>
+        <li>Energy grid load balancing</li>
+        <li>Waste collection route planning</li>
+        <li>Event crowd management</li>
+        <li>City governor travel planning</li>
+      </ul>
+    </section>
 
-  if(toggle){
-    toggle.addEventListener('click', ()=>{
-      const next = body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-      applyTheme(next);
-    });
-  }
+    <section class="team">
+      <h2>Team Members</h2>
+      <div class="cards">
+        <a class="card" href="member1.html">
+          <img src="assets/member1.jpg" alt="Rudresh Aiholli">
+          <h3>Rudresh Aiholli</h3>
+          <p>USN: 01fe25bcs715 — Roll No: 453</p>
+        </a>
 
-  // Simple click analytics for cards
-  document.querySelectorAll('.card').forEach(card=>{
-    card.addEventListener('click',()=>{
-      const name = card.querySelector('h3')?.innerText || 'member';
-      console.log('Card clicked:',name);
-    });
-  });
-});
+        <a class="card" href="member2.html">
+          <img src="assets/member2.jpg" alt="Royal . P">
+          <h3>Royal . P</h3>
+          <p>USN: 01fe25bcs706</p>
+        </a>
+
+        <a class="card" href="member3.html">
+          <img src="assets/member3.jpg" alt="Prajwal R">
+          <h3>Prajwal R</h3>
+          <p>USN: 01fe25bcs713</p>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">&copy; 2025 City DSA Project</div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
