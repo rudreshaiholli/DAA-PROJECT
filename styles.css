@@ -68,5 +68,12 @@ body.home[data-theme="dark"]{
 .home .site-header{background:linear-gradient(90deg,var(--accent),#9b7a00);color:var(--text)}
 .home .site-header h1{color:var(--text)}
 .home .card{background:var(--card);box-shadow:0 6px 20px rgba(15,23,42,0.06)}
+/* Profile link boxes for member pages */
+.profile-links{display:flex;gap:10px;margin-top:12px}
+.profile-links .link-box{display:inline-flex;align-items:center;gap:8px;padding:8px 10px;border-radius:8px;background:rgba(255,255,255,0.03);color:var(--text);text-decoration:none;font-weight:600;border:1px solid rgba(255,255,255,0.04)}
+.profile-links .link-box svg{opacity:0.95}
+.profile-links .link-box:hover{transform:translateY(-3px);box-shadow:0 10px 24px rgba(2,6,23,0.06)}
+.profile-links .link-box.github{background:linear-gradient(90deg, rgba(255,255,255,0.02), rgba(196,155,0,0.02));}
+.profile-links .link-box.linkedin{background:linear-gradient(90deg, rgba(255,255,255,0.02), rgba(27,109,155,0.02));}
 .home .nav a{color:#092127}
 .home #theme-toggle{border-color:rgba(9,33,39,0.06)}
