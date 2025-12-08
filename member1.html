@@ -1,60 +1,400 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Member 1 — Transportation</title>
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-  <header class="site-header">
-    <div class="container header-grid">
-      <div class="brand">
-        <h1>Rudresh Aiholli — Transportation</h1>
-        <p class="lead">USN: 01fe25bcs715 — Roll No: 453</p>
+  <meta charset="UTF-8" />
+  <title>CityPlan – Traffic Management & Algorithms</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-        <div class="profile-links">
-          <a class="link-box github" href="https://github.com/rudreshaiholli/DAA-Course-Codes.git" target="_blank" rel="noopener noreferrer">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.419 2.865 8.166 6.839 9.489.5.092.682-.217.682-.483 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.342-3.369-1.342-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.607.069-.607 1.004.071 1.532 1.032 1.532 1.032.892 1.528 2.341 1.087 2.91.831.091-.647.35-1.087.636-1.337-2.22-.253-4.555-1.11-4.555-4.944 0-1.091.39-1.983 1.029-2.68-.103-.253-.446-1.27.098-2.646 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.294 2.748-1.025 2.748-1.025.546 1.376.202 2.393.1 2.646.64.697 1.028 1.589 1.028 2.68 0 3.842-2.338 4.688-4.566 4.935.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.748 0 .268.18.58.688.482A10.013 10.013 0 0022 12c0-5.523-4.477-10-10-10z" fill="currentColor"/></svg>
-            <span>GitHub</span>
-          </a>
+  <style>
+    :root {
+      --bg: #050816;
+      --bg-alt: #0b1020;
+      --card: #111827;
+      --accent: #38bdf8;
+      --accent-soft: rgba(56, 189, 248, 0.12);
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --border: #1f2933;
+      --danger: #f97373;
+      --success: #4ade80;
+      --radius-lg: 18px;
+      --radius-xl: 26px;
+      --shadow-soft: 0 22px 45px rgba(0, 0, 0, 0.55);
+      --shadow-sm: 0 12px 24px rgba(0, 0, 0, 0.35);
+      --transition-fast: 160ms ease-out;
+    }
 
-          <a class="link-box linkedin" href="https://www.linkedin.com/authwall?trk=bf&trkInfo=AQEwLS43VNd9ZgAAAZraSj4QDQy6XpbEEJEyjOAVzrPznewv3sQrRbNvd5nllemXgFha8YF1KRvYUEpZJUlFKjPG81ePsx3SRTMIWDMI-Fm8Vx5jYtXRNguggIhC8J8crZGV7ZY=&original_referer=&sessionRedirect=https%3A%2F%2Fwww.linkedin.com%2Fin%2Frudresh-aiholli-b072102ab%3Futm_source%3Dshare%26utm_campaign%3Dshare_via%26utm_content%3Dprofile%26utm_medium%3Dios_app" target="_blank" rel="noopener noreferrer">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><path d="M4.98 3.5C4.98 4.88 3.88 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8h4V24h-4V8zM8.5 8h3.84v2.2h.05c.54-1.02 1.86-2.2 3.82-2.2 4.09 0 4.84 2.69 4.84 6.19V24h-4V15.3c0-2.08-.04-4.76-2.9-4.76-2.9 0-3.34 2.26-3.34 4.58V24h-4V8z" fill="currentColor"/></svg>
-            <span>LinkedIn</span>
-          </a>
-        </div>
-      </div>
-      <nav class="nav">
-        <a href="index.html">Home</a>
-        <button id="theme-toggle" aria-pressed="false" title="Toggle theme">🌙</button>
-      </nav>
-    </div>
-  </header>
-  <main class="container">
-    <section>
-      <h2>About Rudresh Aiholli</h2>
-      <p>Focus area: Traffic systems, routing, and mobility optimization.</p>
-    </section>
+    * {
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
 
-    <section>
-      <h2>Business Cases</h2>
-      <ol>
-        <li>City-wide traffic signal optimization using adaptive control</li>
-        <li>Shortest-path routing for emergency vehicles</li>
-        <li>Dynamic ride-sharing matching and batching</li>
-        <li>Predictive congestion forecasting using streaming data</li>
-        <li>Smart parking spot suggestion and reservation system</li>
-        <li>Public transport headway optimization</li>
-        <li>Last-mile delivery routing with time windows</li>
-        <li>Intersection conflict detection and mitigation</li>
-        <li>Traffic density-based lane allocation</li>
-        <li>Governor travel priority routing and scheduling</li>
-      </ol>
-    </section>
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      background: radial-gradient(circle at top left, #1e293b 0, #020617 45%);
+      color: var(--text);
+      line-height: 1.6;
+    }
 
-    <p><a href="index.html">← Back to Home</a></p>
-  </main>
-  <script src="script.js"></script>
-</body>
-</html>
+    /* Top navigation */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      backdrop-filter: blur(18px);
+      background: linear-gradient(
+        to bottom,
+        rgba(15, 23, 42, 0.96),
+        rgba(15, 23, 42, 0.92)
+      );
+      border-bottom: 1px solid rgba(148, 163, 184, 0.25);
+    }
+
+    .nav-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0.75rem 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .brand-logo {
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      background: conic-gradient(
+        from 220deg,
+        #38bdf8,
+        #a855f7,
+        #f97316,
+        #38bdf8
+      );
+      padding: 2px;
+      display: grid;
+      place-items: center;
+      box-shadow: 0 0 24px rgba(56, 189, 248, 0.55);
+    }
+
+    .brand-logo-inner {
+      width: 100%;
+      height: 100%;
+      border-radius: 999px;
+      background: #020617;
+      display: grid;
+      place-items: center;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .brand-title {
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      font-size: 0.95rem;
+    }
+
+    .brand-sub {
+      font-size: 0.7rem;
+      color: var(--muted);
+    }
+
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      padding: 0.35rem 0.65rem;
+      border-radius: 999px;
+      transition: background var(--transition-fast),
+        color var(--transition-fast), transform var(--transition-fast);
+    }
+
+    nav a:hover {
+      color: var(--accent);
+      background: rgba(15, 23, 42, 0.9);
+      transform: translateY(-1px);
+    }
+
+    main {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 1.5rem 1rem 3rem;
+    }
+
+    /* Hero section */
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.2fr);
+      gap: 2rem;
+      margin-top: 1.5rem;
+      margin-bottom: 2.25rem;
+      align-items: center;
+    }
+
+    .hero-text h1 {
+      font-size: clamp(1.9rem, 4vw, 2.4rem);
+      letter-spacing: 0.02em;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.25rem 0.7rem;
+      border-radius: 999px;
+      background: rgba(15, 118, 110, 0.2);
+      border: 1px solid rgba(45, 212, 191, 0.55);
+      font-size: 0.75rem;
+      color: #a5f3fc;
+      margin-bottom: 0.9rem;
+    }
+
+    .pill-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--success);
+      box-shadow: 0 0 0 4px rgba(74, 222, 128, 0.18);
+    }
+
+    .hero-lead {
+      font-size: 0.95rem;
+      color: var(--muted);
+      max-width: 520px;
+    }
+
+    .hero-tags {
+      margin-top: 0.75rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+    }
+
+    .tag {
+      font-size: 0.7rem;
+      padding: 0.15rem 0.55rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      color: #cbd5f5;
+      background: rgba(15, 23, 42, 0.7);
+    }
+
+    .hero-card {
+      position: relative;
+      padding: 1.2rem 1.3rem;
+      border-radius: var(--radius-xl);
+      background: radial-gradient(
+          circle at top left,
+          rgba(56, 189, 248, 0.2),
+          transparent 58%
+        ),
+        var(--card);
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      box-shadow: var(--shadow-soft);
+      overflow: hidden;
+    }
+
+    .hero-card h2 {
+      font-size: 1.05rem;
+      margin-top: 0;
+    }
+
+    .hero-metric-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.7rem;
+      margin-top: 0.75rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .metric {
+      border-radius: 14px;
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid rgba(75, 85, 99, 0.95);
+      padding: 0.6rem;
+      text-align: left;
+    }
+
+    .metric-label {
+      font-size: 0.7rem;
+      color: var(--muted);
+    }
+
+    .metric-value {
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .metric-good {
+      color: var(--success);
+    }
+
+    .metric-bad {
+      color: var(--danger);
+    }
+
+    .hero-card-footer {
+      font-size: 0.7rem;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.4rem;
+      margin-top: 0.5rem;
+    }
+
+    .accent-chip {
+      padding: 0.15rem 0.45rem;
+      border-radius: 999px;
+      font-size: 0.65rem;
+      border: 1px solid rgba(56, 189, 248, 0.6);
+      color: var(--accent);
+      background: rgba(15, 23, 42, 0.9);
+    }
+
+    /* Section styling */
+    section {
+      margin-bottom: 2.2rem;
+      padding: 1.2rem 1.1rem;
+      border-radius: var(--radius-lg);
+      background: linear-gradient(
+        135deg,
+        rgba(15, 23, 42, 0.96),
+        rgba(15, 23, 42, 0.9)
+      );
+      border: 1px solid rgba(30, 64, 175, 0.7);
+      box-shadow: var(--shadow-sm);
+    }
+
+    section h2 {
+      margin-top: 0;
+      font-size: 1.1rem;
+    }
+
+    section small {
+      display: block;
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-bottom: 0.6rem;
+    }
+
+    .section-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 2.1fr) minmax(0, 1.4fr);
+      gap: 1rem;
+    }
+
+    .highlight-box {
+      padding: 0.8rem 0.9rem;
+      border-radius: 14px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px dashed rgba(99, 102, 241, 0.7);
+      font-size: 0.85rem;
+    }
+
+    .pill-title {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      margin-bottom: 0.25rem;
+    }
+
+    ul {
+      padding-left: 1.1rem;
+      margin: 0.35rem 0 0.35rem;
+      font-size: 0.87rem;
+    }
+
+    li + li {
+      margin-top: 0.18rem;
+    }
+
+    .algo-list strong {
+      color: #a5b4fc;
+    }
+
+    .benefit-list li::marker {
+      color: #22c55e;
+    }
+
+    /* Code blocks */
+    pre {
+      background: #020617;
+      border-radius: 12px;
+      padding: 0.75rem 0.9rem;
+      font-size: 0.78rem;
+      overflow-x: auto;
+      border: 1px solid rgba(51, 65, 85, 0.9);
+      margin-top: 0.6rem;
+      margin-bottom: 0.4rem;
+    }
+
+    code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+        "Liberation Mono", "Courier New", monospace;
+    }
+
+    .code-label {
+      font-size: 0.72rem;
+      color: var(--muted);
+      margin-bottom: 0.15rem;
+    }
+
+    .chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      margin-top: 0.4rem;
+    }
+
+    .chip {
+      font-size: 0.72rem;
+      padding: 0.15rem 0.5rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      color: var(--muted);
+    }
+
+    .chip.good {
+      border-color: rgba(34, 197, 94, 0.7);
+      color: #bbf7d0;
+    }
+
+    .chip.warn {
+      border-color: rgba(234, 179, 8, 0.7);
+      color: #facc15;
+    }
+
+    .summary-box {
+      padding: 0.85rem 0.9rem;
+      border-radius: 16px;
+      background: linear-gradient(
+        135deg,
+        rgba(2, 6, 23, 0.95),
+        rgba(8, 47, 73, 0.95)
+      );
+      border: 1px solid rgba(56, 189, 248, 0.7);
+      font-size: 0.86rem;
+    }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 0.85rem;
+      margin-top: 0.5rem;
+    }
+
+    .team-card {
+      padding: 0.7rem 0.8rem;
+      border-radius: 14px;
+      border: 1px solid rgba(
