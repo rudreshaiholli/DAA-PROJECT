@@ -462,7 +462,7 @@
       </div>
       <div>
         <div class="brand-title">Smart Traffic & Elegant Urban Design</div>
-        <div class="brand-sub">Advanced Traffic Management · DAA Based City Project</div>
+        <div class="brand-sub">Built to stand out among all city projects</div>
       </div>
     </div>
     <nav>
@@ -484,7 +484,7 @@
     <div>
       <div class="hero-pill">
         <i class="fa-solid fa-crown"></i>
-        A next-gen smart city concept using DAA & urban design
+        Built to stand out among all city projects
       </div>
       <h1>
         <span class="highlight">Smart Traffic</span><br>
@@ -512,7 +512,7 @@
     </aside>
   </div>
 
-  <!-- OVERVIEW -->
+  <!-- 1. OVERVIEW -->
   <section id="overview" data-aos="fade-up">
     <h2>1. City & Traffic Overview</h2>
     <small>From physical layout to algorithmic traffic model</small>
@@ -564,7 +564,7 @@
     </div>
   </section>
 
-  <!-- MAPS -->
+  <!-- 2. MAPS -->
   <section id="map" data-aos="fade-up">
     <h2>2. Maps & Physical Layout</h2>
     <small>Hand-drawn concept · Structured map · City illustration</small>
@@ -595,7 +595,58 @@
     </div>
   </section>
 
-  <!-- TRAFFIC MANAGEMENT -->
+  <!-- BONUS: EMERGENCY ROUTE FEATURE (GSAP AMBULANCE) -->
+  <section id="emergency" data-aos="fade-up">
+    <h2>Emergency Route Simulation (Bonus)</h2>
+    <small>Ambulance animation powered by GSAP MotionPath</small>
+
+    <p>
+      During emergencies, the smart city activates a priority corridor for ambulances.
+      The route automatically highlights, the map zooms slightly and the ambulance gets an
+      uninterrupted fast lane from the incident point to the hospital zone.
+    </p>
+
+    <button id="emergencyBtn" 
+      style="padding:10px 18px; background:#1d4ed8; color:white; 
+             border:none; border-radius:8px; cursor:pointer; font-size:0.9rem;">
+      Activate Emergency Route 🚑
+    </button>
+
+    <div id="emergencyRouteArea" style="
+        position:relative;
+        margin-top:1.5rem;
+        border-radius:16px;
+        overflow:hidden;
+        border:1px solid #d1d5db;
+        box-shadow:0 10px 26px rgba(0,0,0,0.15);
+    ">
+      
+      <!-- Map image used as emergency route background -->
+      <img id="emergencyMap" src="1.jpeg" style="width:100%; display:block;" alt="Emergency route map">
+
+      <!-- SVG route in percentage coordinates so it scales with image -->
+      <svg id="routeSVG" width="100%" height="100%" 
+          style="position:absolute; top:0; left:0; pointer-events:none;">
+        <path id="routePath"
+          d="M 10% 85% C 30% 70%, 50% 50%, 70% 40% S 90% 20%, 95% 10%"
+          stroke="#ff0000"
+          stroke-width="6"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          fill="none"
+          opacity="0.4"
+        />
+      </svg>
+
+      <!-- Ambulance -->
+      <img id="ambulance" 
+           src="https://cdn-icons-png.flaticon.com/512/2966/2966327.png"
+           style="width:55px; position:absolute; top:0; left:0; transform:translate(-50%,-50%);"
+           alt="Ambulance">
+    </div>
+  </section>
+
+  <!-- 3. TRAFFIC MANAGEMENT -->
   <section id="traffic" data-aos="fade-up">
     <h2>3. Traffic Management Strategy</h2>
     <small>How vehicles, buses, pedestrians and goods move efficiently</small>
@@ -636,7 +687,7 @@
     </div>
   </section>
 
-  <!-- SMART ZONES / ICON CARDS -->
+  <!-- 4. SMART ZONES / ICON CARDS -->
   <section id="smart" data-aos="fade-up">
     <h2>4. City Zoning & Key Destinations</h2>
     <small>Hospitals, schools, ports, industries and parks placed logically</small>
@@ -717,7 +768,7 @@
     </div>
   </section>
 
-  <!-- ANALYTICS / CHARTS -->
+  <!-- 5. ANALYTICS / CHARTS -->
   <section id="analytics" data-aos="fade-up">
     <h2>5. City Analytics – Population, Budget & Land Use</h2>
     <small>Sample visualisations inspired by project poster</small>
@@ -752,7 +803,7 @@
     </div>
   </section>
 
-  <!-- ALGORITHMS & CODE LAB -->
+  <!-- 6. ALGORITHMS & CODE LAB -->
   <section id="algorithms" data-aos="fade-up">
     <h2>6. Algorithms & Code Lab</h2>
     <small>How DAA actually controls queues and routes</small>
@@ -811,7 +862,7 @@ int main() {
     </div>
   </section>
 
-  <!-- POSTER / GALLERY -->
+  <!-- 7. POSTER / GALLERY -->
   <section id="gallery" data-aos="fade-up">
     <h2>7. Poster & Documentation Snapshot</h2>
     <small>Physical project sheet converted into a digital highlight</small>
@@ -841,9 +892,12 @@ int main() {
 <!-- JS LIBS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<!-- GSAP -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/MotionPathPlugin.min.js"></script>
 
 <script>
-  // AOS init (simple, no crazy overlapping)
+  // AOS init
   AOS.init({
     duration: 700,
     once: true,
@@ -892,6 +946,42 @@ int main() {
       responsive: true,
       cutout: '60%'
     }
+  });
+
+  // GSAP Emergency Route Animation
+  gsap.registerPlugin(MotionPathPlugin);
+
+  document.getElementById("emergencyBtn").addEventListener("click", function () {
+
+    // Glow the route
+    gsap.to("#routePath", {
+      duration: 1,
+      opacity: 1,
+      stroke: "#ff3333",
+      strokeWidth: 8,
+      filter: "drop-shadow(0 0 12px red)"
+    });
+
+    // Slight zoom-in on the map
+    gsap.to("#emergencyMap", {
+      duration: 1.5,
+      scale: 1.08,
+      transformOrigin: "center center",
+      ease: "power2.out"
+    });
+
+    // Move ambulance along route
+    gsap.to("#ambulance", {
+      duration: 6,
+      ease: "power1.inOut",
+      repeat: 0,
+      motionPath: {
+        path: "#routePath",
+        align: "#routePath",
+        autoRotate: true,
+        alignOrigin: [0.5, 0.5]
+      }
+    });
   });
 </script>
 
