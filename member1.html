@@ -1,1044 +1,402 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <title>CityPlan – Traffic Management & Algorithms</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="UTF-8">
+    <title>Smart City – Traffic Management System</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <style>
-    :root {
-      --bg: #050816;
-      --bg-alt: #0b1020;
-      --card: #111827;
-      --accent: #38bdf8;
-      --accent-soft: rgba(56, 189, 248, 0.12);
-      --text: #e5e7eb;
-      --muted: #9ca3af;
-      --border: #1f2933;
-      --danger: #f97373;
-      --success: #4ade80;
-      --radius-lg: 18px;
-      --radius-xl: 26px;
-      --shadow-soft: 0 22px 45px rgba(0, 0, 0, 0.55);
-      --shadow-sm: 0 12px 24px rgba(0, 0, 0, 0.35);
-      --transition-fast: 160ms ease-out;
-    }
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-    * {
-      box-sizing: border-box;
-      scroll-behavior: smooth;
-    }
+    <style>
+        /* ============================
+           GLOBAL THEME
+        ============================ */
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(145deg, #0a0f24, #111c44, #0c1329);
+            color: #e2e8f0;
+            overflow-x: hidden;
+        }
 
-    body {
-      margin: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-        sans-serif;
-      background: radial-gradient(circle at top left, #1e293b 0, #020617 45%);
-      color: var(--text);
-      line-height: 1.6;
-    }
+        header {
+            position: sticky;
+            top: 0;
+            backdrop-filter: blur(20px);
+            background: rgba(15, 23, 42, 0.45);
+            padding: 16px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(148, 163, 184, 0.25);
+            z-index: 1000;
+            animation: fadeDown 1s ease;
+        }
 
-    /* Top navigation */
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 30;
-      backdrop-filter: blur(18px);
-      background: linear-gradient(
-        to bottom,
-        rgba(15, 23, 42, 0.96),
-        rgba(15, 23, 42, 0.92)
-      );
-      border-bottom: 1px solid rgba(148, 163, 184, 0.25);
-    }
+        @keyframes fadeDown {
+            from {
+                opacity: 0;
+                transform: translateY(-22px);
+            }
 
-    .nav-inner {
-      max-width: 1120px;
-      margin: 0 auto;
-      padding: 0.75rem 1rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-    }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-    }
+        .logo {
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: #38bdf8;
+            letter-spacing: 1px;
+            text-shadow: 0 0 20px #38bdf8;
+        }
 
-    .brand-logo {
-      width: 32px;
-      height: 32px;
-      border-radius: 999px;
-      background: conic-gradient(
-        from 220deg,
-        #38bdf8,
-        #a855f7,
-        #f97316,
-        #38bdf8
-      );
-      padding: 2px;
-      display: grid;
-      place-items: center;
-      box-shadow: 0 0 24px rgba(56, 189, 248, 0.55);
-    }
+        nav a {
+            margin-left: 22px;
+            text-decoration: none;
+            color: #cbd5e1;
+            font-size: 0.95rem;
+            transition: 0.3s;
+        }
 
-    .brand-logo-inner {
-      width: 100%;
-      height: 100%;
-      border-radius: 999px;
-      background: #020617;
-      display: grid;
-      place-items: center;
-      font-size: 0.75rem;
-      font-weight: 700;
-      color: var(--accent);
-    }
+        nav a:hover {
+            color: #38bdf8;
+            text-shadow: 0 0 10px #38bdf8;
+        }
 
-    .brand-title {
-      font-weight: 600;
-      letter-spacing: 0.03em;
-      font-size: 0.95rem;
-    }
+        /* ============================
+           SECTION BASE
+        ============================ */
+        .section {
+            max-width: 1100px;
+            margin: 70px auto;
+            padding: 20px;
+            opacity: 0;
+            animation: fadeUp 1.2s forwards;
+        }
 
-    .brand-sub {
-      font-size: 0.7rem;
-      color: var(--muted);
-    }
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
 
-    nav a {
-      color: var(--muted);
-      text-decoration: none;
-      font-size: 0.85rem;
-      padding: 0.35rem 0.65rem;
-      border-radius: 999px;
-      transition: background var(--transition-fast),
-        color var(--transition-fast), transform var(--transition-fast);
-    }
+            from {
+                opacity: 0;
+                transform: translateY(25px);
+            }
+        }
 
-    nav a:hover {
-      color: var(--accent);
-      background: rgba(15, 23, 42, 0.9);
-      transform: translateY(-1px);
-    }
+        .section h2 {
+            font-size: 2rem;
+            margin-bottom: 18px;
+            color: #60a5fa;
+            text-shadow: 0 0 15px rgba(96, 165, 250, 0.5);
+        }
 
-    main {
-      max-width: 1120px;
-      margin: 0 auto;
-      padding: 1.5rem 1rem 3rem;
-    }
+        .para {
+            color: #cbd5e1;
+            line-height: 1.7rem;
+            font-size: 1.05rem;
+            margin-bottom: 18px;
+        }
 
-    /* Hero section */
-    .hero {
-      display: grid;
-      grid-template-columns: minmax(0, 3fr) minmax(0, 2.2fr);
-      gap: 2rem;
-      margin-top: 1.5rem;
-      margin-bottom: 2.25rem;
-      align-items: center;
-    }
+        /* ============================
+           HERO SECTION
+        ============================ */
+        .hero {
+            text-align: center;
+            margin-top: 50px;
+            animation: fadeZoom 1.6s ease;
+        }
 
-    .hero-text h1 {
-      font-size: clamp(1.9rem, 4vw, 2.4rem);
-      letter-spacing: 0.02em;
-    }
+        @keyframes fadeZoom {
+            from {
+                opacity: 0;
+                transform: scale(0.92);
+            }
 
-    .pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      padding: 0.25rem 0.7rem;
-      border-radius: 999px;
-      background: rgba(15, 118, 110, 0.2);
-      border: 1px solid rgba(45, 212, 191, 0.55);
-      font-size: 0.75rem;
-      color: #a5f3fc;
-      margin-bottom: 0.9rem;
-    }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
 
-    .pill-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 999px;
-      background: var(--success);
-      box-shadow: 0 0 0 4px rgba(74, 222, 128, 0.18);
-    }
+        .hero-title {
+            font-size: 2.6rem;
+            font-weight: 700;
+            color: #38bdf8;
+            text-shadow: 0 0 25px #38bdf8;
+            margin-bottom: 10px;
+        }
 
-    .hero-lead {
-      font-size: 0.95rem;
-      color: var(--muted);
-      max-width: 520px;
-    }
+        .hero-sub {
+            font-size: 1.2rem;
+            color: #cbd5e1;
+        }
 
-    .hero-tags {
-      margin-top: 0.75rem;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.35rem;
-    }
+        /* ============================
+           GLASS CARDS
+        ============================ */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            padding: 20px;
+            border-radius: 16px;
+            box-shadow: 0 8px 50px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(15px);
+            margin-bottom: 22px;
+            transform: scale(0.97);
+            animation: cardFade 1.3s ease forwards;
+        }
 
-    .tag {
-      font-size: 0.7rem;
-      padding: 0.15rem 0.55rem;
-      border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.35);
-      color: #cbd5f5;
-      background: rgba(15, 23, 42, 0.7);
-    }
+        @keyframes cardFade {
+            from {
+                opacity: 0;
+                transform: translateY(35px) scale(0.96);
+            }
 
-    .hero-card {
-      position: relative;
-      padding: 1.2rem 1.3rem;
-      border-radius: var(--radius-xl);
-      background: radial-gradient(
-          circle at top left,
-          rgba(56, 189, 248, 0.2),
-          transparent 58%
-        ),
-        var(--card);
-      border: 1px solid rgba(55, 65, 81, 0.9);
-      box-shadow: var(--shadow-soft);
-      overflow: hidden;
-    }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
 
-    .hero-card h2 {
-      font-size: 1.05rem;
-      margin-top: 0;
-    }
+        .glass-card:hover {
+            transform: scale(1.02);
+            transition: 0.3s;
+            box-shadow: 0 10px 60px rgba(56, 189, 248, 0.4);
+        }
 
-    .hero-metric-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 0.7rem;
-      margin-top: 0.75rem;
-      margin-bottom: 0.5rem;
-    }
+        .sub-head {
+            font-size: 1.3rem;
+            color: #7dd3fc;
+            margin-bottom: 10px;
+            text-shadow: 0 0 10px #7dd3fc;
+        }
 
-    .metric {
-      border-radius: 14px;
-      background: rgba(15, 23, 42, 0.85);
-      border: 1px solid rgba(75, 85, 99, 0.95);
-      padding: 0.6rem;
-      text-align: left;
-    }
+        code {
+            background: rgba(15, 23, 42, 0.8);
+            padding: 14px;
+            display: block;
+            border-left: 4px solid #38bdf8;
+            border-radius: 10px;
+            color: #e2e8f0;
+            font-family: monospace;
+            margin-top: 10px;
+        }
 
-    .metric-label {
-      font-size: 0.7rem;
-      color: var(--muted);
-    }
+        /* ============================
+           TEAM CARDS
+        ============================ */
+        .team-wrapper {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 24px;
+            margin-top: 20px;
+        }
 
-    .metric-value {
-      font-size: 0.9rem;
-      font-weight: 600;
-    }
+        .team-card {
+            background: rgba(255, 255, 255, 0.09);
+            padding: 18px;
+            border-radius: 16px;
+            text-align: center;
+            border: 1px solid rgba(148, 163, 184, 0.25);
+            box-shadow: 0 8px 35px rgba(0, 0, 0, 0.35);
+            transition: 0.3s;
+        }
 
-    .metric-good {
-      color: var(--success);
-    }
+        .team-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 65px rgba(96, 165, 250, 0.35);
+        }
 
-    .metric-bad {
-      color: var(--danger);
-    }
+        .team-name {
+            font-size: 1.25rem;
+            color: #38bdf8;
+            font-weight: 700;
+            text-shadow: 0 0 12px #38bdf8;
+        }
 
-    .hero-card-footer {
-      font-size: 0.7rem;
-      color: var(--muted);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 0.4rem;
-      margin-top: 0.5rem;
-    }
+        .team-role {
+            font-size: 0.95rem;
+            color: #a5b4fc;
+        }
 
-    .accent-chip {
-      padding: 0.15rem 0.45rem;
-      border-radius: 999px;
-      font-size: 0.65rem;
-      border: 1px solid rgba(56, 189, 248, 0.6);
-      color: var(--accent);
-      background: rgba(15, 23, 42, 0.9);
-    }
-
-    /* Section styling */
-    section {
-      margin-bottom: 2.2rem;
-      padding: 1.2rem 1.1rem;
-      border-radius: var(--radius-lg);
-      background: linear-gradient(
-        135deg,
-        rgba(15, 23, 42, 0.96),
-        rgba(15, 23, 42, 0.9)
-      );
-      border: 1px solid rgba(30, 64, 175, 0.7);
-      box-shadow: var(--shadow-sm);
-    }
-
-    section h2 {
-      margin-top: 0;
-      font-size: 1.1rem;
-    }
-
-    section small {
-      display: block;
-      font-size: 0.75rem;
-      color: var(--muted);
-      margin-bottom: 0.6rem;
-    }
-
-    .section-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 2.1fr) minmax(0, 1.4fr);
-      gap: 1rem;
-    }
-
-    .highlight-box {
-      padding: 0.8rem 0.9rem;
-      border-radius: 14px;
-      background: rgba(15, 23, 42, 0.9);
-      border: 1px dashed rgba(99, 102, 241, 0.7);
-      font-size: 0.85rem;
-    }
-
-    .pill-title {
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--accent);
-      margin-bottom: 0.25rem;
-    }
-
-    ul {
-      padding-left: 1.1rem;
-      margin: 0.35rem 0 0.35rem;
-      font-size: 0.87rem;
-    }
-
-    li + li {
-      margin-top: 0.18rem;
-    }
-
-    .algo-list strong {
-      color: #a5b4fc;
-    }
-
-    .benefit-list li::marker {
-      color: #22c55e;
-    }
-
-    /* Code blocks */
-    pre {
-      background: #020617;
-      border-radius: 12px;
-      padding: 0.75rem 0.9rem;
-      font-size: 0.78rem;
-      overflow-x: auto;
-      border: 1px solid rgba(51, 65, 85, 0.9);
-      margin-top: 0.6rem;
-      margin-bottom: 0.4rem;
-    }
-
-    code {
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
-        "Liberation Mono", "Courier New", monospace;
-    }
-
-    .code-label {
-      font-size: 0.72rem;
-      color: var(--muted);
-      margin-bottom: 0.15rem;
-    }
-
-    .chip-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.35rem;
-      margin-top: 0.4rem;
-    }
-
-    .chip {
-      font-size: 0.72rem;
-      padding: 0.15rem 0.5rem;
-      border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.35);
-      color: var(--muted);
-    }
-
-    .chip.good {
-      border-color: rgba(34, 197, 94, 0.7);
-      color: #bbf7d0;
-    }
-
-    .chip.warn {
-      border-color: rgba(234, 179, 8, 0.7);
-      color: #facc15;
-    }
-
-    .summary-box {
-      padding: 0.85rem 0.9rem;
-      border-radius: 16px;
-      background: linear-gradient(
-        135deg,
-        rgba(2, 6, 23, 0.95),
-        rgba(8, 47, 73, 0.95)
-      );
-      border: 1px solid rgba(56, 189, 248, 0.7);
-      font-size: 0.86rem;
-    }
-
-    .team-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
-      gap: 0.85rem;
-      margin-top: 0.5rem;
-    }
-
-    .team-card {
-      padding: 0.7rem 0.8rem;
-      border-radius: 14px;
-      border: 1px solid rgba(55, 65, 81, 0.9);
-      background: rgba(15, 23, 42, 0.9);
-      font-size: 0.85rem;
-    }
-
-    .team-name {
-      font-weight: 600;
-      margin-bottom: 0.08rem;
-    }
-
-    .team-role {
-      font-size: 0.75rem;
-      color: var(--accent);
-    }
-
-    .team-desc {
-      font-size: 0.8rem;
-      color: var(--muted);
-      margin-top: 0.25rem;
-    }
-
-    /* Back to top button */
-    .to-top {
-      position: fixed;
-      right: 1rem;
-      bottom: 1rem;
-      padding: 0.35rem 0.7rem;
-      border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.55);
-      background: rgba(15, 23, 42, 0.95);
-      color: var(--muted);
-      font-size: 0.8rem;
-      cursor: pointer;
-      display: none;
-      z-index: 40;
-      transition: opacity var(--transition-fast), transform var(--transition-fast);
-    }
-
-    .to-top.show {
-      display: inline-flex;
-    }
-
-    .to-top:hover {
-      transform: translateY(-2px);
-      color: var(--accent);
-    }
-
-    @media (max-width: 768px) {
-      .hero {
-        grid-template-columns: minmax(0, 1fr);
-      }
-
-      .section-grid {
-        grid-template-columns: minmax(0, 1fr);
-      }
-
-      .hero-card {
-        order: -1;
-      }
-
-      .nav-inner {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      nav {
-        width: 100%;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.25rem;
-      }
-    }
-  </style>
+        .team-desc {
+            margin-top: 8px;
+            color: #cbd5e1;
+        }
+    </style>
 </head>
 
 <body>
-  <header>
-    <div class="nav-inner">
-      <div class="brand">
-        <div class="brand-logo">
-          <div class="brand-logo-inner">TM</div>
-        </div>
-        <div>
-          <div class="brand-title">CityPlan · Traffic Management</div>
-          <div class="brand-sub">
-            Algorithms + Code for smarter city movement
-          </div>
-        </div>
-      </div>
 
-      <nav>
-        <a href="#overview">Overview</a>
-        <a href="#routing">Smart Routing</a>
-        <a href="#signals">Signal Control</a>
-        <a href="#incidents">Incidents</a>
-        <a href="#sensors">Sensors</a>
-        <a href="#data">Data & Sorting</a>
-        <a href="#code-lab">Code Lab</a>
-        <a href="#team">Team</a>
-      </nav>
+    <!-- ================= HEADER ================= -->
+    <header>
+        <div class="logo">🚦 Smart Traffic System</div>
+        <nav>
+            <a href="#intro">Intro</a>
+            <a href="#issues">Issues</a>
+            <a href="#algo">Algorithms</a>
+            <a href="#code">Code</a>
+            <a href="#team">Team</a>
+        </nav>
+    </header>
+
+
+
+    <!-- ================= HERO ================= -->
+    <div class="hero">
+        <div class="hero-title">Smart City Traffic Management</div>
+        <div class="hero-sub">Powered by Data Structures, Algorithms & Real-Time Monitoring</div>
     </div>
-  </header>
 
-  <main>
-    <!-- HERO -->
-    <section class="hero">
-      <div class="hero-text">
-        <div class="pill">
-          <span class="pill-dot"></span>
-          DSA + Real City Problem = Traffic Management Plan
-        </div>
-        <h1>
-          Designing smoother city traffic using
-          <span style="color: var(--accent)">algorithms & code</span>
-        </h1>
-        <p class="hero-lead">
-          We treat the city road network as a graph, signals as schedulers, and
-          vehicles as dynamic data flowing through the system. Using only the
-          algorithms from our syllabus, we build a realistic traffic
-          management model.
+
+
+    <!-- ================= INTRO SECTION ================= -->
+    <section class="section" id="intro">
+        <h2>Introduction</h2>
+
+        <p class="para">
+            Urban traffic has evolved into a complex challenge due to increasing vehicles, limited road infrastructure,
+            and poor routing decisions.  
+            Our project models the city as a **dynamic graph**, using algorithms to optimize movement,
+            reduce congestion, and improve safety.
         </p>
-        <div class="hero-tags">
-          <span class="tag">Graphs</span>
-          <span class="tag">Dijkstra</span>
-          <span class="tag">BFS / DFS</span>
-          <span class="tag">MST</span>
-          <span class="tag">Merge Sort</span>
-          <span class="tag">Queues</span>
-        </div>
-      </div>
 
-      <aside class="hero-card">
-        <h2>Before vs After Traffic Plan (Concept)</h2>
-        <div class="hero-metric-grid">
-          <div class="metric">
-            <div class="metric-label">Average wait</div>
-            <div class="metric-value metric-bad">4 min → <span class="metric-good">2 min</span></div>
-          </div>
-          <div class="metric">
-            <div class="metric-label">Average speed</div>
-            <div class="metric-value metric-good">+45%</div>
-          </div>
-          <div class="metric">
-            <div class="metric-label">Signal queue length</div>
-            <div class="metric-value metric-good">−40%</div>
-          </div>
+        <div class="glass-card">
+            <div class="sub-head">Why Traffic Management?</div>
+            <p class="para">
+                Modern cities require intelligent systems that automatically adjust signal timings,
+                suggest faster routes, and simulate congestion.  
+                Algorithms from DSA help create an efficient, scientific traffic flow model.
+            </p>
         </div>
-        <div class="hero-card-footer">
-          <span>Calculated using simple queue & scheduling models.</span>
-          <span class="accent-chip">Simulation only (no real data)</span>
-        </div>
-      </aside>
     </section>
 
-    <!-- OVERVIEW -->
-    <section id="overview">
-      <h2>1. What Traffic Management Means in Our Project</h2>
-      <small>Problem definition & graph view of the city</small>
 
-      <div class="section-grid">
-        <div>
-          <p>
-            Our city faces typical issues: long queues at peak hours, random
-            pedestrian crossing, and signals that do not respect real-time
-            traffic load. To analyse this in a structured way, we convert the
-            road network into a
-            <strong>weighted graph</strong>.
-          </p>
 
-          <ul>
-            <li><strong>Intersections</strong> → graph nodes</li>
-            <li><strong>Road segments</strong> → edges with weights</li>
-            <li>
-              <strong>Weight</strong> → travel time, distance, or congestion level
-            </li>
-          </ul>
+    <!-- ================= TRAFFIC ISSUES ================= -->
+    <section class="section" id="issues">
+        <h2>Major Traffic Issues</h2>
 
-          <p>
-            On top of this graph, we apply algorithms like Dijkstra, BFS, DFS,
-            MST, and classical sorting to solve real traffic sub-problems:
-            routing, signal control, sensor placement, and data reporting.
-          </p>
+        <div class="glass-card">
+            <div class="sub-head">Observed Problems</div>
+            <ul>
+                <li>Long queues at peak hours</li>
+                <li>Unbalanced signal timings</li>
+                <li>Frequent merging conflicts</li>
+                <li>Pedestrians crossing without signals</li>
+                <li>Random parking reducing lane width</li>
+            </ul>
         </div>
-
-        <div class="highlight-box">
-          <div class="pill-title">Goal of the project</div>
-          <p style="margin-top: 0.25rem">
-            Show how <strong>Data Structures & Algorithms</strong> are not
-            only theory– but actually match
-            <strong>real traffic behaviours</strong>:
-          </p>
-          <ul>
-            <li>Graphs → city roads</li>
-            <li>Queues → vehicles waiting at signals</li>
-            <li>Scheduling → signal timing</li>
-            <li>Shortest path → route suggestion apps</li>
-            <li>MST → cheap sensor/camera network</li>
-          </ul>
-        </div>
-      </div>
     </section>
 
-    <!-- SMART ROUTING -->
-    <section id="routing">
-      <h2>2. Smart Route Planning for Vehicles</h2>
-      <small>Finding fast and less congested paths</small>
 
-      <div class="section-grid">
-        <div>
-          <p>
-            When drivers choose a wrong route, they not only delay themselves
-            but also push more vehicles into already jammed roads. So, the
-            first part of traffic management is
-            <strong>good route planning</strong>.
-          </p>
 
-          <p><strong>Problem:</strong> Suggest the best route between any two junctions considering time and congestion.</p>
+    <!-- ================= ALGORITHMS ================= -->
+    <section class="section" id="algo">
+        <h2>Algorithms Used</h2>
 
-          <div class="pill-title">Algorithms used</div>
-          <ul class="algo-list">
-            <li>
-              <strong>Dijkstra</strong> – to compute the fastest path using current travel times.
-            </li>
-            <li>
-              <strong>Bellman–Ford</strong> – to handle dynamic penalties (e.g., accident, road work).
-            </li>
-            <li>
-              <strong>Floyd–Warshall</strong> – precompute all-pairs shortest paths for emergency vehicles.
-            </li>
-          </ul>
-
-          <p>
-            These algorithms allow a routing system to quickly adjust when the
-            weight (travel time) changes due to rain, accident, or a sudden
-            jam.
-          </p>
-
-          <ul class="benefit-list">
-            <li>Balanced use of parallel roads instead of overloading one route.</li>
-            <li>Lower total travel time and fuel usage.</li>
-            <li>Emergency routes can be reserved and optimised.</li>
-          </ul>
-        </div>
-
-        <div>
-          <div class="code-label">Pseudocode: Dijkstra for travel time</div>
-          <pre><code>function dijkstra(graph, source):
+        <div class="glass-card">
+            <div class="sub-head">1. Dijkstra for Fastest Route</div>
+            <code>
+function Dijkstra(graph, source):
     for each node v:
-        dist[v] = INF
+        dist[v] = ∞
     dist[source] = 0
-    PQ = min-priority-queue()
-    PQ.push(source, 0)
+
+    PQ.push(source)
 
     while PQ not empty:
-        (u, cost) = PQ.pop_min()
+        u = PQ.pop()
 
-        if cost &gt; dist[u]:
-            continue     // outdated entry
+        for each edge (u → v, weight):
+            if dist[u] + weight &lt; dist[v]:
+                dist[v] = dist[u] + weight
+                PQ.push(v)
 
-        for each edge (u, v, w) in graph[u]:
-            if dist[u] + w &lt; dist[v]:
-                dist[v] = dist[u] + w
-                PQ.push(v, dist[v])
-
-    return dist</code></pre>
-          <div class="chip-row">
-            <span class="chip good">Correctness: non-negative weights</span>
-            <span class="chip">DS used: adjacency list + min heap</span>
-          </div>
+return dist
+            </code>
         </div>
-      </div>
+
+        <div class="glass-card">
+            <div class="sub-head">2. Greedy Signal Time Allocation</div>
+            <code>
+function allocateGreenTime(vehicleCount[], cycleTime):
+    total = sum(vehicleCount)
+
+    for each approach i:
+        green[i] = (vehicleCount[i] / total) * cycleTime
+
+return green
+            </code>
+        </div>
     </section>
 
-    <!-- SIGNAL CONTROL -->
-    <section id="signals">
-      <h2>3. Adaptive Traffic Signal Control</h2>
-      <small>Giving more green time where traffic is higher</small>
 
-      <div class="section-grid">
-        <div>
-          <p>
-            Fixed-time signals waste precious seconds when one road is empty
-            but still getting green, while another side is overflowing with
-            vehicles. We aim for
-            <strong>adaptive signal timing</strong>.
-          </p>
 
-          <p><strong>Problem:</strong> Distribute a fixed signal cycle time fairly based on vehicle count.</p>
+    <!-- ================= CODE DEMO ================= -->
+    <section class="section" id="code">
+        <h2>Mini C Program – Queue Simulation</h2>
 
-          <div class="pill-title">Algorithms & data structures</div>
-          <ul class="algo-list">
-            <li>
-              <strong>Queue</strong> – stores vehicles waiting at each direction.
-            </li>
-            <li>
-              <strong>AVL Tree / Balanced BST</strong> – keeps junctions sorted by congestion.
-            </li>
-            <li>
-              <strong>Heap (priority queue)</strong> – quickly picks the most congested approach.
-            </li>
-            <li>
-              <strong>Greedy scheduling</strong> – divide cycle time in proportion to demand.
-            </li>
-          </ul>
-
-          <p>
-            Instead of equal green for all, our scheduler
-            <strong>allocates more green</strong> to approaches with more queued
-            vehicles.
-          </p>
-        </div>
-
-        <div>
-          <div class="code-label">Pseudocode: Greedy green-time split</div>
-          <pre><code>function computeGreenTimes(count[1..n], cycleTime):
-    total = 0
-    for i = 1 to n:
-        total += count[i]
-
-    for i = 1 to n:
-        share[i] = (count[i] / total) * cycleTime
-
-    return share</code></pre>
-
-          <div class="code-label">Mini C snippet: queue at one junction</div>
-          <pre><code>#include &lt;stdio.h&gt;
+        <div class="glass-card">
+            <div class="sub-head">Traffic Queue Simulator</div>
+            <code>
+#include &lt;stdio.h&gt;
 
 int main() {
-    int queue = 0, in, out;
+    int queue = 0, arrived, passed;
 
-    for (int cycle = 1; cycle &lt;= 5; cycle++) {
-        printf("\nCycle %d\n", cycle);
+    for(int cycle=1; cycle<=5; cycle++) {
+        printf("Cycle %d\n", cycle);
         printf("Vehicles arrived: ");
-        scanf("%d", &in);
-        printf("Vehicles passed on green: ");
-        scanf("%d", &out);
+        scanf("%d", &arrived);
 
-        queue = queue + in - out;
-        if (queue &lt; 0) queue = 0;
-
-        printf("Vehicles still waiting: %d\n", queue);
-    }
-}</code></pre>
-        </div>
-      </div>
-    </section>
-
-    <!-- INCIDENTS -->
-    <section id="incidents">
-      <h2>4. Handling Accidents & Road Closures</h2>
-      <small>Keeping the network connected when something fails</small>
-
-      <div class="section-grid">
-        <div>
-          <p>
-            When an accident blocks a road, some areas may become very hard to
-            reach. The traffic control centre must quickly know which regions
-            are affected, and how to reroute vehicles.
-          </p>
-
-          <p><strong>Problem:</strong> After removing a road, check connectivity and suggest alternate routes.</p>
-
-          <div class="pill-title">Algorithms used</div>
-          <ul class="algo-list">
-            <li>
-              <strong>DFS / BFS</strong> – explore reachable zones from a source junction.
-            </li>
-            <li>
-              <strong>Disjoint Set (Union–Find)</strong> – maintain components when roads go down.
-            </li>
-            <li>
-              <strong>Bellman–Ford</strong> – recompute routes with extra delay penalties for blocked segments.
-            </li>
-          </ul>
-
-          <ul class="benefit-list">
-            <li>Control room can instantly see which junctions are isolated.</li>
-            <li>Emergency routes are recalculated around the blockage.</li>
-            <li>Temporary diversions can be planned scientifically.</li>
-          </ul>
-        </div>
-
-        <div>
-          <div class="code-label">Pseudocode: checking connectivity with DFS</div>
-          <pre><code>visited[] = {false}
-
-function dfs(u):
-    visited[u] = true
-    for each v in adj[u]:
-        if not visited[v]:
-            dfs(v)
-
-function isNetworkConnected():
-    pick any start node s
-    dfs(s)
-    for each node v:
-        if not visited[v]:
-            return false
-    return true</code></pre>
-          <div class="chip-row">
-            <span class="chip good">O(V + E) time</span>
-            <span class="chip warn">Must reset visited[] after each incident</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- SENSORS -->
-    <section id="sensors">
-      <h2>5. Placing Cameras & Sensors with Minimum Cost</h2>
-      <small>Using MST to wire the monitoring network</small>
-
-      <div class="section-grid">
-        <div>
-          <p>
-            Traffic sensors and CCTV cameras are usually connected through a
-            communication network. Laying cable for every possible road is too
-            expensive, so we need a
-            <strong>minimum cost backbone</strong>.
-          </p>
-
-          <p><strong>Problem:</strong> Connect all camera locations with minimum wiring cost.</p>
-
-          <div class="pill-title">Algorithms used</div>
-          <ul class="algo-list">
-            <li>
-              <strong>Prim's MST</strong> – grows the network starting from control room.
-            </li>
-            <li>
-              <strong>Kruskal's MST</strong> – sorts edges by cost and joins components.
-            </li>
-          </ul>
-
-          <p>
-            Both algorithms generate a
-            <strong>Minimum Spanning Tree (MST)</strong>, giving a design that
-            covers all points at minimal cable length or cost.
-          </p>
-
-          <ul class="benefit-list">
-            <li>Reduced installation and maintenance cost.</li>
-            <li>Every sensor is reachable by the control centre.</li>
-            <li>Monitoring can later be upgraded to smart/AI cameras.</li>
-          </ul>
-        </div>
-
-        <div>
-          <div class="code-label">Very short Prim-style pseudocode</div>
-          <pre><code>function primMST(graph, start):
-    for each v:
-        inMST[v] = false
-        cost[v] = INF
-    cost[start] = 0
-
-    repeat (V times):
-        u = vertex with min cost[] not in MST
-        inMST[u] = true
-
-        for each edge (u, v, w):
-            if not inMST[v] and w &lt; cost[v]:
-                cost[v] = w
-                parent[v] = u</code></pre>
-        </div>
-      </div>
-    </section>
-
-    <!-- DATA & SORTING -->
-    <section id="data">
-      <h2>6. Sorting & Analysing Traffic Data</h2>
-      <small>Preparing clean dashboards for decision making</small>
-
-      <div class="section-grid">
-        <div>
-          <p>
-            The control room collects gigabytes of data: speed, volume,
-            density, time of day, etc. To show useful charts, data must be
-            sorted and grouped efficiently.
-          </p>
-
-          <p><strong>Problem:</strong> Sort and filter large logs to find worst hours, roads, and patterns.</p>
-
-          <div class="pill-title">Algorithms used</div>
-          <ul class="algo-list">
-            <li>
-              <strong>Merge Sort</strong> – stable sorting for daily traffic records.
-            </li>
-            <li>
-              <strong>Quick Sort</strong> – fast in-memory sorting for live dashboards.
-            </li>
-          </ul>
-
-          <ul class="benefit-list">
-            <li>Top 10 most congested roads quickly identified.</li>
-            <li>Peak hour ranges can be visualised for planning.</li>
-            <li>Comparison before/after optimisation is easier.</li>
-          </ul>
-        </div>
-
-        <div>
-          <div class="code-label">Array-based Merge Sort (outline)</div>
-          <pre><code>function mergeSort(a, left, right):
-    if left &gt;= right: return
-
-    mid = (left + right) / 2
-    mergeSort(a, left, mid)
-    mergeSort(a, mid + 1, right)
-    merge(a, left, mid, right)</code></pre>
-        </div>
-      </div>
-    </section>
-
-    <!-- CODE LAB -->
-    <section id="code-lab">
-      <h2>7. Code Lab – Mini Demo Programs</h2>
-      <small>Simple snippets that link theory to traffic</small>
-
-      <p>
-        This section shows how our algorithms can be turned into small
-        programs. These are not full products, but
-        <strong>lab-style demos</strong> that map course concepts to
-        real-world traffic scenarios.
-      </p>
-
-      <div class="section-grid">
-        <div>
-          <div class="pill-title">A. C program: basic junction queue</div>
-          <pre><code>#include &lt;stdio.h&gt;
-
-int main() {
-    int cycles;
-    printf("Enter number of signal cycles: ");
-    scanf("%d", &cycles);
-
-    int waiting = 0;
-    for (int i = 1; i &lt;= cycles; i++) {
-        int in, out;
-        printf("\nCycle %d\n", i);
-        printf("Vehicles arrived: ");
-        scanf("%d", &in);
         printf("Vehicles passed: ");
-        scanf("%d", &out);
+        scanf("%d", &passed);
 
-        waiting = waiting + in - out;
-        if (waiting &lt; 0) waiting = 0;
+        queue = queue + arrived - passed;
+        if(queue &lt; 0) queue = 0;
 
-        printf("Vehicles in queue now: %d\n", waiting);
+        printf("Vehicles waiting now: %d\n\n", queue);
     }
-    return 0;
-}</code></pre>
+}
+            </code>
         </div>
-
-        <div>
-          <div class="pill-title">B. Pseudocode: choosing best alternate road</div>
-          <pre><code>function chooseAlternate(mainRoad, sideRoad):
-    if congestion(mainRoad) &lt;= congestion(sideRoad):
-        return mainRoad
-    else:
-        return sideRoad</code></pre>
-
-          <div class="pill-title">C. Structure used for graph node (C-style)</div>
-          <pre><code>struct Edge {
-    int to;
-    int time;       // weight: travel time
-};
-
-struct Node {
-    int id;
-    struct Edge edges[20];
-    int edgeCount;
-};</code></pre>
-        </div>
-      </div>
     </section>
 
-    <!-- TEAM -->
-    <section id="team">
-      <h2>8. Team Roles (for Report / Viva)</h2>
-      <small>Who contributed what</small>
 
-      <div class="team-grid">
-        <div class="team-card">
-          <div class="team-name">Saanvi</div>
-          <div class="team-role">Traffic analysis & problem modelling</div>
-          <div class="team-desc">
-            Identified major congestion points, mapped city roads to graph
-            model, and wrote the problem statement for smart routing and
-            signal control.
-          </div>
+
+    <!-- ================= TEAM ================= -->
+    <section class="section" id="team">
+        <h2>Team Members</h2>
+
+        <div class="team-wrapper">
+            <div class="team-card">
+                <div class="team-name">Saanvi</div>
+                <div class="team-role">Traffic Analyst</div>
+                <div class="team-desc">Mapped congestion areas and identified patterns.</div>
+            </div>
+
+            <div class="team-card">
+                <div class="team-name">Ramya</div>
+                <div class="team-role">Data Collector</div>
+                <div class="team-desc">Collected vehicle counts and peak-hour timings.</div>
+            </div>
+
+            <div class="team-card">
+                <div class="team-name">Rudresh</div>
+                <div class="team-role">Algorithm Developer</div>
+                <div class="team-desc">Implemented routing, scheduling, and simulation logic.</div>
+            </div>
         </div>
-
-        <div class="team-card">
-          <div class="team-name">Ramya</div>
-          <div class="team-role">Data collection & observation</div>
-          <div class="team-desc">
-            Collected sample vehicle counts, waiting times, and pedestrian
-            movement at busy junctions. Assisted in designing realistic test
-            cases for algorithms.
-          </div>
-        </div>
-
-        <div class="team-card">
-          <div class="team-name">Rudresh</div>
-          <div class="team-role">Algorithm design & coding</div>
-          <div class="team-desc">
-            Implemented Dijkstra-based path planning, signal time allocation
-            logic, and small C programs that simulate junction queues and
-            basic scheduling.
-          </div>
-        </div>
-
-        <div class="team-card">
-          <div class="team-name">Others</div>
-          <div class="team-role">Documentation & presentation</div>
-          <div class="team-desc">
-            Prepared slides, diagrams, and GitHub deployment. Ensured all
-            algorithms used are strictly from the allowed course list.
-          </div>
-        </div>
-      </div>
-
-      <div class="summary-box" style="margin-top: 0.9rem">
-        <strong>Summary:</strong> Our traffic management mini-project shows
-        that even with only syllabus algorithms (graphs, shortest paths,
-        trees, sorting, queues), we can design practical solutions for routing,
-        signals, incidents, sensors, and data reporting in a modern city.
-      </div>
     </section>
-  </main>
 
-  <button class="to-top" id="toTopBtn" onclick="window.scrollTo({ top: 0, behavior: 'smooth' })">
-    ↑ Top
-  </button>
-
-  <script>
-    const btn = document.getElementById("toTopBtn");
-    window.addEventListener("scroll", () => {
-      if (window.scrollY > 320) {
-        btn.classList.add("show");
-      } else {
-        btn.classList.remove("show");
-      }
-    });
-  </script>
 </body>
 </html>
