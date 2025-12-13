@@ -2,128 +2,90 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Smart Traffic & Elegant Urban Design</title>
+<title>Traffic Management System | Smart City (DAA)</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<!-- Fonts & Icons -->
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"/>
 
 <style>
 body{
   margin:0;
   font-family:Poppins,sans-serif;
-  background:#f8fafc;
-  color:#1f2933;
+  background:#f1f5f9;
 }
 header{
-  position:sticky;top:0;
-  background:#fff;
-  border-bottom:1px solid #e5e7eb;
-  z-index:50;
+  background:#0f172a;
+  color:white;
+  padding:1rem 1.5rem;
 }
-.nav-inner{
-  max-width:1180px;
-  margin:auto;
-  padding:0.8rem 1.2rem;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
-.brand-title{
-  font-family:"Playfair Display",serif;
-  font-size:1.1rem;
-}
-.brand-sub{
-  font-size:0.75rem;
-  color:#6b7280;
-}
-nav a{
-  margin-left:0.6rem;
-  text-decoration:none;
-  font-size:0.85rem;
-  color:#6b7280;
-}
-nav a:hover{color:#1d4ed8}
+header h1{margin:0;font-size:1.3rem}
+header small{color:#cbd5f5}
 
-main{
-  max-width:1180px;
-  margin:auto;
-  padding:2rem 1.2rem;
-}
-
-.hero{
+.main{
   display:grid;
-  grid-template-columns:2fr 1.5fr;
-  gap:2rem;
-  margin-bottom:3rem;
-}
-.hero h1{
-  font-family:"Playfair Display",serif;
-}
-.hero img{
-  width:100%;
-  border-radius:18px;
+  grid-template-columns:260px 1fr 320px;
+  min-height:calc(100vh - 80px);
 }
 
-section{
-  background:#fff;
-  border-radius:16px;
-  padding:1.6rem;
-  margin-bottom:2.5rem;
-  border:1px solid #e5e7eb;
-}
-
-section h2{
-  font-family:"Playfair Display",serif;
-  color:#1d4ed8;
-}
-
-.info-card{
-  background:#f9fafb;
-  border:1px dashed #cbd5e1;
-  border-radius:12px;
+/* LEFT PANEL */
+.sidebar{
+  background:#020617;
+  color:white;
   padding:1rem;
-  margin-top:1rem;
 }
-
-.image-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:1rem;
-}
-
-.image-grid img{
+.sidebar h3{font-size:0.95rem;color:#93c5fd}
+.sidebar button{
   width:100%;
-  border-radius:14px;
-}
-
-button{
-  padding:10px 18px;
-  background:#1d4ed8;
+  margin:0.35rem 0;
+  padding:0.6rem;
+  background:#1e293b;
   color:white;
   border:none;
-  border-radius:8px;
+  border-radius:6px;
   cursor:pointer;
 }
+.sidebar button:hover{background:#2563eb}
 
+/* CENTER */
+.city{
+  background:#e5e7eb;
+  padding:1.2rem;
+}
+.map{
+  background:white;
+  border-radius:12px;
+  height:100%;
+  padding:1rem;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:1.1rem;
+  color:#475569;
+}
+
+/* RIGHT PANEL */
+.info{
+  background:#ffffff;
+  border-left:1px solid #e5e7eb;
+  padding:1rem;
+}
+.info h3{margin-top:0;color:#1d4ed8}
 pre{
   background:#0f172a;
   color:#e5e7eb;
-  padding:0.8rem;
-  border-radius:10px;
+  padding:0.7rem;
+  border-radius:8px;
   font-size:0.8rem;
-  overflow-x:auto;
 }
-
-canvas{
-  background:white;
-  border-radius:12px;
-}
-
-@media(max-width:900px){
-  .hero{grid-template-columns:1fr}
+.tag{
+  display:inline-block;
+  background:#e0e7ff;
+  color:#1d4ed8;
+  padding:0.2rem 0.5rem;
+  border-radius:999px;
+  font-size:0.75rem;
+  margin-bottom:0.4rem;
 }
 </style>
 </head>
@@ -131,157 +93,111 @@ canvas{
 <body>
 
 <header>
-  <div class="nav-inner">
-    <div>
-      <div class="brand-title">Smart Traffic & Elegant Urban Design</div>
-      <div class="brand-sub">Built to stand out among all city projects · DAA</div>
-    </div>
-    <nav>
-      <a href="#overview">Overview</a>
-      <a href="#map">Map</a>
-      <a href="#tms">Scenarios</a>
-      <a href="#emergency">Emergency</a>
-      <a href="#analytics">Graphs</a>
-      <a href="#gallery">Poster</a>
-    </nav>
-  </div>
+  <h1>Traffic Management System – Smart City</h1>
+  <small>Scenario-Based Implementation using Data Structures & Algorithms</small>
 </header>
 
-<main>
+<div class="main">
 
-<!-- HERO -->
-<div class="hero" data-aos="fade-up">
-  <div>
-    <h1>Smart Traffic<br>& Elegant Urban Design</h1>
-    <p>
-      A DAA-based smart traffic management system where city roads are modeled
-      as graphs, signals as queues, and routing decisions as algorithms.
-    </p>
+  <!-- LEFT -->
+  <div class="sidebar">
+    <h3>Traffic Scenarios</h3>
+    <button onclick="loadScenario(1)">Peak Hour Congestion</button>
+    <button onclick="loadScenario(2)">Emergency Ambulance</button>
+    <button onclick="loadScenario(3)">Road Block / Accident</button>
+    <button onclick="loadScenario(4)">Public Transport Priority</button>
+    <button onclick="loadScenario(5)">Traffic Monitoring</button>
   </div>
-  <img src="1.jpeg" alt="City Map">
+
+  <!-- CENTER -->
+  <div class="city">
+    <div class="map" id="mapView">
+      Select a scenario to simulate traffic behavior
+    </div>
+  </div>
+
+  <!-- RIGHT -->
+  <div class="info" id="infoPanel">
+    <h3>Scenario Details</h3>
+    <p>Click a scenario from the left panel.</p>
+  </div>
+
 </div>
-
-<!-- OVERVIEW -->
-<section id="overview" data-aos="fade-up">
-<h2>1. City & Traffic Overview</h2>
-<p>
-The city road network is modeled as a weighted graph where intersections are nodes
-and roads are edges. Traffic behavior is analysed using Data Structures and Algorithms (DAA).
-</p>
-</section>
-
-<!-- MAP -->
-<section id="map" data-aos="fade-up">
-<h2>2. City Maps</h2>
-<div class="image-grid">
-  <img src="2.jpeg">
-  <img src="4.jpeg">
-  <img src="5.jpeg">
-</div>
-</section>
-
-<!-- TRAFFIC MANAGEMENT SYSTEM -->
-<section id="tms" data-aos="fade-up">
-<h2>3. Traffic Management System – Scenario Based</h2>
-
-<div class="info-card">
-<b>Scenario 1: Peak Hour Congestion</b>
-<p><b>DAA:</b> Queue, Greedy</p>
-<p>Vehicles are queued at junctions and green time is allocated proportionally.</p>
-<pre>greenTime = (vehicles / totalVehicles) * cycleTime</pre>
-</div>
-
-<div class="info-card">
-<b>Scenario 2: Emergency Routing</b>
-<p><b>DAA:</b> Graph, Dijkstra</p>
-<p>Shortest path is computed for ambulances.</p>
-<pre>path = dijkstra(cityGraph, source)</pre>
-</div>
-
-<div class="info-card">
-<b>Scenario 3: Road Block / Accident</b>
-<p><b>DAA:</b> BFS</p>
-<p>Blocked road removed and alternate routes found.</p>
-<pre>BFS(graph, start)</pre>
-</div>
-
-<div class="info-card">
-<b>Scenario 4: Public Transport Priority</b>
-<p><b>DAA:</b> Priority Queue</p>
-<pre>schedule(busQueue)</pre>
-</div>
-
-<div class="info-card">
-<b>Scenario 5: Traffic Monitoring</b>
-<p><b>DAA:</b> Hashing</p>
-<pre>trafficDensity[roadID]</pre>
-</div>
-</section>
-
-<!-- EMERGENCY ANIMATION -->
-<section id="emergency" data-aos="fade-up">
-<h2>4. Emergency Ambulance Simulation</h2>
-<button id="emergencyBtn">Activate Emergency Route 🚑</button>
-
-<div style="position:relative;margin-top:1rem;">
-<img id="emergencyMap" src="1.jpeg" style="width:100%;border-radius:14px;">
-<svg width="100%" height="100%" style="position:absolute;top:0;left:0;">
-<path id="routePath"
-d="M 10% 85% C 30% 70%, 50% 50%, 70% 40% S 90% 20%, 95% 10%"
-stroke="red" stroke-width="6" fill="none" opacity="0.4"/>
-</svg>
-<img id="ambulance"
-src="https://cdn-icons-png.flaticon.com/512/2966/2966327.png"
-style="width:50px;position:absolute;top:0;left:0;transform:translate(-50%,-50%)">
-</div>
-</section>
-
-<!-- ANALYTICS -->
-<section id="analytics" data-aos="fade-up">
-<h2>5. Traffic Analytics</h2>
-<canvas id="populationChart"></canvas>
-<br><br>
-<canvas id="budgetChart"></canvas>
-</section>
-
-<!-- POSTER -->
-<section id="gallery" data-aos="fade-up">
-<h2>6. Poster & Documentation</h2>
-<div class="image-grid">
-  <img src="10.jpeg">
-  <img src="11.jpeg">
-</div>
-</section>
-
-</main>
-
-<!-- JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/MotionPathPlugin.min.js"></script>
 
 <script>
-AOS.init({once:true});
+function loadScenario(id){
 
-new Chart(document.getElementById("populationChart"),{
-type:"bar",
-data:{labels:["2020","2030","2040"],
-datasets:[{data:[6,8.5,11],backgroundColor:"#1d4ed8"}]}
-});
+const map = document.getElementById("mapView");
+const info = document.getElementById("infoPanel");
 
-new Chart(document.getElementById("budgetChart"),{
-type:"doughnut",
-data:{labels:["Transport","Health","Education","Energy","Parks","Admin"],
-datasets:[{data:[28,18,20,12,10,12]}]}
-});
+if(id===1){
+map.innerHTML="🚗🚗🚗 Heavy traffic queues at intersections";
+info.innerHTML=`
+<span class="tag">Queue + Greedy</span>
+<h3>Peak Hour Traffic Congestion</h3>
+<p><b>Problem:</b> Many vehicles arrive at the same time causing delays.</p>
+<p><b>Solution:</b> Each road is treated as a queue and green time is allocated greedily.</p>
+<pre>
+greenTime = (vehicles / totalVehicles) * cycleTime
+</pre>
+<p><b>Outcome:</b> Reduced waiting time.</p>`;
+}
 
-gsap.registerPlugin(MotionPathPlugin);
-document.getElementById("emergencyBtn").onclick=()=>{
-gsap.to("#routePath",{opacity:1,strokeWidth:8});
-gsap.to("#ambulance",{duration:6,
-motionPath:{path:"#routePath",align:"#routePath",autoRotate:true}});
-};
+if(id===2){
+map.innerHTML="🚑 Green corridor activated → Hospital";
+info.innerHTML=`
+<span class="tag">Graph + Dijkstra</span>
+<h3>Emergency Vehicle Routing</h3>
+<p><b>Problem:</b> Ambulance delay in traffic.</p>
+<p><b>Solution:</b> City roads modeled as a graph and shortest path is calculated.</p>
+<pre>
+shortestPath = dijkstra(cityGraph, source)
+</pre>
+<p><b>Outcome:</b> Fast emergency response.</p>`;
+}
+
+if(id===3){
+map.innerHTML="⛔ Road blocked → Traffic diverted";
+info.innerHTML=`
+<span class="tag">Graph Traversal (BFS)</span>
+<h3>Road Block / Accident</h3>
+<p><b>Problem:</b> Accident blocks a road.</p>
+<p><b>Solution:</b> Blocked edge removed and BFS finds alternate routes.</p>
+<pre>
+removeEdge(graph, blockedRoad)
+BFS(graph, startNode)
+</pre>
+<p><b>Outcome:</b> Smooth rerouting.</p>`;
+}
+
+if(id===4){
+map.innerHTML="🚌 Bus lane prioritized";
+info.innerHTML=`
+<span class="tag">Priority Queue</span>
+<h3>Public Transport Priority</h3>
+<p><b>Problem:</b> Buses delayed in mixed traffic.</p>
+<p><b>Solution:</b> Priority queue schedules buses first.</p>
+<pre>
+push(busQueue, priority)
+scheduleNext(busQueue)
+</pre>
+<p><b>Outcome:</b> Reliable public transport.</p>`;
+}
+
+if(id===5){
+map.innerHTML="📊 Traffic density monitored city-wide";
+info.innerHTML=`
+<span class="tag">Hashing</span>
+<h3>Traffic Monitoring System</h3>
+<p><b>Problem:</b> Continuous traffic analysis required.</p>
+<p><b>Solution:</b> Hash tables store real-time sensor data.</p>
+<pre>
+traffic[roadID] = vehicleCount
+</pre>
+<p><b>Outcome:</b> Instant congestion detection.</p>`;
+}
+
+}
 </script>
 
 </body>
