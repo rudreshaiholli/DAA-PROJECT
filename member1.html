@@ -2,428 +2,244 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<title>Smart Traffic Management System – Scenario Explanation</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Advanced Smart Traffic Management System | DAA</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
-/* =========================================================
-   GLOBAL THEME
-   ========================================================= */
-:root{
-  --bg-main:#0b1220;
-  --bg-alt:#0f1a2e;
-  --panel:rgba(255,255,255,0.06);
-  --border:rgba(255,255,255,0.12);
-  --text:#eaf1ff;
-  --muted:#a3b7da;
-  --accent:#38bdf8;
-  --accent2:#60a5fa;
-  --success:#22c55e;
-  --warning:#f97316;
-  --danger:#ef4444;
-  --radius:20px;
-}
-*{box-sizing:border-box}
 body{
   margin:0;
-  font-family:"Inter",sans-serif;
-  background:linear-gradient(180deg,var(--bg-main),var(--bg-alt));
-  color:var(--text);
+  font-family:'Poppins',sans-serif;
+  background:linear-gradient(180deg,#0f172a,#020617);
+  color:#e5e7eb;
+  line-height:1.7;
 }
-.wrapper{
-  max-width:1400px;
-  margin:auto;
-  padding:40px 24px 120px;
-}
-
-/* =========================================================
-   HEADER
-   ========================================================= */
 header{
-  text-align:center;
-  margin-bottom:50px;
+  background:#020617;
+  padding:20px 40px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  box-shadow:0 10px 40px rgba(0,0,0,0.6);
 }
 header h1{
-  font-size:44px;
-  font-weight:800;
-  background:linear-gradient(90deg,var(--accent),var(--accent2));
-  -webkit-background-clip:text;
-  color:transparent;
-}
-header p{
-  max-width:1000px;
-  margin:auto;
-  color:var(--muted);
-  font-size:17px;
-  line-height:1.8;
-}
-
-/* =========================================================
-   NAVIGATION
-   ========================================================= */
-nav{
-  display:flex;
-  justify-content:center;
-  flex-wrap:wrap;
-  gap:26px;
-  padding:16px;
-  border-radius:40px;
-  background:rgba(255,255,255,0.04);
-  border:1px solid var(--border);
-  backdrop-filter:blur(14px);
-  margin-bottom:50px;
+  font-size:22px;
+  color:#38bdf8;
 }
 nav a{
-  color:var(--text);
+  color:#e5e7eb;
   text-decoration:none;
-  font-weight:600;
+  margin-left:20px;
+  font-weight:500;
 }
-nav a:hover{color:var(--accent);}
-
-/* =========================================================
-   SECTIONS
-   ========================================================= */
+nav a:hover{
+  color:#38bdf8;
+}
+.container{
+  max-width:1200px;
+  margin:auto;
+  padding:40px 20px 80px;
+}
 .section{
-  background:var(--panel);
-  border-radius:var(--radius);
-  padding:32px;
-  border:1px solid var(--border);
-  box-shadow:0 18px 60px rgba(0,0,0,0.55);
+  background:rgba(255,255,255,0.03);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:20px;
+  padding:35px;
   margin-bottom:40px;
+  box-shadow:0 20px 60px rgba(0,0,0,0.6);
 }
 .section h2{
-  color:var(--accent);
-  font-size:28px;
+  color:#38bdf8;
+  font-size:30px;
+  margin-bottom:15px;
 }
 .section h3{
-  color:var(--accent2);
+  color:#a5f3fc;
+  margin-top:30px;
 }
 .section p{
-  color:var(--muted);
-  line-height:1.85;
+  font-size:17px;
+  color:#d1d5db;
 }
-
-/* =========================================================
-   GRID & CARDS
-   ========================================================= */
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
-  gap:26px;
+ul{
+  margin-left:20px;
 }
-.card{
-  background:rgba(0,0,0,0.25);
-  border-radius:18px;
-  padding:22px;
-  border:1px solid var(--border);
+li{
+  margin-bottom:10px;
 }
-
-/* =========================================================
-   FLOWCHART
-   ========================================================= */
+.highlight{
+  color:#22d3ee;
+  font-weight:600;
+}
 .flow{
-  max-width:760px;
-  margin:auto;
-}
-.flow-box{
   background:#020617;
-  border:1px solid var(--border);
-  padding:16px;
   border-radius:14px;
-  text-align:center;
+  padding:20px;
+  font-family:monospace;
+  white-space:pre-line;
+  color:#a5f3fc;
+  margin-top:20px;
 }
-.flow-arrow{
-  text-align:center;
-  font-size:22px;
-  color:var(--accent);
-  margin:6px 0;
-}
-
-/* =========================================================
-   TABLE
-   ========================================================= */
-table{
-  width:100%;
-  border-collapse:collapse;
-  margin-top:16px;
-}
-th,td{
-  border:1px solid var(--border);
-  padding:14px;
-  text-align:center;
-}
-th{
-  background:rgba(56,189,248,0.18);
-}
-td{
-  background:rgba(255,255,255,0.04);
-}
-
-/* =========================================================
-   FOOTER
-   ========================================================= */
 footer{
   text-align:center;
-  color:var(--muted);
-  margin-top:60px;
+  padding:25px;
+  background:#020617;
+  color:#9ca3af;
 }
 </style>
 </head>
 
 <body>
-<div class="wrapper">
 
 <header>
-<h1>Advanced Smart Traffic Management System</h1>
-<p>
-A **large-scale, scenario-driven city traffic solution** designed using  
-<b>Data Structures and Algorithms (DAA)</b>.  
-This system models roads as graphs, signals as queues, emergencies as priority tasks,
-and traffic decisions as greedy & graph-based optimizations.
-</p>
+  <h1>Smart Traffic Management System</h1>
+  <nav>
+    <a href="#scenario">Scenario</a>
+    <a href="#problem">Problem</a>
+    <a href="#solution">Solution</a>
+    <a href="#daa">DAA Mapping</a>
+  </nav>
 </header>
 
-<nav>
-<a href="#intro">Introduction</a>
-<a href="#scenario">Scenario</a>
-<a href="#signals">Signals</a>
-<a href="#emergency">Emergency</a>
-<a href="#accident">Accident</a>
-<a href="#monitor">Monitoring</a>
-<a href="#flow">Flowchart</a>
-<a href="#daa">DAA Mapping</a>
-</nav>
+<div class="container">
 
-<!-- ======================================================
-     INTRODUCTION
-     ====================================================== -->
-<section class="section" id="intro">
-<h2>1. Introduction</h2>
-<p>
-Urban traffic congestion results in time loss, pollution, fuel wastage and delayed
-emergency response. Traditional traffic systems operate using static signal timings
-and manual supervision.
-</p>
-<p>
-This project proposes a **Smart Traffic Management System** that continuously adapts
-to real-time conditions using core DAA concepts such as:
-</p>
-<ul>
-<li>Queue & Deque</li>
-<li>Graph (Adjacency List)</li>
-<li>Dijkstra & BFS</li>
-<li>Priority Queue (Heap)</li>
-<li>Greedy Strategy</li>
-<li>Hash Maps</li>
-<li>Dynamic Updates</li>
-</ul>
-</section>
-
-<!-- ======================================================
-     BIG SCENARIO
-     ====================================================== -->
-<section class="section" id="scenario">
-<h2>2. Real-World City Scenario</h2>
-<p>
-Consider a smart city with:
-</p>
-<ul>
-<li>50+ intersections</li>
-<li>Multiple emergency hospitals</li>
-<li>Public transport corridors</li>
-<li>Peak hour congestion</li>
-<li>Frequent accidents</li>
-</ul>
-
-<p>
-The system must answer:
-</p>
-<ul>
-<li>Which signal gets green first?</li>
-<li>How does an ambulance reach hospital fastest?</li>
-<li>What happens when a road is blocked?</li>
-<li>How is congestion detected instantly?</li>
-</ul>
-</section>
-
-<!-- ======================================================
-     SIGNAL MANAGEMENT
-     ====================================================== -->
-<section class="section" id="signals">
-<h2>3. Adaptive Traffic Signal Management</h2>
-
-<div class="grid">
-<div class="card">
-<h3>Data Structures Used</h3>
-<ul>
-<li>Queue – vehicles per lane</li>
-<li>Array – vehicle counters</li>
-<li>Greedy algorithm – signal priority</li>
-</ul>
+<!-- INTRODUCTION -->
+<div class="section">
+  <h2>Introduction</h2>
+  <p>
+    This website represents a <span class="highlight">Smart Traffic Management System</span> designed using
+    <span class="highlight">Data Structures and Algorithms (DAA)</span>.
+    The goal of this system is to solve real-world traffic problems using algorithmic thinking,
+    instead of traditional fixed and manual traffic control methods.
+  </p>
 </div>
 
-<div class="card">
-<h3>Operations</h3>
-<ul>
-<li>enqueueVehicle()</li>
-<li>dequeueVehicle()</li>
-<li>calculateGreenTime()</li>
-<li>rotateSignal()</li>
-</ul>
-</div>
-</div>
+<!-- SCENARIO -->
+<div class="section" id="scenario">
+  <h2>Scenario Description</h2>
 
-<p>
-Each lane maintains a queue. Green time is allocated greedily to the lane
-with maximum vehicles, minimizing total waiting time.
-</p>
-</section>
+  <p>
+    We consider a modern smart city with multiple roads, intersections, traffic signals,
+    emergency services, public transport, and real-time traffic sensors.
+    Every day, the city faces heavy congestion during peak hours, unpredictable accidents,
+    and delays for emergency vehicles like ambulances and fire trucks.
+  </p>
 
-<!-- ======================================================
-     EMERGENCY
-     ====================================================== -->
-<section class="section" id="emergency">
-<h2>4. Emergency Vehicle Routing</h2>
-
-<div class="grid">
-<div class="card">
-<h3>Data Structures</h3>
-<ul>
-<li>Graph (Adjacency List)</li>
-<li>Priority Queue (Min-Heap)</li>
-</ul>
+  <p>
+    In the traditional system, traffic signals operate on <span class="highlight">fixed timing</span>.
+    This causes unnecessary waiting even on empty roads and fails completely during emergencies.
+    Hence, we model a system that <span class="highlight">adapts dynamically</span>
+    using DAA concepts.
+  </p>
 </div>
 
-<div class="card">
-<h3>Operations</h3>
-<ul>
-<li>addRoad()</li>
-<li>removeRoad()</li>
-<li>dijkstraShortestPath()</li>
-<li>activateGreenCorridor()</li>
-</ul>
+<!-- PROBLEM -->
+<div class="section" id="problem">
+  <h2>Problems Identified</h2>
+
+  <ul>
+    <li>Traffic signals do not adapt to real-time vehicle density</li>
+    <li>Emergency vehicles get stuck in traffic</li>
+    <li>No automatic rerouting during accidents</li>
+    <li>Poor monitoring of congestion</li>
+    <li>Increased fuel consumption and pollution</li>
+  </ul>
 </div>
+
+<!-- SOLUTION -->
+<div class="section" id="solution">
+  <h2>Proposed Smart Solution</h2>
+
+  <p>
+    Our Smart Traffic Management System uses <span class="highlight">DAA-based decision making</span>
+    to control traffic flow efficiently.
+  </p>
+
+  <h3>1️⃣ Adaptive Traffic Signal Control</h3>
+  <p>
+    Each road approaching a signal is treated as a <span class="highlight">Queue</span>.
+    Vehicles are enqueued as they arrive and dequeued when the signal turns green.
+    A <span class="highlight">Greedy Algorithm</span> dynamically allocates green time
+    to the lane with maximum congestion.
+  </p>
+
+  <h3>2️⃣ Emergency Vehicle Handling</h3>
+  <p>
+    The city road network is modeled as a <span class="highlight">Weighted Graph</span>.
+    When an ambulance enters the system, <span class="highlight">Dijkstra’s Algorithm</span>
+    computes the shortest path to the hospital.
+    All signals on that path automatically turn green, forming a <span class="highlight">Green Corridor</span>.
+  </p>
+
+  <h3>3️⃣ Accident Detection and Rerouting</h3>
+  <p>
+    If an accident occurs, the blocked road is removed from the graph.
+    <span class="highlight">Breadth-First Search (BFS)</span> is used to find the nearest alternate route,
+    ensuring smooth diversion of traffic.
+  </p>
+
+  <h3>4️⃣ Traffic Monitoring</h3>
+  <p>
+    Vehicle counts and congestion data are stored in <span class="highlight">Hash Tables</span>.
+    This allows instant lookup and real-time congestion detection with O(1) time complexity.
+  </p>
 </div>
 
-<p>
-When an ambulance is detected, Dijkstra’s algorithm computes the shortest
-weighted path. Signals along this path turn green automatically.
-</p>
-</section>
+<!-- DAA -->
+<div class="section" id="daa">
+  <h2>Data Structures & Algorithms Used</h2>
 
-<!-- ======================================================
-     ACCIDENT
-     ====================================================== -->
-<section class="section" id="accident">
-<h2>5. Accident Detection & Rerouting</h2>
+  <ul>
+    <li><b>Queue:</b> Vehicle flow at traffic signals</li>
+    <li><b>Graph:</b> Road network representation</li>
+    <li><b>Dijkstra’s Algorithm:</b> Emergency routing</li>
+    <li><b>BFS:</b> Alternate route discovery</li>
+    <li><b>Priority Queue:</b> Emergency and public transport priority</li>
+    <li><b>Hash Map:</b> Traffic monitoring and congestion storage</li>
+    <li><b>Greedy Algorithm:</b> Signal timing optimization</li>
+  </ul>
 
-<p>
-Accidents block edges in the road graph. The system dynamically removes the edge
-and recomputes routes using BFS.
-</p>
+  <h3>System Flow (Algorithmic View)</h3>
 
-<ul>
-<li>removeEdge()</li>
-<li>bfsAlternateRoute()</li>
-<li>broadcastDiversion()</li>
-</ul>
-</section>
-
-<!-- ======================================================
-     MONITORING
-     ====================================================== -->
-<section class="section" id="monitor">
-<h2>6. Real-Time Traffic Monitoring</h2>
-
-<p>
-Every road has an ID mapped to congestion data using Hash Maps.
-</p>
-
-<ul>
-<li>insertTrafficData()</li>
-<li>updateCongestion()</li>
-<li>detectHotspots()</li>
-</ul>
-
-<p>
-Hashing ensures **O(1)** lookup for instant decisions.
-</p>
-</section>
-
-<!-- ======================================================
-     FLOWCHART
-     ====================================================== -->
-<section class="section" id="flow">
-<h2>7. System Flowchart</h2>
-
-<div class="flow">
-<div class="flow-box">Start System</div>
-<div class="flow-arrow">⬇</div>
-<div class="flow-box">Collect Sensor Data</div>
-<div class="flow-arrow">⬇</div>
-<div class="flow-box">Store in Queue / Hash Map</div>
-<div class="flow-arrow">⬇</div>
-<div class="flow-box">Emergency?</div>
-<div class="flow-arrow">⬇ Yes</div>
-<div class="flow-box">Dijkstra + Priority Queue</div>
-<div class="flow-arrow">⬇</div>
-<div class="flow-box">Green Corridor</div>
-<div class="flow-arrow">⬇ No</div>
-<div class="flow-box">Greedy Signal Allocation</div>
-<div class="flow-arrow">⬇</div>
-<div class="flow-box">Accident?</div>
-<div class="flow-arrow">⬇</div>
-<div class="flow-box">BFS Rerouting</div>
+  <div class="flow">
+START  
+↓  
+Collect real-time traffic data  
+↓  
+Store vehicle count in arrays & hash tables  
+↓  
+IF emergency vehicle detected  
+→ Apply Dijkstra → Green corridor  
+ELSE  
+→ Apply Greedy signal timing  
+↓  
+IF accident detected  
+→ Remove edge → BFS rerouting  
+↓  
+Update traffic state  
+↓  
+END
+  </div>
 </div>
-</section>
 
-<!-- ======================================================
-     DAA MAPPING
-     ====================================================== -->
-<section class="section" id="daa">
-<h2>8. DAA Mapping & Complexity</h2>
+<!-- CONCLUSION -->
+<div class="section">
+  <h2>Conclusion</h2>
+  <p>
+    This Smart Traffic Management System demonstrates how
+    <span class="highlight">Data Structures and Algorithms</span>
+    can be applied to real-world city problems.
+    The system improves traffic flow, reduces congestion,
+    prioritizes emergency vehicles, and supports smart city development.
+  </p>
+</div>
 
-<table>
-<tr>
-<th>Scenario</th>
-<th>Data Structure</th>
-<th>Algorithm</th>
-<th>Complexity</th>
-</tr>
-<tr>
-<td>Signals</td>
-<td>Queue</td>
-<td>Greedy</td>
-<td>O(n)</td>
-</tr>
-<tr>
-<td>Emergency</td>
-<td>Graph + Heap</td>
-<td>Dijkstra</td>
-<td>O(E log V)</td>
-</tr>
-<tr>
-<td>Accident</td>
-<td>Graph</td>
-<td>BFS</td>
-<td>O(V+E)</td>
-</tr>
-<tr>
-<td>Monitoring</td>
-<td>Hash Map</td>
-<td>Lookup</td>
-<td>O(1)</td>
-</tr>
-</table>
-</section>
+</div>
 
 <footer>
-© 2025 Smart Traffic Management System | DAA City Project
+  © 2025 Smart Traffic Management System | DAA Based City Design Project
 </footer>
 
-</div>
 </body>
 </html>
