@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Smart City Services Dashboard</title>
+<title>Smart Traffic Management System</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
@@ -19,23 +19,21 @@
   --card-radius:16px;
   --max-width:1200px;
 }
-
 *{box-sizing:border-box;}
 body, html{
   margin:0;
   height:100%;
-  font-family:"Inter",system-ui,-apple-system,Segoe UI,Roboto,Arial;
+  font-family:"Inter",sans-serif;
   background: linear-gradient(180deg,#0f1a2b,#1a2e4c);
   color:#d9e7ff;
 }
-
 .wrap{
   max-width:var(--max-width);
   margin:0 auto;
   padding:28px 18px 80px;
 }
 
-/* NAVIGATION */
+/* NAV */
 nav{
   display:flex;
   justify-content:center;
@@ -51,12 +49,8 @@ nav a{
   color:#cfe6ff;
   text-decoration:none;
   font-weight:600;
-  transition:color .18s;
 }
-nav a:hover{
-  color:var(--accent);
-  text-shadow:0 6px 26px rgba(58,215,255,0.2);
-}
+nav a:hover{color:var(--accent);}
 
 /* HERO */
 .hero{
@@ -69,19 +63,14 @@ nav a:hover{
   background:linear-gradient(90deg,var(--accent),var(--accent-2));
   -webkit-background-clip:text;
   color:transparent;
-  margin:6px 0;
 }
-.hero p{
-  color:var(--muted);
-  margin:6px 0 18px;
-}
+.hero p{color:var(--muted);}
 
 /* CARDS */
 .cards-container{
   display:grid;
   grid-template-columns:repeat(3,1fr);
   gap:20px;
-  margin-bottom:38px;
 }
 .card{
   background:var(--panel);
@@ -89,107 +78,17 @@ nav a:hover{
   padding:18px;
   border:1px solid var(--glass-border);
   backdrop-filter:blur(10px);
-  transition:transform .28s,box-shadow .28s;
   box-shadow:0 8px 26px rgba(0,0,0,0.55);
 }
-.card:hover{
-  transform:translateY(-8px);
-  box-shadow:0 28px 60px rgba(0,0,0,0.6),0 6px 40px rgba(58,215,255,0.1);
-}
-.card h2{
-  color:var(--accent-2);
-  font-size:18px;
-  margin:0 0 8px;
-}
-.section-title{
-  color:#9dfcbd;
-  font-weight:700;
-  margin:10px 0 6px;
-}
-.section ul{
-  padding-left:18px;
-  color:#d7e5ff;
-}
-.section ul li{
-  margin-bottom:8px;
-  line-height:1.45;
-}
-.button-group{
-  margin-top:10px;
-}
-.button-group button{
-  margin:4px;
-  padding:6px 12px;
-  border:none;
-  border-radius:8px;
-  background:var(--accent);
-  color:#0b0f15;
-  font-weight:600;
-  cursor:pointer;
-  transition:all .2s;
-}
-.button-group button:hover{
-  background:var(--accent-2);
-  color:#fff;
-}
+.card h2{color:var(--accent-2);}
+.section-title{color:#9dfcbd;font-weight:700;}
+.section ul{padding-left:18px;}
+.section ul li{margin-bottom:8px;}
 
-/* BIG CARD */
-.big-card{
-  background:var(--panel);
-  border-radius:var(--card-radius);
-  padding:20px;
-  border:1px solid var(--glass-border);
-  backdrop-filter:blur(12px);
-  margin-bottom:30px;
-}
-
-/* TABLE */
-table{
-  width:100%;
-  border-collapse:collapse;
-  margin-bottom:40px;
-}
-th, td{
-  border:1px solid rgba(255,255,255,0.1);
-  padding:10px;
-  text-align:left;
-}
-th{
-  background:rgba(58,215,255,0.1);
-}
-td{
-  background:rgba(255,255,255,0.03);
-}
-
-/* FOOTER */
-footer{
-  text-align:center;
-  color:#93a7cd;
-  margin-top:36px;
-}
-
-/* RESPONSIVE */
-@media(max-width:1024px){
-  .cards-container{
-    grid-template-columns:repeat(2,1fr);
-  }
-}
-@media(max-width:720px){
-  .hero h1{font-size:26px;}
-  nav{gap:18px; padding:10px;}
-  .cards-container{
-    grid-template-columns:1fr;
-  }
-}
-  /* ===== CSS-only Algorithms Dropdown ===== */
-
-.alg-toggle{
-  display:none;
-}
-
+/* DROPDOWN */
+.alg-toggle{display:none;}
 .alg-btn{
   display:inline-flex;
-  align-items:center;
   gap:6px;
   background:linear-gradient(90deg,var(--neon),#3bf3ff);
   color:#001f20;
@@ -197,361 +96,191 @@ footer{
   border-radius:10px;
   font-weight:800;
   cursor:pointer;
-  box-shadow:0 8px 26px rgba(0,246,255,0.06);
-  user-select:none;
 }
-
-.alg-btn .arrow{
-  transition:transform .25s ease;
-}
-
 .alg-dropdown{
   margin-top:10px;
   background:rgba(6,10,14,0.96);
   padding:10px;
   border-radius:10px;
-  border:1px solid rgba(255,255,255,0.04);
   max-height:0;
   opacity:0;
   overflow:hidden;
-  transform:translateY(-8px);
-  transition:max-height .35s ease, opacity .25s ease, transform .25s ease;
+  transition:.3s;
 }
-
-.alg-toggle:checked + .alg-btn .arrow{
-  transform:rotate(180deg);
-}
-
 .alg-toggle:checked + .alg-btn + .alg-dropdown{
   max-height:300px;
   opacity:1;
-  transform:translateY(0);
 }
-
 .alg-dropdown a{
   display:block;
-  padding:8px 10px;
+  padding:6px;
   color:#cfeeff;
   text-decoration:none;
-  border-radius:8px;
-  font-weight:700;
 }
 
-.alg-dropdown a:hover{
-  background:linear-gradient(
-    90deg,
-    rgba(88,224,255,0.06),
-    rgba(106,179,255,0.03)
-  );
-  color:var(--accent-2);
+/* TABLE */
+table{
+  width:100%;
+  border-collapse:collapse;
 }
+th,td{
+  border:1px solid rgba(255,255,255,0.1);
+  padding:10px;
+}
+th{background:rgba(58,215,255,0.1);}
+td{background:rgba(255,255,255,0.03);}
 
+/* RESPONSIVE */
+@media(max-width:900px){
+  .cards-container{grid-template-columns:1fr;}
+}
 </style>
 </head>
 
 <body>
 <div class="wrap">
 
-  <!-- HERO -->
-  <div class="hero">
-    <h1>Smart City Services Dashboard</h1>
-    <p>Manage hospitals, waste, utilities, parking, salt production, and citizen feedback efficiently.</p>
-  </div>
-
-  <!-- NAV -->
-  <nav>
-    <a href="#h">Hospital</a>
-    <a href="#w">Waste Collection</a>
-    <a href="#u">Water & Electricity</a>
-    <a href="#p">Parking</a>
-    <a href="#s">Salt Production</a>
-    <a href="#f">Feedback</a>
-  </nav>
-
-  <!-- SYSTEM OVERVIEW -->
-  <div class="big-card">
-    <h2>System Overview</h2>
-    <p>
-      A unified platform managing hospitals, waste collection, utilities, parking,
-      salt production, and citizen feedback. It integrates graph-based routing, dynamic allocation, 
-      and priority-driven logic to enhance real-time decision-making across the city.
-    </p>
-  </div>
-
-  <!-- BUSINESS IDEAS CARDS (FIRST ROW) -->
-  <div class="cards-container">
-    <div class="card" id="h">
-      <h2>🏥 Hospital Management</h2>
-      <div class="section-title">Implementation Steps</div>
-      <ul>
-        <li>Store patient profiles using Hash Maps.</li>
-        <li>Push emergency cases into a Priority Queue.</li>
-        <li>Assign doctors based on patient urgency.</li>
-        <li>Track bed availability with boolean arrays.</li>
-      </ul>
-      <div class="section-title">Algorithms / DSA</div>
-      <ul>
-        <li>Priority Queue</li>
-        <li>Hash Map</li>
-      </ul>
-     <input type="checkbox" id="alg-h" class="alg-toggle">
-
-<label for="alg-h" class="alg-btn">
-  Algorithms <span class="arrow">▾</span>
-</label>
-
-<div class="alg-dropdown">
-  <a href="#">Priority Queue</a>
-  <a href="#">Hash Map</a>
+<!-- HERO -->
+<div class="hero">
+  <h1>Smart Traffic Management System</h1>
+  <p>Scenario-based urban traffic control using Data Structures & Algorithms (DAA)</p>
 </div>
 
-    </div>
+<!-- NAV -->
+<nav>
+  <a href="#signals">Signals</a>
+  <a href="#emergency">Emergency</a>
+  <a href="#routing">Routing</a>
+  <a href="#public">Public Transport</a>
+  <a href="#monitoring">Monitoring</a>
+</nav>
 
-    <div class="card" id="w">
-      <h2>♻️ Waste Collection</h2>
-      <div class="section-title">Implementation Steps</div>
-      <ul>
-        <li>Represent city routes as a graph.</li>
-        <li>Use DFS to find reachable collection points.</li>
-        <li>Use Dijkstra to find shortest paths between bins.</li>
-      </ul>
-      <div class="section-title">Algorithms / DSA</div>
-      <ul>
-        <li>DFS</li>
-        <li>Dijkstra</li>
-        <li>Graph</li>    
-      </ul>
-     <input type="checkbox" id="alg-w" class="alg-toggle">
-
-<label for="alg-w" class="alg-btn">
-  Algorithms <span class="arrow">▾</span>
-</label>
-
-<div class="alg-dropdown">
-  <a href="#">DFS</a>
-  <a href="#">Dijkstra</a>
-  <a href="#">Graph</a>
+<!-- OVERVIEW -->
+<div class="card">
+  <h2>System Overview</h2>
+  <p>
+    This system models city traffic using graphs, queues, heaps and greedy algorithms.
+    It dynamically manages signals, routes emergency vehicles, handles accidents,
+    prioritizes public transport and monitors congestion in real time.
+  </p>
 </div>
 
-    </div>
+<!-- TRAFFIC SCENARIOS -->
+<div class="cards-container">
 
-    <div class="card" id="u">
-      <h2>💡💧 Water & Electricity</h2>
-      <div class="section-title">Implementation Steps</div>
-      <ul>
-        <li>Model supply grid as a graph.</li>
-        <li>Use MST (Prim/Kruskal) to design minimal cost network.</li>
-        <li>Track high-demand nodes with Priority Queue / Min-Heap.</li>
-        <li>Apply dynamic allocation to adapt supply during peak hours.</li>
-      </ul>
-      <div class="section-title">Algorithms / DSA</div>
-      <ul>
-        <li>MST (Prim/Kruskal)</li>
-        <li>Graphs</li>
-        <li>Priority Queue / Min-Heap</li>
-        <li>Dynamic Allocation</li>
-      </ul>
-     <input type="checkbox" id="alg-u" class="alg-toggle">
-
-<label for="alg-u" class="alg-btn">
-  Algorithms <span class="arrow">▾</span>
-</label>
-
+<!-- SIGNALS -->
+<div class="card" id="signals">
+<h2>🚦 Adaptive Traffic Signals</h2>
+<ul>
+<li>Each road is treated as a queue.</li>
+<li>Vehicle count determines green time.</li>
+<li>Greedy algorithm allocates signal duration.</li>
+</ul>
+<input type="checkbox" id="alg1" class="alg-toggle">
+<label for="alg1" class="alg-btn">Algorithms ▾</label>
 <div class="alg-dropdown">
-  <a href="#">MST (Prim / Kruskal)</a>
-  <a href="#">Graph</a>
-  <a href="#">Priority Queue / Min Heap</a>
-  <a href="#">Dynamic Allocation</a>
+<a>Queue</a>
+<a>Greedy Algorithm</a>
+</div>
 </div>
 
-    </div>
-  </div>
-
-  <!-- ALGORITHM CARDS (SECOND ROW) -->
-  <div class="cards-container">
-    <div class="card" id="p">
-      <h2>🅿️ Parking</h2>
-      <div class="section-title">Implementation Steps</div>
-      <ul>
-        <li>Check slot availability using Hash Map.</li>
-        <li>Use BFS to locate nearest free slot.</li>
-        <li>Store station distances in a Min Heap.</li>
-        <li>Provide shortest route to driver.</li>
-      </ul>
-      <div class="section-title">Algorithms / DSA</div>
-      <ul>
-        <li>BFS</li>
-        <li>Min Heap</li>
-        <li>Hash Map</li>
-      </ul>
-      <input type="checkbox" id="alg-p" class="alg-toggle">
-
-<label for="alg-p" class="alg-btn">
-  Algorithms <span class="arrow">▾</span>
-</label>
-
+<!-- EMERGENCY -->
+<div class="card" id="emergency">
+<h2>🚑 Emergency Vehicle Control</h2>
+<ul>
+<li>City roads modeled as weighted graph.</li>
+<li>Dijkstra computes shortest path.</li>
+<li>Signals turn green automatically.</li>
+</ul>
+<input type="checkbox" id="alg2" class="alg-toggle">
+<label for="alg2" class="alg-btn">Algorithms ▾</label>
 <div class="alg-dropdown">
-  <a href="#">BFS</a>
-  <a href="#">Min Heap</a>
-  <a href="#">Hash Map</a>
+<a>Graph</a>
+<a>Dijkstra Algorithm</a>
+</div>
 </div>
 
-    </div>
-
-    <div class="card" id="s">
-      <h2>🧂 Salt Production</h2>
-      <div class="section-title">Implementation Steps</div>
-      <ul>
-        <li>Store salt pan production data in a Hash Map (pan ID → {state: Evaporating / Crystallizing / Harvest-ready / Maintenance}).</li>
-        <li>Use a Max Heap to prioritize pans with the highest salt yield.</li>
-        <li>Schedule collection from high-yield pans first to minimize waste.</li>
-        <li>Plan shortest transportation routes using Graph & Dijkstra’s Algorithm.</li>
-       <li> Assign trucks and essential tools based on urgency using a Priority Queue.</li>
-      </ul>
-      <div class="section-title">Algorithms / DSA</div>
-      <ul>
-        <li>Max Heap</li>
-        <li>Graph / Dijkstra</li>
-        <li>Priority Queue</li>
-        <li>Hash Map</li>
-      </ul>
-      <input type="checkbox" id="alg-s" class="alg-toggle">
-
-<label for="alg-s" class="alg-btn">
-  Algorithms <span class="arrow">▾</span>
-</label>
-
+<!-- ACCIDENT -->
+<div class="card" id="routing">
+<h2>⛔ Accident & Rerouting</h2>
+<ul>
+<li>Blocked road removed from graph.</li>
+<li>BFS finds alternate routes.</li>
+<li>Traffic diverted safely.</li>
+</ul>
+<input type="checkbox" id="alg3" class="alg-toggle">
+<label for="alg3" class="alg-btn">Algorithms ▾</label>
 <div class="alg-dropdown">
-  <a href="#">Max Heap</a>
-  <a href="#">Graph</a>
-  <a href="#">Dijkstra</a>
-  <a href="#">Priority Queue</a>
-  <a href="#">Hash Map</a>
+<a>BFS</a>
+<a>Graph Traversal</a>
+</div>
 </div>
 
-    </div>
-
-    <div class="card" id="f">
-      <h2>📝 Feedback System</h2>
-      <div class="section-title">Implementation Steps</div>
-      <ul>
-        <li>Citizens submit feedback, which is stored in Hash Maps for easy access.</li>
-        <li>Urgent complaints are pushed into a Priority Queue for faster resolution.</li>
-        <li>Use Graph Routing to assign issues to the nearest response team efficiently.</li>
-        <li>Notify citizens once their complaints are addressed and resolved.</li>
-      </ul>
-      <div class="section-title">Algorithms / DSA</div>
-      <ul>
-        <li>Priority Queue</li>
-        <li>Hash Map</li>
-        <li>Graph Routing</li>
-      </ul>
-     <input type="checkbox" id="alg-f" class="alg-toggle">
-
-<label for="alg-f" class="alg-btn">
-  Algorithms <span class="arrow">▾</span>
-</label>
-
+<!-- PUBLIC -->
+<div class="card" id="public">
+<h2>🚌 Public Transport Priority</h2>
+<ul>
+<li>Buses stored in priority queue.</li>
+<li>High passenger count = high priority.</li>
+<li>Reduces congestion & pollution.</li>
+</ul>
+<input type="checkbox" id="alg4" class="alg-toggle">
+<label for="alg4" class="alg-btn">Algorithms ▾</label>
 <div class="alg-dropdown">
-  <a href="#">Priority Queue</a>
-  <a href="#">Hash Map</a>
-  <a href="#">Graph Routing</a>
+<a>Priority Queue</a>
+<a>Heap</a>
+</div>
 </div>
 
-    </div>
-  </div>
+<!-- MONITORING -->
+<div class="card" id="monitoring">
+<h2>📊 Traffic Monitoring</h2>
+<ul>
+<li>Sensors update vehicle count.</li>
+<li>Hash tables store road data.</li>
+<li>Congestion detected instantly.</li>
+</ul>
+<input type="checkbox" id="alg5" class="alg-toggle">
+<label for="alg5" class="alg-btn">Algorithms ▾</label>
+<div class="alg-dropdown">
+<a>Hash Map</a>
+<a>Lookup Table</a>
+</div>
+</div>
 
-  <!-- COMPLEXITY -->
-  <div class="big-card">
-    <h2>📊 Complexity Analysis</h2>
-    <div class="section-title">Time Complexities</div>
-    <ul>
-      <li>Priority Queue → O(log n)</li>
-      <li>Max Heap / Min Heap → O(log n)</li>
-      <li>Hash Map / Lookup Table → O(1)</li>
-      <li>DFS / BFS → O(V + E)</li>
-      <li>Dijkstra → O(E log V)</li>
-      <li>MST (Prim/Kruskal) → O(E log V)</li>
-      <li>Graph Traversal / Routing → O(V + E)</li>
-    </ul>
-  </div>
+</div>
 
-  <!-- SUMMARY TABLE -->
-  <h2>Summary Table</h2>
-  <table>
-    <thead>
-      <tr>
-        <th>Service</th>
-        <th>Algorithms</th>
-        <th>Data Structures</th>
-        <th>Purpose</th>
-        <th>Efficiency</th>
-        <th>SDGs</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Hospital</td>
-        <td>Priority Queue</td>
-        <td>Hash Map, Boolean Array</td>
-        <td>Emergency prioritization, bed management</td>
-        <td>O(log n), O(1)</td>
-        <td>SDG 3</td>
-      </tr>
-      <tr>
-        <td>Waste Collection</td>
-        <td>DFS, Dijkstra</td>
-        <td>Graph</td>
-        <td>Route optimization for bin collection</td>
-        <td>O(V+E), O(E log V)</td>
-        <td>SDG 6, SDG 11</td>
-      </tr>
-      <tr>
-        <td>Water & Electricity</td>
-        <td>MST, Priority Queue / Min-Heap, Dynamic Allocation</td>
-        <td>Graph, Heap</td>
-        <td>Optimal supply network, high-demand tracking</td>
-        <td>O(E log V), O(log n)</td>
-        <td>SDG 7</td>
-      </tr>
-      <tr>
-        <td>Parking</td>
-        <td>BFS, Min Heap</td>
-        <td>Graph, Hash Map</td>
-        <td>Locate nearest free slot efficiently</td>
-        <td>O(V+E), O(log n)</td>
-        <td>SDG 11</td>
-      </tr>
-      <tr>
-        <td>Salt Production</td>
-        <td>Max Heap, Dijkstra</td>
-        <td>Heap, Graph, Priority Queue, Hash Map</td>
-        <td>High-yield prioritization and distribution</td>
-        <td>O(log n), O(E log V)</td>
-        <td>SDG 8</td>
-      </tr>
-      <tr>
-        <td>Feedback System</td>
-        <td>Priority Queue, Graph Routing</td>
-        <td>Hash Map</td>
-        <td>Urgent complaint handling, routing issues</td>
-        <td>O(log n), O(V+E)</td>
-        <td>SDG 16</td>
-      </tr>
-    </tbody>
-  </table>
+<!-- COMPLEXITY -->
+<div class="card">
+<h2>Complexity Analysis</h2>
+<ul>
+<li>Queue Operations → O(1)</li>
+<li>Priority Queue → O(log n)</li>
+<li>BFS → O(V + E)</li>
+<li>Dijkstra → O(E log V)</li>
+<li>Hash Lookup → O(1)</li>
+</ul>
+</div>
 
-  <!-- CONCLUSION -->
-  <div class="big-card">
-    <h2>Conclusion</h2>
-    <p>
-      The system leverages advanced algorithms and data structures to optimize city services such as hospitals, waste collection, utilities, parking, salt production, and citizen feedback. By enabling automation, prioritization, and real-time decision-making, it improves service delivery, enhances efficiency and scalability, and contributes to better quality of life for citizens.
-    </p>
-  </div>
+<!-- SUMMARY -->
+<h2>Summary Table</h2>
+<table>
+<tr><th>Scenario</th><th>Algorithm</th><th>Purpose</th><th>Complexity</th></tr>
+<tr><td>Signals</td><td>Greedy, Queue</td><td>Dynamic green timing</td><td>O(n)</td></tr>
+<tr><td>Emergency</td><td>Dijkstra</td><td>Fast ambulance routing</td><td>O(E log V)</td></tr>
+<tr><td>Accident</td><td>BFS</td><td>Alternate routes</td><td>O(V+E)</td></tr>
+<tr><td>Public Transport</td><td>Priority Queue</td><td>Bus prioritization</td><td>O(log n)</td></tr>
+<tr><td>Monitoring</td><td>Hashing</td><td>Congestion detection</td><td>O(1)</td></tr>
+</table>
 
-  <footer>
-    &copy; 2025 Smart City Dashboard
-  </footer>
+<div class="card">
+<h2>Conclusion</h2>
+<p>
+This Smart Traffic Management System demonstrates how real-world urban traffic
+problems can be efficiently solved using Data Structures and Algorithms,
+leading to reduced congestion, faster emergency response and smarter cities.
+</p>
+</div>
 
 </div>
 </body>
