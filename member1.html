@@ -1,266 +1,263 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Traffic Management System</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <style>
-body {
-  margin: 0;
-  font-family: 'Poppins', sans-serif;
+body{
+  margin:0;
+  font-family:'Poppins',sans-serif;
   background:#0f172a;
-  color: white;
-  padding-bottom: 100px;
+  color:white;
 }
-
-/* NAVBAR */
-.navbar {
-  background: #1e293b;
-  padding: 15px 40px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.navbar{
+  background:#1e293b;
+  padding:15px 40px;
+  display:flex;
+  justify-content:space-between;
 }
-.logo { font-size: 22px; font-weight: 600; }
-.nav-links {
-  list-style: none;
-  display: flex;
-  gap: 20px;
+.navbar a{color:white;text-decoration:none;margin-left:15px;}
+.container{
+  width:80%;
+  margin:50px auto;
+  background:#1e293b;
+  padding:40px;
+  border-radius:20px;
 }
-.nav-links a {
-  text-decoration: none;
-  color: white;
-  font-weight: 500;
+.btn-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
 }
-
-/* MAIN BOX */
-.content-box {
-  width: 80%;
-  margin: 60px auto;
-  background: #1e293b;
-  padding: 40px;
-  border-radius: 20px;
-  text-align: center;
+button{
+  padding:15px;
+  background:lightsteelblue;
+  border:none;
+  border-radius:12px;
+  font-weight:600;
+  cursor:pointer;
 }
-
-/* BUTTON GRID */
-.btn-container {
-  display: grid;
-  gap: 20px;
-  grid-template-columns: repeat(3, 1fr);
+button:hover{background:#0284c7;color:white;}
+.section{
+  width:75%;
+  margin:40px auto;
+  background:#1e293b;
+  padding:30px;
+  border-radius:15px;
 }
-.idea-btn {
-  background: lightsteelblue;
-  border: none;
-  padding: 15px;
-  border-radius: 12px;
-  font-size:16px;
-  font-weight: 600;
-  cursor: pointer;
+h2{color:#38bdf8;}
+canvas{background:white;border-radius:10px;padding:10px;}
+.flow{
+  background:#020617;
+  padding:20px;
+  border-radius:12px;
+  font-family:monospace;
+  white-space:pre-wrap;
 }
-.idea-btn:hover {
-  background: #0284c7;
-  color: white;
-}
-
-/* SECTIONS */
-.idea-section {
-  width: 75%;
-  margin: 40px auto;
-  background: #1e293b;
-  padding: 25px;
-  border-radius: 15px;
-}
-.idea-section h3 {
-  color: #38bdf8;
-  font-size: 26px;
-}
-ul { padding-left: 20px; }
-
-.back-btn {
-  display: inline-block;
-  margin-top: 15px;
-  padding: 8px 14px;
-  background: lightsteelblue;
-  color: black;
-  text-decoration: none;
-  border-radius: 6px;
+.back{
+  display:inline-block;
+  margin-top:15px;
+  background:lightsteelblue;
+  padding:8px 14px;
+  color:black;
+  text-decoration:none;
+  border-radius:6px;
 }
 </style>
 </head>
 
 <body>
 
-<header>
-<nav class="navbar">
-  <div class="logo">CITY DESIGN</div>
-  <ul class="nav-links">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="#">Traffic</a></li>
-  </ul>
-</nav>
-</header>
-
-<!-- MAIN -->
-<div class="content-box">
-  <h1>Traffic Management System</h1>
-  <h2>Identified Traffic Sub-Systems</h2>
-
-  <div class="btn-container">
-    <button class="idea-btn" onclick="location.href='#t1'">Adaptive Signal Control</button>
-    <button class="idea-btn" onclick="location.href='#t2'">Emergency Vehicle Routing</button>
-    <button class="idea-btn" onclick="location.href='#t3'">Congestion Management</button>
-    <button class="idea-btn" onclick="location.href='#t4'">Accident Handling</button>
-    <button class="idea-btn" onclick="location.href='#t5'">Public Transport Priority</button>
+<div class="navbar">
+  <div><b>CITY DESIGN</b></div>
+  <div>
+    <a href="#">Home</a>
+    <a href="#">Traffic</a>
   </div>
 </div>
 
-<!-- 1 -->
-<div id="t1" class="idea-section">
-<h3>Adaptive Traffic Signal Control</h3>
-<p>
-Adaptive signal control dynamically adjusts green signal timing based on real-time traffic density at intersections.
-</p>
+<!-- MAIN -->
+<div class="container">
+  <h1>Traffic Management System</h1>
+  <p>Complete DAA-based smart traffic control with scenarios, charts and flow analysis</p>
 
-<b>How it solves problems:</b>
-<ul>
-<li>Reduces waiting time</li>
-<li>Prevents long queues</li>
-<li>Improves fuel efficiency</li>
-</ul>
-
-<b>Algorithms / Data Structures Used:</b>
-<ul>
-<li><b>Queue:</b> Each road lane treated as a queue</li>
-<li><b>Greedy Algorithm:</b> Allocates green time proportionally</li>
-<li><b>Arrays:</b> Store vehicle counts</li>
-</ul>
-
-<b>Techniques & Principles:</b>
-<ul>
-<li>Greedy choice principle</li>
-<li>Fair scheduling</li>
-</ul>
-
-<a href="#" class="back-btn">Back to Top</a>
+  <div class="btn-grid">
+    <button onclick="location.href='#scenario'">Main Scenario</button>
+    <button onclick="location.href='#signals'">Signal Optimization</button>
+    <button onclick="location.href='#emergency'">Emergency Routing</button>
+    <button onclick="location.href='#charts'">Traffic Analytics</button>
+    <button onclick="location.href='#flow'">Flowchart</button>
+    <button onclick="location.href='#summary'">Summary</button>
+  </div>
 </div>
 
-<!-- 2 -->
-<div id="t2" class="idea-section">
-<h3>Emergency Vehicle Routing</h3>
+<!-- BIG SCENARIO -->
+<div id="scenario" class="section">
+<h2>Big Traffic Scenario</h2>
 <p>
-Provides fastest route to ambulances, fire trucks and police vehicles using shortest path algorithms.
+Consider a smart city with <b>5 major intersections</b>, hospitals, schools and industrial zones.
+During peak hours:
 </p>
-
-<b>How it solves problems:</b>
 <ul>
-<li>Saves lives</li>
-<li>Reduces emergency response time</li>
+<li>Vehicles arrive randomly at junctions</li>
+<li>Emergency vehicles need fastest routes</li>
+<li>Congestion builds unevenly</li>
 </ul>
 
-<b>Algorithms / Data Structures:</b>
+<b>DAA View:</b>
 <ul>
-<li><b>Graph:</b> City road network</li>
-<li><b>Dijkstra:</b> Shortest emergency route</li>
-<li><b>Priority Queue:</b> Emergency signal priority</li>
+<li>City roads → <b>Graph</b></li>
+<li>Junction queues → <b>Queue</b></li>
+<li>Emergency → <b>Priority Queue</b></li>
+<li>Best path → <b>Dijkstra</b></li>
 </ul>
 
-<b>Principles:</b>
-<ul>
-<li>Edge relaxation</li>
-<li>Optimal substructure</li>
-</ul>
-
-<a href="#" class="back-btn">Back to Top</a>
+<a class="back" href="#">Back</a>
 </div>
 
-<!-- 3 -->
-<div id="t3" class="idea-section">
-<h3>Congestion Detection & Management</h3>
+<!-- SIGNAL CONTROL -->
+<div id="signals" class="section">
+<h2>Adaptive Signal Control</h2>
 <p>
-Detects congestion using sensors and dynamically reroutes traffic.
+Each lane is treated as a queue. Green time is assigned using a greedy strategy.
 </p>
 
-<b>Benefits:</b>
+<pre class="flow">
+Input vehicle count from sensors
+↓
+Store count in array
+↓
+Calculate total vehicles
+↓
+Assign green time proportionally
+↓
+Update signals
+</pre>
+
+<b>Algorithms Used:</b>
 <ul>
-<li>Prevents traffic jams</li>
-<li>Improves average speed</li>
+<li>Queue</li>
+<li>Greedy Algorithm</li>
+<li>Arrays</li>
 </ul>
 
-<b>Algorithms / Data Structures:</b>
-<ul>
-<li><b>Hash Table:</b> Store congestion data</li>
-<li><b>BFS:</b> Find nearby alternative routes</li>
-<li><b>Queue:</b> Traffic buildup analysis</li>
-</ul>
-
-<b>Techniques:</b>
-<ul>
-<li>Pruning unnecessary paths</li>
-<li>Real-time decision making</li>
-</ul>
-
-<a href="#" class="back-btn">Back to Top</a>
+<a class="back" href="#">Back</a>
 </div>
 
-<!-- 4 -->
-<div id="t4" class="idea-section">
-<h3>Accident Detection & Rerouting</h3>
+<!-- EMERGENCY -->
+<div id="emergency" class="section">
+<h2>Emergency Vehicle Routing</h2>
 <p>
-Handles road blockages by removing accident edges from the graph.
+Ambulances get the shortest path with signal priority.
 </p>
 
-<b>How it helps:</b>
+<pre class="flow">
+Emergency detected
+↓
+Push into Priority Queue
+↓
+Run Dijkstra on road graph
+↓
+Override traffic signals
+↓
+Clear path
+</pre>
+
+<b>Algorithms:</b>
 <ul>
-<li>Quick traffic diversion</li>
-<li>Reduced secondary accidents</li>
+<li>Graph</li>
+<li>Dijkstra</li>
+<li>Priority Queue</li>
 </ul>
 
-<b>Algorithms / Data Structures:</b>
-<ul>
-<li><b>Graph Traversal (BFS/DFS)</b></li>
-<li><b>Adjacency List:</b> Road representation</li>
-</ul>
-
-<b>Principles:</b>
-<ul>
-<li>Backtracking</li>
-<li>Reachability analysis</li>
-</ul>
-
-<a href="#" class="back-btn">Back to Top</a>
+<a class="back" href="#">Back</a>
 </div>
 
-<!-- 5 -->
-<div id="t5" class="idea-section">
-<h3>Public Transport Priority System</h3>
-<p>
-Gives buses higher priority to encourage public transport usage.
-</p>
+<!-- CHARTS -->
+<div id="charts" class="section">
+<h2>Traffic Analytics</h2>
 
-<b>Benefits:</b>
-<ul>
-<li>Reduced pollution</li>
-<li>Faster bus travel</li>
-</ul>
+<h3>Vehicle Distribution (Pie Chart)</h3>
+<canvas id="pieChart"></canvas>
 
-<b>Algorithms / Data Structures:</b>
-<ul>
-<li><b>Priority Queue:</b> Bus scheduling</li>
-<li><b>Graph:</b> Dedicated bus corridors</li>
-</ul>
+<h3 style="margin-top:30px;">Average Waiting Time (Bar Graph)</h3>
+<canvas id="barChart"></canvas>
 
-<b>Techniques:</b>
-<ul>
-<li>Greedy prioritization</li>
-<li>Load-based scheduling</li>
-</ul>
-
-<a href="#" class="back-btn">Back to Top</a>
+<a class="back" href="#">Back</a>
 </div>
+
+<!-- FLOWCHART -->
+<div id="flow" class="section">
+<h2>Overall Traffic Flowchart</h2>
+
+<pre class="flow">
+START
+ |
+ |--> Read Traffic Sensors
+ |--> Update Queues
+ |--> Emergency?
+ |     |--> YES → Priority Routing
+ |     |--> NO  → Normal Signal Control
+ |
+ |--> Detect Congestion
+ |--> Reroute using BFS/Dijkstra
+ |
+END
+</pre>
+
+<a class="back" href="#">Back</a>
+</div>
+
+<!-- SUMMARY -->
+<div id="summary" class="section">
+<h2>Summary</h2>
+<ul>
+<li>Queues manage vehicle waiting</li>
+<li>Graphs represent road network</li>
+<li>Dijkstra ensures shortest routes</li>
+<li>Priority Queue saves lives</li>
+<li>Charts help decision-making</li>
+</ul>
+
+<b>Time Complexities:</b>
+<ul>
+<li>Dijkstra → O(E log V)</li>
+<li>BFS → O(V+E)</li>
+<li>Priority Queue → O(log n)</li>
+</ul>
+
+<a class="back" href="#">Back</a>
+</div>
+
+<script>
+new Chart(document.getElementById('pieChart'), {
+  type:'pie',
+  data:{
+    labels:['Cars','Buses','Trucks','Emergency'],
+    datasets:[{
+      data:[55,20,15,10],
+      backgroundColor:['#38bdf8','#22c55e','#f97316','#ef4444']
+    }]
+  }
+});
+
+new Chart(document.getElementById('barChart'), {
+  type:'bar',
+  data:{
+    labels:['Junction A','Junction B','Junction C','Junction D'],
+    datasets:[{
+      label:'Avg Waiting Time (sec)',
+      data:[90,60,40,30],
+      backgroundColor:'#38bdf8'
+    }]
+  }
+});
+</script>
 
 </body>
 </html>
