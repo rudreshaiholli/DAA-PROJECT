@@ -1,360 +1,266 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Smart Traffic Management System</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Traffic Management System</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
-:root{
-  --bg:#0b1220;
-  --panel:rgba(255,255,255,0.06);
-  --border:rgba(255,255,255,0.12);
-  --text:#e6f0ff;
-  --muted:#9fb4d9;
-  --accent:#4fd1ff;
-  --accent2:#7aa2ff;
-  --neon:#00eaff;
-  --radius:18px;
-  --shadow:0 18px 45px rgba(0,0,0,0.6);
-  --max:1200px;
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background:#0f172a;
+  color: white;
+  padding-bottom: 100px;
 }
 
-*{box-sizing:border-box}
-body{
-  margin:0;
-  font-family:Inter,system-ui;
-  background:linear-gradient(180deg,#0b1220,#162544);
-  color:var(--text);
+/* NAVBAR */
+.navbar {
+  background: #1e293b;
+  padding: 15px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.logo { font-size: 22px; font-weight: 600; }
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+.nav-links a {
+  text-decoration: none;
+  color: white;
+  font-weight: 500;
 }
 
-.wrap{
-  max-width:var(--max);
-  margin:auto;
-  padding:28px 18px 80px;
+/* MAIN BOX */
+.content-box {
+  width: 80%;
+  margin: 60px auto;
+  background: #1e293b;
+  padding: 40px;
+  border-radius: 20px;
+  text-align: center;
 }
 
-/* HERO */
-.hero{
-  text-align:center;
-  margin-bottom:26px;
+/* BUTTON GRID */
+.btn-container {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(3, 1fr);
 }
-.hero h1{
-  font-size:34px;
-  font-weight:800;
-  background:linear-gradient(90deg,var(--accent),var(--accent2));
-  -webkit-background-clip:text;
-  color:transparent;
+.idea-btn {
+  background: lightsteelblue;
+  border: none;
+  padding: 15px;
+  border-radius: 12px;
+  font-size:16px;
+  font-weight: 600;
+  cursor: pointer;
 }
-.hero p{
-  color:var(--muted);
-  max-width:760px;
-  margin:auto;
-}
-
-/* NAV */
-nav{
-  display:flex;
-  justify-content:center;
-  gap:28px;
-  padding:12px;
-  border-radius:32px;
-  background:rgba(255,255,255,0.03);
-  border:1px solid var(--border);
-  backdrop-filter:blur(10px);
-  margin-bottom:30px;
-}
-nav a{
-  color:#cfe6ff;
-  text-decoration:none;
-  font-weight:600;
-}
-nav a:hover{
-  color:var(--accent);
-  text-shadow:0 0 18px rgba(79,209,255,0.4);
+.idea-btn:hover {
+  background: #0284c7;
+  color: white;
 }
 
-/* GLASS CARDS */
-.section{
-  background:var(--panel);
-  border-radius:var(--radius);
-  padding:22px;
-  border:1px solid var(--border);
-  backdrop-filter:blur(12px);
-  box-shadow:var(--shadow);
-  margin-bottom:32px;
+/* SECTIONS */
+.idea-section {
+  width: 75%;
+  margin: 40px auto;
+  background: #1e293b;
+  padding: 25px;
+  border-radius: 15px;
 }
+.idea-section h3 {
+  color: #38bdf8;
+  font-size: 26px;
+}
+ul { padding-left: 20px; }
 
-.cards{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:20px;
-}
-
-.card{
-  background:rgba(255,255,255,0.05);
-  border-radius:16px;
-  padding:18px;
-  border:1px solid var(--border);
-  transition:.3s;
-}
-.card:hover{
-  transform:translateY(-8px);
-  box-shadow:0 28px 60px rgba(0,0,0,0.7);
-}
-
-.card h3{
-  margin-top:0;
-  color:var(--accent2);
-}
-
-ul{padding-left:18px}
-li{margin-bottom:8px}
-
-/* ALGO DROPDOWN */
-.alg-toggle{display:none}
-
-.alg-btn{
-  display:inline-flex;
-  align-items:center;
-  gap:6px;
-  background:linear-gradient(90deg,var(--neon),#55caff);
-  color:#001820;
-  padding:8px 14px;
-  border-radius:10px;
-  font-weight:800;
-  cursor:pointer;
-  margin-top:10px;
-}
-.alg-dropdown{
-  margin-top:10px;
-  background:#020617;
-  border-radius:10px;
-  border:1px solid var(--border);
-  max-height:0;
-  overflow:hidden;
-  opacity:0;
-  transition:.3s;
-}
-.alg-toggle:checked + .alg-btn + .alg-dropdown{
-  max-height:260px;
-  opacity:1;
-}
-.alg-dropdown div{
-  padding:10px;
-  border-bottom:1px solid rgba(255,255,255,0.05);
-}
-
-/* CHARTS */
-.charts{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:26px;
-}
-
-/* TABLE */
-table{
-  width:100%;
-  border-collapse:collapse;
-}
-th,td{
-  border:1px solid rgba(255,255,255,0.1);
-  padding:10px;
-}
-th{background:rgba(79,209,255,0.15)}
-td{background:rgba(255,255,255,0.04)}
-
-footer{
-  text-align:center;
-  color:var(--muted);
-  margin-top:40px;
-}
-
-/* RESPONSIVE */
-@media(max-width:900px){
-  .cards{grid-template-columns:1fr}
-  .charts{grid-template-columns:1fr}
+.back-btn {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 8px 14px;
+  background: lightsteelblue;
+  color: black;
+  text-decoration: none;
+  border-radius: 6px;
 }
 </style>
 </head>
 
 <body>
-<div class="wrap">
 
-<!-- HERO -->
-<div class="hero">
-  <h1>Smart Traffic Management System</h1>
-  <p>
-    A DAA-driven traffic control platform using graphs, queues, priority scheduling
-    and real-time analytics to manage modern smart city traffic.
-  </p>
-</div>
-
-<!-- NAV -->
-<nav>
-  <a href="#overview">Overview</a>
-  <a href="#modules">Modules</a>
-  <a href="#charts">Analytics</a>
-  <a href="#summary">Summary</a>
+<header>
+<nav class="navbar">
+  <div class="logo">CITY DESIGN</div>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="#">Traffic</a></li>
+  </ul>
 </nav>
+</header>
 
-<!-- OVERVIEW -->
-<div class="section" id="overview">
-  <h2>System Overview</h2>
-  <p>
-    The entire road network is modeled as a weighted graph.
-    Intersections act as nodes and roads as edges.
-    Traffic signals, emergency routing and congestion handling
-    are optimized using core <b>Data Structures and Algorithms (DAA)</b>.
-  </p>
-</div>
+<!-- MAIN -->
+<div class="content-box">
+  <h1>Traffic Management System</h1>
+  <h2>Identified Traffic Sub-Systems</h2>
 
-<!-- MODULES -->
-<div class="section" id="modules">
-  <h2>Traffic Management Modules</h2>
-
-  <div class="cards">
-
-    <div class="card">
-      <h3>🚦 Adaptive Signal Control</h3>
-      <ul>
-        <li>Each lane is treated as a queue</li>
-        <li>Vehicle count collected dynamically</li>
-        <li>Greedy algorithm assigns green time</li>
-      </ul>
-      <input type="checkbox" id="a1" class="alg-toggle">
-      <label for="a1" class="alg-btn">Algorithms ▾</label>
-      <div class="alg-dropdown">
-        <div>Queue</div>
-        <div>Greedy Algorithm</div>
-      </div>
-    </div>
-
-    <div class="card">
-      <h3>🚑 Emergency Routing</h3>
-      <ul>
-        <li>City modeled as weighted graph</li>
-        <li>Shortest path calculated</li>
-        <li>Green corridor activated</li>
-      </ul>
-      <input type="checkbox" id="a2" class="alg-toggle">
-      <label for="a2" class="alg-btn">Algorithms ▾</label>
-      <div class="alg-dropdown">
-        <div>Dijkstra Algorithm</div>
-        <div>Graph</div>
-      </div>
-    </div>
-
-    <div class="card">
-      <h3>⛔ Accident Handling</h3>
-      <ul>
-        <li>Blocked roads removed from graph</li>
-        <li>BFS finds alternate paths</li>
-        <li>Traffic diverted safely</li>
-      </ul>
-      <input type="checkbox" id="a3" class="alg-toggle">
-      <label for="a3" class="alg-btn">Algorithms ▾</label>
-      <div class="alg-dropdown">
-        <div>BFS</div>
-        <div>Graph Traversal</div>
-      </div>
-    </div>
-
-    <div class="card">
-      <h3>🚌 Public Transport Priority</h3>
-      <ul>
-        <li>Buses stored in priority queue</li>
-        <li>High passenger routes prioritized</li>
-        <li>Reduced congestion</li>
-      </ul>
-      <input type="checkbox" id="a4" class="alg-toggle">
-      <label for="a4" class="alg-btn">Algorithms ▾</label>
-      <div class="alg-dropdown">
-        <div>Priority Queue</div>
-      </div>
-    </div>
-
-    <div class="card">
-      <h3>📊 Traffic Monitoring</h3>
-      <ul>
-        <li>Sensor data stored in hash tables</li>
-        <li>Fast congestion lookup</li>
-        <li>Real-time alerts</li>
-      </ul>
-      <input type="checkbox" id="a5" class="alg-toggle">
-      <label for="a5" class="alg-btn">Algorithms ▾</label>
-      <div class="alg-dropdown">
-        <div>Hashing</div>
-      </div>
-    </div>
-
+  <div class="btn-container">
+    <button class="idea-btn" onclick="location.href='#t1'">Adaptive Signal Control</button>
+    <button class="idea-btn" onclick="location.href='#t2'">Emergency Vehicle Routing</button>
+    <button class="idea-btn" onclick="location.href='#t3'">Congestion Management</button>
+    <button class="idea-btn" onclick="location.href='#t4'">Accident Handling</button>
+    <button class="idea-btn" onclick="location.href='#t5'">Public Transport Priority</button>
   </div>
 </div>
 
-<!-- CHARTS -->
-<div class="section" id="charts">
-  <h2>Traffic Analytics</h2>
-  <div class="charts">
-    <canvas id="bar"></canvas>
-    <canvas id="pie"></canvas>
-  </div>
+<!-- 1 -->
+<div id="t1" class="idea-section">
+<h3>Adaptive Traffic Signal Control</h3>
+<p>
+Adaptive signal control dynamically adjusts green signal timing based on real-time traffic density at intersections.
+</p>
+
+<b>How it solves problems:</b>
+<ul>
+<li>Reduces waiting time</li>
+<li>Prevents long queues</li>
+<li>Improves fuel efficiency</li>
+</ul>
+
+<b>Algorithms / Data Structures Used:</b>
+<ul>
+<li><b>Queue:</b> Each road lane treated as a queue</li>
+<li><b>Greedy Algorithm:</b> Allocates green time proportionally</li>
+<li><b>Arrays:</b> Store vehicle counts</li>
+</ul>
+
+<b>Techniques & Principles:</b>
+<ul>
+<li>Greedy choice principle</li>
+<li>Fair scheduling</li>
+</ul>
+
+<a href="#" class="back-btn">Back to Top</a>
 </div>
 
-<!-- SUMMARY -->
-<div class="section" id="summary">
-  <h2>Summary Table</h2>
-  <table>
-    <tr>
-      <th>Module</th><th>Algorithm</th><th>Purpose</th><th>Time Complexity</th>
-    </tr>
-    <tr>
-      <td>Signal Control</td><td>Queue, Greedy</td><td>Dynamic signals</td><td>O(n)</td>
-    </tr>
-    <tr>
-      <td>Emergency</td><td>Dijkstra</td><td>Fast routing</td><td>O(E log V)</td>
-    </tr>
-    <tr>
-      <td>Accident</td><td>BFS</td><td>Rerouting</td><td>O(V+E)</td>
-    </tr>
-    <tr>
-      <td>Public Transport</td><td>Priority Queue</td><td>Bus priority</td><td>O(log n)</td>
-    </tr>
-    <tr>
-      <td>Monitoring</td><td>Hashing</td><td>Congestion detect</td><td>O(1)</td>
-    </tr>
-  </table>
+<!-- 2 -->
+<div id="t2" class="idea-section">
+<h3>Emergency Vehicle Routing</h3>
+<p>
+Provides fastest route to ambulances, fire trucks and police vehicles using shortest path algorithms.
+</p>
+
+<b>How it solves problems:</b>
+<ul>
+<li>Saves lives</li>
+<li>Reduces emergency response time</li>
+</ul>
+
+<b>Algorithms / Data Structures:</b>
+<ul>
+<li><b>Graph:</b> City road network</li>
+<li><b>Dijkstra:</b> Shortest emergency route</li>
+<li><b>Priority Queue:</b> Emergency signal priority</li>
+</ul>
+
+<b>Principles:</b>
+<ul>
+<li>Edge relaxation</li>
+<li>Optimal substructure</li>
+</ul>
+
+<a href="#" class="back-btn">Back to Top</a>
 </div>
 
-<footer>© 2025 Smart Traffic Management System</footer>
+<!-- 3 -->
+<div id="t3" class="idea-section">
+<h3>Congestion Detection & Management</h3>
+<p>
+Detects congestion using sensors and dynamically reroutes traffic.
+</p>
+
+<b>Benefits:</b>
+<ul>
+<li>Prevents traffic jams</li>
+<li>Improves average speed</li>
+</ul>
+
+<b>Algorithms / Data Structures:</b>
+<ul>
+<li><b>Hash Table:</b> Store congestion data</li>
+<li><b>BFS:</b> Find nearby alternative routes</li>
+<li><b>Queue:</b> Traffic buildup analysis</li>
+</ul>
+
+<b>Techniques:</b>
+<ul>
+<li>Pruning unnecessary paths</li>
+<li>Real-time decision making</li>
+</ul>
+
+<a href="#" class="back-btn">Back to Top</a>
 </div>
 
-<script>
-new Chart(bar,{
-  type:'bar',
-  data:{
-    labels:['North','South','East','West','Central'],
-    datasets:[{
-      data:[48,35,42,30,55],
-      backgroundColor:'#4fd1ff'
-    }]
-  },
-  options:{plugins:{legend:{display:false}}}
-});
+<!-- 4 -->
+<div id="t4" class="idea-section">
+<h3>Accident Detection & Rerouting</h3>
+<p>
+Handles road blockages by removing accident edges from the graph.
+</p>
 
-new Chart(pie,{
-  type:'pie',
-  data:{
-    labels:['Signals','Emergency','Public Transport','Monitoring','Road Infra'],
-    datasets:[{
-      data:[30,15,20,15,20],
-      backgroundColor:['#4fd1ff','#22c55e','#f59e0b','#ef4444','#7aa2ff']
-    }]
-  }
-});
-</script>
+<b>How it helps:</b>
+<ul>
+<li>Quick traffic diversion</li>
+<li>Reduced secondary accidents</li>
+</ul>
+
+<b>Algorithms / Data Structures:</b>
+<ul>
+<li><b>Graph Traversal (BFS/DFS)</b></li>
+<li><b>Adjacency List:</b> Road representation</li>
+</ul>
+
+<b>Principles:</b>
+<ul>
+<li>Backtracking</li>
+<li>Reachability analysis</li>
+</ul>
+
+<a href="#" class="back-btn">Back to Top</a>
+</div>
+
+<!-- 5 -->
+<div id="t5" class="idea-section">
+<h3>Public Transport Priority System</h3>
+<p>
+Gives buses higher priority to encourage public transport usage.
+</p>
+
+<b>Benefits:</b>
+<ul>
+<li>Reduced pollution</li>
+<li>Faster bus travel</li>
+</ul>
+
+<b>Algorithms / Data Structures:</b>
+<ul>
+<li><b>Priority Queue:</b> Bus scheduling</li>
+<li><b>Graph:</b> Dedicated bus corridors</li>
+</ul>
+
+<b>Techniques:</b>
+<ul>
+<li>Greedy prioritization</li>
+<li>Load-based scheduling</li>
+</ul>
+
+<a href="#" class="back-btn">Back to Top</a>
+</div>
 
 </body>
 </html>
