@@ -3,10 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Traffic Management System</title>
+<title>Traffic Management Flowchart</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
 body{
@@ -15,249 +14,195 @@ body{
   background:#0f172a;
   color:white;
 }
-.navbar{
+
+header{
   background:#1e293b;
-  padding:15px 40px;
-  display:flex;
-  justify-content:space-between;
-}
-.navbar a{color:white;text-decoration:none;margin-left:15px;}
-.container{
-  width:80%;
-  margin:50px auto;
-  background:#1e293b;
-  padding:40px;
-  border-radius:20px;
-}
-.btn-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:20px;
-}
-button{
-  padding:15px;
-  background:lightsteelblue;
-  border:none;
-  border-radius:12px;
+  padding:18px;
+  text-align:center;
+  font-size:22px;
   font-weight:600;
-  cursor:pointer;
 }
-button:hover{background:#0284c7;color:white;}
-.section{
-  width:75%;
-  margin:40px auto;
+
+.container{
+  width:90%;
+  margin:30px auto;
+  display:flex;
+  justify-content:center;
+}
+
+.flowchart{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:14px;
+}
+
+.box{
   background:#1e293b;
-  padding:30px;
-  border-radius:15px;
+  padding:14px 22px;
+  border-radius:10px;
+  border:2px solid #38bdf8;
+  text-align:center;
+  min-width:260px;
+  box-shadow:0 0 15px rgba(56,189,248,0.25);
 }
-h2{color:#38bdf8;}
-canvas{background:white;border-radius:10px;padding:10px;}
-.flow{
+
+.start, .end{
+  background:#16a34a;
+  border-color:#22c55e;
+}
+
+.process{
+  background:#1e293b;
+}
+
+.decision{
+  background:#1e293b;
+  transform:rotate(45deg);
+  width:160px;
+  height:160px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border:2px solid #facc15;
+}
+.decision span{
+  transform:rotate(-45deg);
+  text-align:center;
+  font-weight:600;
+}
+
+.arrow{
+  font-size:22px;
+  color:#38bdf8;
+}
+
+.row{
+  display:flex;
+  gap:40px;
+  align-items:flex-start;
+}
+
+.small{
+  font-size:13px;
+  color:#cbd5f5;
+  margin-top:6px;
+}
+
+.legend{
+  margin-top:30px;
   background:#020617;
   padding:20px;
   border-radius:12px;
-  font-family:monospace;
-  white-space:pre-wrap;
+  width:80%;
 }
-.back{
-  display:inline-block;
-  margin-top:15px;
-  background:lightsteelblue;
-  padding:8px 14px;
-  color:black;
-  text-decoration:none;
-  border-radius:6px;
+.legend h3{
+  color:#38bdf8;
+}
+.legend ul{
+  padding-left:18px;
 }
 </style>
 </head>
 
 <body>
 
-<div class="navbar">
-  <div><b>CITY DESIGN</b></div>
-  <div>
-    <a href="#">Home</a>
-    <a href="#">Traffic</a>
-  </div>
-</div>
+<header>
+🚦 Smart Traffic Management System – Flowchart (DAA Based)
+</header>
 
-<!-- MAIN -->
 <div class="container">
-  <h1>Traffic Management System</h1>
-  <p>Complete DAA-based smart traffic control with scenarios, charts and flow analysis</p>
+<div class="flowchart">
 
-  <div class="btn-grid">
-    <button onclick="location.href='#scenario'">Main Scenario</button>
-    <button onclick="location.href='#signals'">Signal Optimization</button>
-    <button onclick="location.href='#emergency'">Emergency Routing</button>
-    <button onclick="location.href='#charts'">Traffic Analytics</button>
-    <button onclick="location.href='#flow'">Flowchart</button>
-    <button onclick="location.href='#summary'">Summary</button>
+  <!-- START -->
+  <div class="box start">START</div>
+  <div class="arrow">⬇</div>
+
+  <!-- INPUT -->
+  <div class="box process">
+    Read Traffic Sensor Data  
+    <div class="small">(Vehicle count, speed, lane status)</div>
   </div>
+
+  <div class="arrow">⬇</div>
+
+  <!-- STORE -->
+  <div class="box process">
+    Store Vehicle Count  
+    <div class="small">Array + Queue (DAA)</div>
+  </div>
+
+  <div class="arrow">⬇</div>
+
+  <!-- DECISION -->
+  <div class="decision">
+    <span>Emergency Vehicle?</span>
+  </div>
+
+  <div class="row">
+    <!-- YES -->
+    <div class="flowchart">
+      <div class="arrow">⬇ YES</div>
+      <div class="box process">
+        Insert into Priority Queue  
+        <div class="small">Priority Queue</div>
+      </div>
+      <div class="arrow">⬇</div>
+      <div class="box process">
+        Compute Shortest Path  
+        <div class="small">Dijkstra (Graph)</div>
+      </div>
+      <div class="arrow">⬇</div>
+      <div class="box process">
+        Override Signals  
+        <div class="small">Green Corridor</div>
+      </div>
+    </div>
+
+    <!-- NO -->
+    <div class="flowchart">
+      <div class="arrow">⬇ NO</div>
+      <div class="box process">
+        Check Congestion Level  
+        <div class="small">Queue Length</div>
+      </div>
+      <div class="arrow">⬇</div>
+      <div class="box process">
+        Allocate Green Time  
+        <div class="small">Greedy Algorithm</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="arrow">⬇</div>
+
+  <!-- REROUTE -->
+  <div class="box process">
+    Reroute Traffic if Needed  
+    <div class="small">BFS / Dijkstra</div>
+  </div>
+
+  <div class="arrow">⬇</div>
+
+  <!-- END -->
+  <div class="box end">END</div>
+
+  <!-- LEGEND -->
+  <div class="legend">
+    <h3>DAA Elements Used</h3>
+    <ul>
+      <li><b>Array</b> – store vehicle count</li>
+      <li><b>Queue</b> – vehicles waiting at signals</li>
+      <li><b>Priority Queue</b> – emergency vehicles</li>
+      <li><b>Graph</b> – road network</li>
+      <li><b>Dijkstra</b> – shortest route</li>
+      <li><b>BFS</b> – alternate path search</li>
+      <li><b>Greedy</b> – signal time allocation</li>
+    </ul>
+  </div>
+
 </div>
-
-<!-- BIG SCENARIO -->
-<div id="scenario" class="section">
-<h2>Big Traffic Scenario</h2>
-<p>
-Consider a smart city with <b>5 major intersections</b>, hospitals, schools and industrial zones.
-During peak hours:
-</p>
-<ul>
-<li>Vehicles arrive randomly at junctions</li>
-<li>Emergency vehicles need fastest routes</li>
-<li>Congestion builds unevenly</li>
-</ul>
-
-<b>DAA View:</b>
-<ul>
-<li>City roads → <b>Graph</b></li>
-<li>Junction queues → <b>Queue</b></li>
-<li>Emergency → <b>Priority Queue</b></li>
-<li>Best path → <b>Dijkstra</b></li>
-</ul>
-
-<a class="back" href="#">Back</a>
 </div>
-
-<!-- SIGNAL CONTROL -->
-<div id="signals" class="section">
-<h2>Adaptive Signal Control</h2>
-<p>
-Each lane is treated as a queue. Green time is assigned using a greedy strategy.
-</p>
-
-<pre class="flow">
-Input vehicle count from sensors
-↓
-Store count in array
-↓
-Calculate total vehicles
-↓
-Assign green time proportionally
-↓
-Update signals
-</pre>
-
-<b>Algorithms Used:</b>
-<ul>
-<li>Queue</li>
-<li>Greedy Algorithm</li>
-<li>Arrays</li>
-</ul>
-
-<a class="back" href="#">Back</a>
-</div>
-
-<!-- EMERGENCY -->
-<div id="emergency" class="section">
-<h2>Emergency Vehicle Routing</h2>
-<p>
-Ambulances get the shortest path with signal priority.
-</p>
-
-<pre class="flow">
-Emergency detected
-↓
-Push into Priority Queue
-↓
-Run Dijkstra on road graph
-↓
-Override traffic signals
-↓
-Clear path
-</pre>
-
-<b>Algorithms:</b>
-<ul>
-<li>Graph</li>
-<li>Dijkstra</li>
-<li>Priority Queue</li>
-</ul>
-
-<a class="back" href="#">Back</a>
-</div>
-
-<!-- CHARTS -->
-<div id="charts" class="section">
-<h2>Traffic Analytics</h2>
-
-<h3>Vehicle Distribution (Pie Chart)</h3>
-<canvas id="pieChart"></canvas>
-
-<h3 style="margin-top:30px;">Average Waiting Time (Bar Graph)</h3>
-<canvas id="barChart"></canvas>
-
-<a class="back" href="#">Back</a>
-</div>
-
-<!-- FLOWCHART -->
-<div id="flow" class="section">
-<h2>Overall Traffic Flowchart</h2>
-
-<pre class="flow">
-START
- |
- |--> Read Traffic Sensors
- |--> Update Queues
- |--> Emergency?
- |     |--> YES → Priority Routing
- |     |--> NO  → Normal Signal Control
- |
- |--> Detect Congestion
- |--> Reroute using BFS/Dijkstra
- |
-END
-</pre>
-
-<a class="back" href="#">Back</a>
-</div>
-
-<!-- SUMMARY -->
-<div id="summary" class="section">
-<h2>Summary</h2>
-<ul>
-<li>Queues manage vehicle waiting</li>
-<li>Graphs represent road network</li>
-<li>Dijkstra ensures shortest routes</li>
-<li>Priority Queue saves lives</li>
-<li>Charts help decision-making</li>
-</ul>
-
-<b>Time Complexities:</b>
-<ul>
-<li>Dijkstra → O(E log V)</li>
-<li>BFS → O(V+E)</li>
-<li>Priority Queue → O(log n)</li>
-</ul>
-
-<a class="back" href="#">Back</a>
-</div>
-
-<script>
-new Chart(document.getElementById('pieChart'), {
-  type:'pie',
-  data:{
-    labels:['Cars','Buses','Trucks','Emergency'],
-    datasets:[{
-      data:[55,20,15,10],
-      backgroundColor:['#38bdf8','#22c55e','#f97316','#ef4444']
-    }]
-  }
-});
-
-new Chart(document.getElementById('barChart'), {
-  type:'bar',
-  data:{
-    labels:['Junction A','Junction B','Junction C','Junction D'],
-    datasets:[{
-      label:'Avg Waiting Time (sec)',
-      data:[90,60,40,30],
-      backgroundColor:'#38bdf8'
-    }]
-  }
-});
-</script>
 
 </body>
 </html>
