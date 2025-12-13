@@ -1,477 +1,147 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Smart Traffic & Elegant Urban Design</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta charset="UTF-8">
+<title>Smart Traffic & Elegant Urban Design</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
-  <!-- Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-  <!-- AOS (scroll animations) -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"/>
+<!-- Fonts & Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"/>
 
-  <style>
-    :root {
-      --bg: #f7fafc;
-      --bg-alt: #ffffff;
-      --nav-bg: rgba(255,255,255,0.95);
-      --border: #e2e8f0;
-      --text: #1f2933;
-      --muted: #6b7280;
-      --accent: #1d4ed8;
-      --accent-soft: #e0ebff;
-      --gold: #d4af37;
-      --shadow-soft: 0 14px 40px rgba(15, 23, 42, 0.12);
-      --radius-lg: 18px;
-      --radius-xl: 26px;
-      --transition-fast: 160ms ease-out;
-    }
+<style>
+body{
+  margin:0;
+  font-family:Poppins,sans-serif;
+  background:#f8fafc;
+  color:#1f2933;
+}
+header{
+  position:sticky;top:0;
+  background:#fff;
+  border-bottom:1px solid #e5e7eb;
+  z-index:50;
+}
+.nav-inner{
+  max-width:1180px;
+  margin:auto;
+  padding:0.8rem 1.2rem;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+.brand-title{
+  font-family:"Playfair Display",serif;
+  font-size:1.1rem;
+}
+.brand-sub{
+  font-size:0.75rem;
+  color:#6b7280;
+}
+nav a{
+  margin-left:0.6rem;
+  text-decoration:none;
+  font-size:0.85rem;
+  color:#6b7280;
+}
+nav a:hover{color:#1d4ed8}
 
-    * {
-      box-sizing: border-box;
-      scroll-behavior: smooth;
-    }
+main{
+  max-width:1180px;
+  margin:auto;
+  padding:2rem 1.2rem;
+}
 
-    body {
-      margin: 0;
-      font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: radial-gradient(circle at top left, #e0f2fe 0, #f8fafc 40%, #eef2ff 100%);
-      color: var(--text);
-      line-height: 1.7;
-    }
+.hero{
+  display:grid;
+  grid-template-columns:2fr 1.5fr;
+  gap:2rem;
+  margin-bottom:3rem;
+}
+.hero h1{
+  font-family:"Playfair Display",serif;
+}
+.hero img{
+  width:100%;
+  border-radius:18px;
+}
 
-    /* NAVBAR */
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 40;
-      background: var(--nav-bg);
-      backdrop-filter: blur(18px);
-      border-bottom: 1px solid rgba(226, 232, 240, 0.75);
-    }
+section{
+  background:#fff;
+  border-radius:16px;
+  padding:1.6rem;
+  margin-bottom:2.5rem;
+  border:1px solid #e5e7eb;
+}
 
-    .nav-inner {
-      max-width: 1180px;
-      margin: 0 auto;
-      padding: 0.8rem 1.2rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-    }
+section h2{
+  font-family:"Playfair Display",serif;
+  color:#1d4ed8;
+}
 
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 0.8rem;
-    }
+.info-card{
+  background:#f9fafb;
+  border:1px dashed #cbd5e1;
+  border-radius:12px;
+  padding:1rem;
+  margin-top:1rem;
+}
 
-    .brand-logo {
-      width: 40px;
-      height: 40px;
-      border-radius: 999px;
-      background: conic-gradient(from 220deg, #1d4ed8, #d4af37, #38bdf8, #1d4ed8);
-      padding: 2px;
-      box-shadow: 0 0 24px rgba(37, 99, 235, 0.45);
-      display: grid;
-      place-items: center;
-    }
+.image-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:1rem;
+}
 
-    .brand-logo-inner {
-      width: 100%;
-      height: 100%;
-      border-radius: inherit;
-      background: #f9fafb;
-      display: grid;
-      place-items: center;
-      font-family: "Playfair Display", serif;
-      font-weight: 600;
-      font-size: 0.9rem;
-      color: var(--accent);
-    }
+.image-grid img{
+  width:100%;
+  border-radius:14px;
+}
 
-    .brand-title {
-      font-family: "Playfair Display", serif;
-      font-weight: 600;
-      letter-spacing: 0.04em;
-      font-size: 1rem;
-    }
+button{
+  padding:10px 18px;
+  background:#1d4ed8;
+  color:white;
+  border:none;
+  border-radius:8px;
+  cursor:pointer;
+}
 
-    .brand-sub {
-      font-size: 0.75rem;
-      color: var(--muted);
-    }
+pre{
+  background:#0f172a;
+  color:#e5e7eb;
+  padding:0.8rem;
+  border-radius:10px;
+  font-size:0.8rem;
+  overflow-x:auto;
+}
 
-    nav {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.35rem;
-    }
+canvas{
+  background:white;
+  border-radius:12px;
+}
 
-    nav a {
-      text-decoration: none;
-      font-size: 0.85rem;
-      color: var(--muted);
-      padding: 0.35rem 0.6rem;
-      border-radius: 999px;
-      transition: background var(--transition-fast), color var(--transition-fast), transform var(--transition-fast);
-    }
-
-    nav a:hover {
-      background: var(--accent-soft);
-      color: var(--accent);
-      transform: translateY(-1px);
-    }
-
-    main {
-      max-width: 1180px;
-      margin: 0 auto;
-      padding: 1.8rem 1.2rem 3rem;
-    }
-
-    /* HERO */
-    .hero {
-      display: grid;
-      grid-template-columns: minmax(0, 3fr) minmax(0, 2.2fr);
-      gap: 2rem;
-      align-items: center;
-      margin-bottom: 2.8rem;
-    }
-
-    .hero-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.45rem;
-      padding: 0.25rem 0.7rem;
-      border-radius: 999px;
-      background: var(--accent-soft);
-      color: var(--accent);
-      font-size: 0.8rem;
-    }
-
-    .hero-pill i {
-      color: var(--gold);
-    }
-
-    .hero h1 {
-      font-family: "Playfair Display", serif;
-      font-size: clamp(2rem, 4vw, 2.7rem);
-      margin: 0.7rem 0 0.4rem;
-    }
-
-    .highlight {
-      color: var(--accent);
-    }
-
-    .hero-lead {
-      font-size: 0.95rem;
-      color: var(--muted);
-      max-width: 540px;
-    }
-
-    .hero-stats {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.8rem;
-      margin-top: 1.1rem;
-    }
-
-    .stat {
-      padding: 0.5rem 0.8rem;
-      border-radius: 999px;
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,0.9);
-      font-size: 0.8rem;
-      box-shadow: 0 4px 12px rgba(148, 163, 184, 0.25);
-    }
-
-    .stat strong {
-      color: var(--accent);
-    }
-
-    .hero-map-frame {
-      position: relative;
-      border-radius: var(--radius-xl);
-      overflow: hidden;
-      box-shadow: var(--shadow-soft);
-      background: linear-gradient(135deg,#eff6ff,#fefce8);
-      border: 1px solid var(--border);
-    }
-
-    .hero-map-frame img {
-      width: 100%;
-      display: block;
-      filter: grayscale(0.1);
-      transition: transform 0.9s ease, filter 0.9s ease;
-    }
-
-    .hero-map-frame:hover img {
-      transform: scale(1.04);
-      filter: grayscale(0);
-    }
-
-    .hero-map-label {
-      position: absolute;
-      left: 1rem;
-      bottom: 1rem;
-      background: rgba(15,23,42,0.78);
-      color: #f9fafb;
-      padding: 0.45rem 0.7rem;
-      border-radius: 999px;
-      font-size: 0.8rem;
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-    }
-
-    .hero-map-label i {
-      color: #fbbf24;
-    }
-
-    /* SECTIONS */
-    section {
-      margin-bottom: 2.4rem;
-      padding: 1.5rem 1.4rem;
-      border-radius: var(--radius-lg);
-      background: rgba(255,255,255,0.96);
-      border: 1px solid var(--border);
-      box-shadow: var(--shadow-soft);
-    }
-
-    section h2 {
-      margin-top: 0;
-      font-size: 1.3rem;
-      font-family: "Playfair Display", serif;
-      color: var(--accent);
-    }
-
-    section small {
-      display: block;
-      font-size: 0.8rem;
-      color: var(--muted);
-      margin-bottom: 0.6rem;
-    }
-
-    .section-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 2.2fr) minmax(0, 1.6fr);
-      gap: 1.5rem;
-      align-items: flex-start;
-    }
-
-    ul {
-      padding-left: 1.2rem;
-      font-size: 0.9rem;
-    }
-
-    li + li {
-      margin-top: 0.2rem;
-    }
-
-    .pill-title {
-      font-size: 0.82rem;
-      letter-spacing: 0.16em;
-      font-weight: 600;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 0.25rem;
-    }
-
-    .info-card {
-      padding: 0.9rem 1rem;
-      border-radius: 14px;
-      background: #f9fafb;
-      border: 1px dashed #cbd5e1;
-      font-size: 0.9rem;
-    }
-
-    .icon-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-top: 0.5rem;
-    }
-
-    .chip {
-      padding: 0.2rem 0.55rem;
-      border-radius: 999px;
-      border: 1px solid #d1d5db;
-      font-size: 0.78rem;
-      color: var(--muted);
-      background: #f8fafc;
-    }
-
-    .chip i {
-      margin-right: 0.25rem;
-      color: var(--accent);
-    }
-
-    /* ICON GRID */
-    .icon-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit,minmax(180px,1fr));
-      gap: 1rem;
-      margin-top: 0.8rem;
-    }
-
-    .icon-card {
-      background: linear-gradient(145deg,#ffffff,#f3f4ff);
-      border-radius: 16px;
-      padding: 0.9rem 1rem;
-      border: 1px solid #e5e7eb;
-      box-shadow: 0 10px 26px rgba(148,163,184,0.2);
-      font-size: 0.87rem;
-    }
-
-    .icon-card-header {
-      display: flex;
-      align-items: center;
-      gap: 0.55rem;
-      margin-bottom: 0.25rem;
-    }
-
-    .icon-circle {
-      width: 32px;
-      height: 32px;
-      border-radius: 999px;
-      display: grid;
-      place-items: center;
-      background: var(--accent-soft);
-      color: var(--accent);
-    }
-
-    .icon-card-title {
-      font-weight: 600;
-      font-size: 0.9rem;
-    }
-
-    .icon-card p {
-      margin: 0.2rem 0 0;
-      color: var(--muted);
-    }
-
-    /* IMAGE GRID (Maps & Poster) */
-    .image-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
-      gap: 1rem;
-      margin-top: 0.7rem;
-    }
-
-    .image-card {
-      position: relative;
-      border-radius: 16px;
-      overflow: hidden;
-      border: 1px solid var(--border);
-      background: #f3f4f6;
-      box-shadow: var(--shadow-soft);
-    }
-
-    .image-card img {
-      width: 100%;
-      display: block;
-      transition: transform 0.7s ease, filter 0.7s ease;
-      filter: grayscale(0.15);
-    }
-
-    .image-card:hover img {
-      transform: scale(1.05);
-      filter: grayscale(0);
-    }
-
-    .image-badge {
-      position: absolute;
-      left: 0.6rem;
-      bottom: 0.6rem;
-      background: rgba(15,23,42,0.82);
-      color: #f9fafb;
-      padding: 0.25rem 0.6rem;
-      border-radius: 999px;
-      font-size: 0.78rem;
-    }
-
-    /* CODE / PRE */
-    pre {
-      background: #0f172a;
-      color: #e5e7eb;
-      border-radius: 12px;
-      padding: 0.75rem 0.9rem;
-      font-size: 0.78rem;
-      overflow-x: auto;
-      border: 1px solid #1f2937;
-    }
-
-    code {
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
-        "Liberation Mono", "Courier New", monospace;
-    }
-
-    /* CHART AREA */
-    .chart-container {
-      width: 100%;
-      max-width: 480px;
-      margin: 0.4rem auto 0;
-    }
-
-    canvas {
-      background: #ffffff;
-      border-radius: 12px;
-      border: 1px solid #e5e7eb;
-      box-shadow: 0 12px 28px rgba(148,163,184,0.25);
-    }
-
-    @media (max-width: 900px) {
-      .hero {
-        grid-template-columns: minmax(0,1fr);
-      }
-      .hero-map-frame {
-        order: -1;
-      }
-      .section-grid {
-        grid-template-columns: minmax(0,1fr);
-      }
-      .nav-inner {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-      nav {
-        width: 100%;
-        justify-content: flex-start;
-      }
-    }
-
-    @media (max-width: 600px) {
-      main {
-        padding: 1.2rem 1rem 2.5rem;
-      }
-      section {
-        padding: 1.2rem 1rem;
-      }
-    }
-  </style>
+@media(max-width:900px){
+  .hero{grid-template-columns:1fr}
+}
+</style>
 </head>
 
 <body>
+
 <header>
   <div class="nav-inner">
-    <div class="brand">
-      <div class="brand-logo">
-        <div class="brand-logo-inner">ST</div>
-      </div>
-      <div>
-        <div class="brand-title">Smart Traffic & Elegant Urban Design</div>
-        <div class="brand-sub">Built to stand out among all city projects</div>
-      </div>
+    <div>
+      <div class="brand-title">Smart Traffic & Elegant Urban Design</div>
+      <div class="brand-sub">Built to stand out among all city projects · DAA</div>
     </div>
     <nav>
       <a href="#overview">Overview</a>
-      <a href="#map">City Map</a>
-      <a href="#traffic">Traffic Plan</a>
-      <a href="#smart">Smart Zones</a>
+      <a href="#map">Map</a>
+      <a href="#tms">Scenarios</a>
+      <a href="#emergency">Emergency</a>
       <a href="#analytics">Graphs</a>
-      <a href="#algorithms">Algorithms</a>
       <a href="#gallery">Poster</a>
     </nav>
   </div>
@@ -479,510 +149,139 @@
 
 <main>
 
-  <!-- HERO -->
-  <div class="hero" data-aos="fade-up">
-    <div>
-      <div class="hero-pill">
-        <i class="fa-solid fa-crown"></i>
-        Built to stand out among all city projects
-      </div>
-      <h1>
-        <span class="highlight">Smart Traffic</span><br>
-        & Elegant Urban Design
-      </h1>
-      <p class="hero-lead">
-        A conceptual smart city with optimised traffic flow, adaptive signals, intelligent routing
-        and carefully crafted land-use zoning. Every major road and junction is planned using
-        Data Structures and Algorithms (DAA) from our syllabus.
-      </p>
-      <div class="hero-stats">
-        <div class="stat"><strong>40%</strong> lower waiting time (simulated)</div>
-        <div class="stat"><strong>Zero</strong> congested dead-ends in main corridors</div>
-        <div class="stat"><strong>Optimised</strong> ring–radial road network</div>
-      </div>
-    </div>
-
-    <aside class="hero-map-frame">
-      <!-- 1.jpeg: main hand-drawn map -->
-      <img src="1.jpeg" alt="Hand-drawn smart city masterplan">
-      <div class="hero-map-label">
-        <i class="fa-solid fa-location-dot"></i>
-        City Master Plan · Base Layout
-      </div>
-    </aside>
+<!-- HERO -->
+<div class="hero" data-aos="fade-up">
+  <div>
+    <h1>Smart Traffic<br>& Elegant Urban Design</h1>
+    <p>
+      A DAA-based smart traffic management system where city roads are modeled
+      as graphs, signals as queues, and routing decisions as algorithms.
+    </p>
   </div>
+  <img src="1.jpeg" alt="City Map">
+</div>
 
-  <!-- 1. OVERVIEW -->
-  <section id="overview" data-aos="fade-up">
-    <h2>1. City & Traffic Overview</h2>
-    <small>From physical layout to algorithmic traffic model</small>
+<!-- OVERVIEW -->
+<section id="overview" data-aos="fade-up">
+<h2>1. City & Traffic Overview</h2>
+<p>
+The city road network is modeled as a weighted graph where intersections are nodes
+and roads are edges. Traffic behavior is analysed using Data Structures and Algorithms (DAA).
+</p>
+</section>
 
-    <div class="section-grid">
-      <div>
-        <p>
-          Our city is designed with clear zoning: coastal frontage, institutional areas, residential
-          neighbourhoods, industrial belt and green/agricultural ring. The aim is to reduce
-          unnecessary cross-movement and keep heavy vehicles away from peaceful zones.
-        </p>
-        <p>
-          Traffic management is integrated into the planning from the first sketch. We combine
-          basic town planning principles with <strong>Data Structures and Algorithms (DAA)</strong>
-          to analyse connectivity, shortest routes, queue behaviour and network cost.
-        </p>
-        <ul>
-          <li><strong>Ring roads</strong> distribute through-traffic around the core city.</li>
-          <li><strong>Radial roads</strong> connect major zones directly to the centre.</li>
-          <li><strong>Dedicated corridors</strong> serve public transport and emergency vehicles.</li>
-        </ul>
+<!-- MAP -->
+<section id="map" data-aos="fade-up">
+<h2>2. City Maps</h2>
+<div class="image-grid">
+  <img src="2.jpeg">
+  <img src="4.jpeg">
+  <img src="5.jpeg">
+</div>
+</section>
 
-        <div class="icon-row">
-          <span class="chip"><i class="fa-solid fa-road"></i>Ring & radial road design</span>
-          <span class="chip"><i class="fa-solid fa-bus"></i>Public transport priority</span>
-          <span class="chip"><i class="fa-solid fa-traffic-light"></i>Adaptive signals</span>
-          <span class="chip"><i class="fa-solid fa-code"></i>DAA-driven analysis</span>
-        </div>
-      </div>
+<!-- TRAFFIC MANAGEMENT SYSTEM -->
+<section id="tms" data-aos="fade-up">
+<h2>3. Traffic Management System – Scenario Based</h2>
 
-      <div class="info-card">
-        <div class="pill-title">DAA View of the City</div>
-        <p>
-          We model the city road network as a <strong>weighted graph</strong>:
-        </p>
-        <ul>
-          <li>Intersections → <strong>nodes</strong></li>
-          <li>Road segments → <strong>edges</strong></li>
-          <li>Travel time / distance / congestion → <strong>edge weights</strong></li>
-        </ul>
-        <p>Key DAA techniques used:</p>
-        <ul>
-          <li><strong>Dijkstra</strong> – best route between any two city zones.</li>
-          <li><strong>Greedy scheduling</strong> – fair distribution of signal green time.</li>
-          <li><strong>Queues</strong> – vehicles waiting at junctions.</li>
-          <li><strong>MST</strong> – CCTV & sensor network with minimum wiring cost.</li>
-        </ul>
-      </div>
-    </div>
-  </section>
+<div class="info-card">
+<b>Scenario 1: Peak Hour Congestion</b>
+<p><b>DAA:</b> Queue, Greedy</p>
+<p>Vehicles are queued at junctions and green time is allocated proportionally.</p>
+<pre>greenTime = (vehicles / totalVehicles) * cycleTime</pre>
+</div>
 
-  <!-- 2. MAPS -->
-  <section id="map" data-aos="fade-up">
-    <h2>2. Maps & Physical Layout</h2>
-    <small>Hand-drawn concept · Structured map · City illustration</small>
+<div class="info-card">
+<b>Scenario 2: Emergency Routing</b>
+<p><b>DAA:</b> Graph, Dijkstra</p>
+<p>Shortest path is computed for ambulances.</p>
+<pre>path = dijkstra(cityGraph, source)</pre>
+</div>
 
-    <p>
-      The planning process started on paper. First we drew a detailed base map with blocks,
-      roads and edges. Then we refined it as a cleaner map and a more pictorial city view.
-      These layers show our understanding of both <strong>geometry</strong> and
-      <strong>presentation</strong>.
-    </p>
+<div class="info-card">
+<b>Scenario 3: Road Block / Accident</b>
+<p><b>DAA:</b> BFS</p>
+<p>Blocked road removed and alternate routes found.</p>
+<pre>BFS(graph, start)</pre>
+</div>
 
-    <div class="image-grid">
-      <div class="image-card">
-        <!-- 2.jpeg: more zoomed map / variation -->
-        <img src="2.jpeg" alt="Detailed pencil sketch of city layout">
-        <div class="image-badge">Base Map · Hand Sketch</div>
-      </div>
-      <div class="image-card">
-        <!-- 4.jpeg: structured plan / another variant -->
-        <img src="4.jpeg" alt="Refined structural city map">
-        <div class="image-badge">Refined Road Network</div>
-      </div>
-      <div class="image-card">
-        <!-- 5.jpeg: coloured / decorative city view -->
-        <img src="5.jpeg" alt="Coloured smart city illustration">
-        <div class="image-badge">Smart City Illustration</div>
-      </div>
-    </div>
-  </section>
+<div class="info-card">
+<b>Scenario 4: Public Transport Priority</b>
+<p><b>DAA:</b> Priority Queue</p>
+<pre>schedule(busQueue)</pre>
+</div>
 
-  <!-- BONUS: EMERGENCY ROUTE FEATURE (GSAP AMBULANCE) -->
-  <section id="emergency" data-aos="fade-up">
-    <h2>Emergency Route Simulation (Bonus)</h2>
-    <small>Ambulance animation powered by GSAP MotionPath</small>
+<div class="info-card">
+<b>Scenario 5: Traffic Monitoring</b>
+<p><b>DAA:</b> Hashing</p>
+<pre>trafficDensity[roadID]</pre>
+</div>
+</section>
 
-    <p>
-      During emergencies, the smart city activates a priority corridor for ambulances.
-      The route automatically highlights, the map zooms slightly and the ambulance gets an
-      uninterrupted fast lane from the incident point to the hospital zone.
-    </p>
+<!-- EMERGENCY ANIMATION -->
+<section id="emergency" data-aos="fade-up">
+<h2>4. Emergency Ambulance Simulation</h2>
+<button id="emergencyBtn">Activate Emergency Route 🚑</button>
 
-    <button id="emergencyBtn" 
-      style="padding:10px 18px; background:#1d4ed8; color:white; 
-             border:none; border-radius:8px; cursor:pointer; font-size:0.9rem;">
-      Activate Emergency Route 🚑
-    </button>
+<div style="position:relative;margin-top:1rem;">
+<img id="emergencyMap" src="1.jpeg" style="width:100%;border-radius:14px;">
+<svg width="100%" height="100%" style="position:absolute;top:0;left:0;">
+<path id="routePath"
+d="M 10% 85% C 30% 70%, 50% 50%, 70% 40% S 90% 20%, 95% 10%"
+stroke="red" stroke-width="6" fill="none" opacity="0.4"/>
+</svg>
+<img id="ambulance"
+src="https://cdn-icons-png.flaticon.com/512/2966/2966327.png"
+style="width:50px;position:absolute;top:0;left:0;transform:translate(-50%,-50%)">
+</div>
+</section>
 
-    <div id="emergencyRouteArea" style="
-        position:relative;
-        margin-top:1.5rem;
-        border-radius:16px;
-        overflow:hidden;
-        border:1px solid #d1d5db;
-        box-shadow:0 10px 26px rgba(0,0,0,0.15);
-    ">
-      
-      <!-- Map image used as emergency route background -->
-      <img id="emergencyMap" src="1.jpeg" style="width:100%; display:block;" alt="Emergency route map">
+<!-- ANALYTICS -->
+<section id="analytics" data-aos="fade-up">
+<h2>5. Traffic Analytics</h2>
+<canvas id="populationChart"></canvas>
+<br><br>
+<canvas id="budgetChart"></canvas>
+</section>
 
-      <!-- SVG route in percentage coordinates so it scales with image -->
-      <svg id="routeSVG" width="100%" height="100%" 
-          style="position:absolute; top:0; left:0; pointer-events:none;">
-        <path id="routePath"
-          d="M 10% 85% C 30% 70%, 50% 50%, 70% 40% S 90% 20%, 95% 10%"
-          stroke="#ff0000"
-          stroke-width="6"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          fill="none"
-          opacity="0.4"
-        />
-      </svg>
-
-      <!-- Ambulance -->
-      <img id="ambulance" 
-           src="https://cdn-icons-png.flaticon.com/512/2966/2966327.png"
-           style="width:55px; position:absolute; top:0; left:0; transform:translate(-50%,-50%);"
-           alt="Ambulance">
-    </div>
-  </section>
-
-  <!-- 3. TRAFFIC MANAGEMENT -->
-  <section id="traffic" data-aos="fade-up">
-    <h2>3. Traffic Management Strategy</h2>
-    <small>How vehicles, buses, pedestrians and goods move efficiently</small>
-
-    <div class="section-grid">
-      <div>
-        <p>
-          The city is divided into corridors: institutional corridor, coastal/tourism strip,
-          industrial logistics belt and green/agricultural fringe. Each corridor has
-          its own speed limits, access rules and preferred vehicle types.
-        </p>
-        <ul>
-          <li><strong>Heavy vehicles</strong> stay on the outer ring road and industrial corridor.</li>
-          <li><strong>Tourist traffic</strong> uses the coastal routes at controlled speeds.</li>
-          <li><strong>Students & office commuters</strong> rely on bus corridors and shared mobility.</li>
-          <li><strong>Emergency vehicles</strong> follow pre-defined shortest emergency routes.</li>
-        </ul>
-        <p>
-          At major junctions, we treat each approach as a queue and allocate the
-          green signal duration greedily according to real-time demand.
-        </p>
-      </div>
-
-      <div class="info-card">
-        <div class="pill-title">Green Time Allocation (Greedy)</div>
-        <p>For one full cycle of signal time:</p>
-        <pre><code>function allocateGreen(count[], cycleTime):
-    total = sum(count)
-    for i from 1 to n:
-        green[i] = (count[i] / total) * cycleTime
-    return green</code></pre>
-        <p style="margin-top:0.5rem;">
-          Approaches with more vehicles get more green. This simple DAA-based logic
-          brings our simulated average waiting time down by nearly
-          <strong>40%</strong> compared to a fixed-time signal.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- 4. SMART ZONES / ICON CARDS -->
-  <section id="smart" data-aos="fade-up">
-    <h2>4. City Zoning & Key Destinations</h2>
-    <small>Hospitals, schools, ports, industries and parks placed logically</small>
-
-    <p>
-      Land use and traffic are planned together. High-traffic generators are aligned with
-      stronger roads and public transport, while calm uses like housing and parks are
-      protected from heavy flows.
-    </p>
-
-    <div class="icon-grid">
-      <div class="icon-card">
-        <div class="icon-card-header">
-          <div class="icon-circle"><i class="fa-solid fa-ship"></i></div>
-          <div class="icon-card-title">Port & Harbour</div>
-        </div>
-        <p>
-          Linked directly to an industrial corridor and ring road. Freight routes avoid the
-          inner residential area completely, reducing congestion and noise.
-        </p>
-      </div>
-
-      <div class="icon-card">
-        <div class="icon-card-header">
-          <div class="icon-circle"><i class="fa-solid fa-hospital"></i></div>
-          <div class="icon-card-title">Hospital Zone</div>
-        </div>
-        <p>
-          Hospitals sit near main roads but have quick access to pre-computed shortest
-          emergency paths, prioritised in routing and signal control logic.
-        </p>
-      </div>
-
-      <div class="icon-card">
-        <div class="icon-card-header">
-          <div class="icon-circle"><i class="fa-solid fa-industry"></i></div>
-          <div class="icon-card-title">Industrial Belt</div>
-        </div>
-        <p>
-          Industrial plots are located away from schools and housing. DAA-based route
-          planning ensures efficient goods movement while protecting air quality inside
-          the main city.
-        </p>
-      </div>
-
-      <div class="icon-card">
-        <div class="icon-card-header">
-          <div class="icon-circle"><i class="fa-solid fa-building-columns"></i></div>
-          <div class="icon-card-title">Civic & Administrative Core</div>
-        </div>
-        <p>
-          Government offices are positioned at a central yet highly accessible node
-          where multiple radial roads intersect, easing citizen access.
-        </p>
-      </div>
-
-      <div class="icon-card">
-        <div class="icon-card-header">
-          <div class="icon-circle"><i class="fa-solid fa-school"></i></div>
-          <div class="icon-card-title">Education & IT Corridor</div>
-        </div>
-        <p>
-          Colleges, schools and IT parks line a transit corridor with wide sidewalks and
-          cycle lanes, reducing private vehicle trips.
-        </p>
-      </div>
-
-      <div class="icon-card">
-        <div class="icon-card-header">
-          <div class="icon-circle"><i class="fa-solid fa-tree-city"></i></div>
-          <div class="icon-card-title">Parks & Green Buffer</div>
-        </div>
-        <p>
-          Green spaces form buffers between noisy traffic corridors and quiet residential
-          pockets, improving livability without sacrificing connectivity.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- 5. ANALYTICS / CHARTS -->
-  <section id="analytics" data-aos="fade-up">
-    <h2>5. City Analytics – Population, Budget & Land Use</h2>
-    <small>Sample visualisations inspired by project poster</small>
-
-    <div class="section-grid">
-      <div>
-        <p>
-          Based on the assumptions in our manual poster, we visualise population growth,
-          budget allocation and sector-wise spending. These charts help justify why the
-          transport network, health and education sectors receive specific shares.
-        </p>
-        <ul>
-          <li><strong>Population chart</strong> – projected growth in lakhs over three decades.</li>
-          <li><strong>Budget chart</strong> – share spent on transport, health, education, energy, parks.</li>
-          <li><strong>Land use</strong> (conceptual) – residential, industrial, institutional, green spaces.</li>
-        </ul>
-        <p>
-          All charts are generated live using <strong>Chart.js</strong> to show that data analytics
-          can be part of a smart city dashboard.
-        </p>
-      </div>
-
-      <div>
-        <div class="chart-container">
-          <canvas id="populationChart"></canvas>
-        </div>
-        <br/>
-        <div class="chart-container">
-          <canvas id="budgetChart"></canvas>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 6. ALGORITHMS & CODE LAB -->
-  <section id="algorithms" data-aos="fade-up">
-    <h2>6. Algorithms & Code Lab</h2>
-    <small>How DAA actually controls queues and routes</small>
-
-    <div class="section-grid">
-      <div>
-        <p>
-          Below is a small C program that simulates a single junction queue over a few signal
-          cycles. It shows clearly how queues grow when arrivals are more than departures.
-        </p>
-        <pre><code>#include &lt;stdio.h&gt;
-
-int main() {
-    int queue = 0, arrivals, departures;
-
-    for (int cycle = 1; cycle &lt;= 5; cycle++) {
-        printf("Signal cycle %d\n", cycle);
-        printf("Vehicles arrived: ");
-        scanf("%d", &arrivals);
-        printf("Vehicles passed on green: ");
-        scanf("%d", &departures);
-
-        queue = queue + arrivals - departures;
-        if (queue &lt; 0) queue = 0;
-
-        printf("Vehicles waiting now: %d\n\n", queue);
-    }
-    return 0;
-}</code></pre>
-      </div>
-
-      <div>
-        <p>
-          For route planning, we apply Dijkstra’s algorithm on the road graph. Here,
-          the weight of an edge can be based on distance, travel time or a combination including congestion.
-        </p>
-        <pre><code>function dijkstra(graph, source):
-    for each node v:
-        dist[v] = INF
-    dist[source] = 0
-    PQ = min-priority-queue()
-    PQ.push(source, 0)
-
-    while PQ not empty:
-        (u, cost) = PQ.pop_min()
-        if cost &gt; dist[u]:
-            continue
-
-        for each edge (u, v, w) in graph[u]:
-            if dist[u] + w &lt; dist[v]:
-                dist[v] = dist[u] + w
-                PQ.push(v, dist[v])
-
-    return dist</code></pre>
-      </div>
-    </div>
-  </section>
-
-  <!-- 7. POSTER / GALLERY -->
-  <section id="gallery" data-aos="fade-up">
-    <h2>7. Poster & Documentation Snapshot</h2>
-    <small>Physical project sheet converted into a digital highlight</small>
-
-    <p>
-      The manual poster summarises city overview, technologies used, revenue generation,
-      budget, taxation and services. It supports this website and proves that the concept
-      is thought through both technically and administratively.
-    </p>
-
-    <div class="image-grid">
-      <div class="image-card">
-        <!-- 10.jpeg: main poster -->
-        <img src="10.jpeg" alt="Smart city poster sheet">
-        <div class="image-badge">Project Poster · Full View</div>
-      </div>
-      <div class="image-card">
-        <!-- 11.jpeg: close-up poster or second sheet -->
-        <img src="11.jpeg" alt="Smart city poster close-up">
-        <div class="image-badge">Poster · Close Details</div>
-      </div>
-    </div>
-  </section>
+<!-- POSTER -->
+<section id="gallery" data-aos="fade-up">
+<h2>6. Poster & Documentation</h2>
+<div class="image-grid">
+  <img src="10.jpeg">
+  <img src="11.jpeg">
+</div>
+</section>
 
 </main>
 
-<!-- JS LIBS -->
+<!-- JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<!-- GSAP -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/MotionPathPlugin.min.js"></script>
 
 <script>
-  // AOS init
-  AOS.init({
-    duration: 700,
-    once: true,
-    offset: 80
-  });
+AOS.init({once:true});
 
-  // Chart.js graphs
-  const popCtx = document.getElementById('populationChart').getContext('2d');
-  const populationChart = new Chart(popCtx, {
-    type: 'bar',
-    data: {
-      labels: ['2020', '2030', '2040'],
-      datasets: [{
-        label: 'Population (in lakhs)',
-        data: [6, 8.5, 11],
-        backgroundColor: ['#1d4ed8','#60a5fa','#a5b4fc']
-      }]
-    },
-    options: {
-      plugins: { legend: { display: false } },
-      responsive: true,
-      scales: {
-        x: { grid: { display: false } },
-        y: { beginAtZero: true, grid: { color: '#e5e7eb' } }
-      }
-    }
-  });
+new Chart(document.getElementById("populationChart"),{
+type:"bar",
+data:{labels:["2020","2030","2040"],
+datasets:[{data:[6,8.5,11],backgroundColor:"#1d4ed8"}]}
+});
 
-  const budgetCtx = document.getElementById('budgetChart').getContext('2d');
-  const budgetChart = new Chart(budgetCtx, {
-    type: 'doughnut',
-    data: {
-      labels: ['Transport','Health','Education','Energy','Parks','Admin'],
-      datasets: [{
-        data: [28, 18, 20, 12, 10, 12],
-        backgroundColor: ['#1d4ed8','#22c55e','#f97316','#eab308','#ec4899','#64748b']
-      }]
-    },
-    options: {
-      plugins: {
-        legend: {
-          position: 'bottom',
-          labels: { boxWidth: 14, font: { size: 11 } }
-        }
-      },
-      responsive: true,
-      cutout: '60%'
-    }
-  });
+new Chart(document.getElementById("budgetChart"),{
+type:"doughnut",
+data:{labels:["Transport","Health","Education","Energy","Parks","Admin"],
+datasets:[{data:[28,18,20,12,10,12]}]}
+});
 
-  // GSAP Emergency Route Animation
-  gsap.registerPlugin(MotionPathPlugin);
-
-  document.getElementById("emergencyBtn").addEventListener("click", function () {
-
-    // Glow the route
-    gsap.to("#routePath", {
-      duration: 1,
-      opacity: 1,
-      stroke: "#ff3333",
-      strokeWidth: 8,
-      filter: "drop-shadow(0 0 12px red)"
-    });
-
-    // Slight zoom-in on the map
-    gsap.to("#emergencyMap", {
-      duration: 1.5,
-      scale: 1.08,
-      transformOrigin: "center center",
-      ease: "power2.out"
-    });
-
-    // Move ambulance along route
-    gsap.to("#ambulance", {
-      duration: 6,
-      ease: "power1.inOut",
-      repeat: 0,
-      motionPath: {
-        path: "#routePath",
-        align: "#routePath",
-        autoRotate: true,
-        alignOrigin: [0.5, 0.5]
-      }
-    });
-  });
+gsap.registerPlugin(MotionPathPlugin);
+document.getElementById("emergencyBtn").onclick=()=>{
+gsap.to("#routePath",{opacity:1,strokeWidth:8});
+gsap.to("#ambulance",{duration:6,
+motionPath:{path:"#routePath",align:"#routePath",autoRotate:true}});
+};
 </script>
 
 </body>
