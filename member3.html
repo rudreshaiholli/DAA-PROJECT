@@ -1,49 +1,181 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="en" class="dark">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Member 3 — Utilities & Services</title>
-  <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prajwal R – Utilities & Services</title>
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            emerald: { 450: '#10b981' }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Icons & Fonts -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
-<body>
-  <header class="site-header">
-    <div class="container header-grid">
-      <div class="brand">
-        <h1>Prajwal R — Utilities & Services</h1>
-        <p class="lead">USN: 01fe25bcs713</p>
-      </div>
-      <nav class="nav">
-        <a href="index.html">Home</a>
-        <button id="theme-toggle" aria-pressed="false" title="Toggle theme">🌙</button>
-      </nav>
+
+<body class="bg-gray-50 text-gray-800 dark:bg-gray-900 dark:text-gray-100 flex flex-col min-h-screen font-[Inter]">
+
+<!-- NAVBAR -->
+<nav class="bg-white/90 dark:bg-gray-900/95 backdrop-blur sticky top-0 z-40 border-b border-gray-200 dark:border-gray-700">
+  <div class="max-w-7xl mx-auto px-4 flex justify-between items-center h-16">
+    <div class="flex items-center cursor-pointer" onclick="location.href='index.html'">
+      <i class="fa-solid fa-city text-emerald-500 text-2xl mr-2"></i>
+      <span class="font-bold text-lg">Project Swarna Nagar</span>
     </div>
-  </header>
-  <main class="container">
-    <section>
-      <h2>About Prajwal R</h2>
-      <p>Focus area: Energy, water, waste, and essential city services.</p>
+    <div class="flex items-center space-x-6">
+      <a href="index.html" class="hover:text-emerald-500">Home</a>
+      <button onclick="toggleTheme()" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700">
+        <i id="theme-icon" class="fa-solid fa-sun text-yellow-400"></i>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="bg-emerald-600 dark:bg-emerald-900/50 py-12 border-b border-emerald-700">
+  <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center">
+    <div class="md:w-3/4 text-white">
+      <h1 class="text-4xl font-bold mb-2">Prajwal R</h1>
+      <h2 class="text-emerald-100 text-xl font-medium">
+        Head of Utilities & Services
+      </h2>
+      <p class="mt-2 text-emerald-50">USN: 01FE25BCS713</p>
+      <p class="mt-4 max-w-2xl text-emerald-50">
+        “Efficient utilities are the backbone of a smart city. Algorithms help us
+        predict demand, optimize resources, and ensure uninterrupted services.”
+      </p>
+    </div>
+    <div class="md:w-1/4 mt-6 md:mt-0 flex justify-end">
+      <i class="fa-solid fa-bolt text-8xl text-emerald-300 opacity-30"></i>
+    </div>
+  </div>
+</section>
+
+<!-- CONTENT -->
+<main class="flex-grow">
+  <div class="max-w-7xl mx-auto px-4 py-12">
+
+    <!-- ABOUT -->
+    <section class="mb-12">
+      <h3 class="text-2xl font-bold border-l-4 border-emerald-500 pl-4 mb-4">
+        About
+      </h3>
+      <p class="text-gray-700 dark:text-gray-300 max-w-3xl">
+        Focus area includes energy management, water distribution, waste handling,
+        and optimization of essential city utilities using data structures and algorithms.
+      </p>
     </section>
 
+    <!-- BUSINESS CASES -->
     <section>
-      <h2>Business Cases</h2>
-      <ol>
-        <li>Energy demand forecasting and load balancing</li>
-        <li>Water distribution leak detection and routing</li>
-        <li>Optimized waste collection routes</li>
-        <li>Sensor placement for utility monitoring</li>
-        <li>Predictive maintenance scheduling for assets</li>
-        <li>Demand-response systems for peak shaving</li>
-        <li>Emergency resource allocation for outages</li>
-        <li>Smart meter data analytics</li>
-        <li>Service-level optimization for citizen complaints</li>
-        <li>Supply chain routing for city inventory</li>
-      </ol>
+      <h3 class="text-2xl font-bold border-l-4 border-emerald-500 pl-4 mb-8">
+        10 Business Cases Solved
+      </h3>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg border">
+          <h4 class="font-bold text-lg">Energy Demand Forecasting</h4>
+          <p class="text-sm text-gray-600 dark:text-gray-400">
+            Predicting future electricity demand and balancing load efficiently.
+          </p>
+        </div>
+
+        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg border">
+          <h4 class="font-bold text-lg">Water Leak Detection</h4>
+          <p class="text-sm text-gray-600 dark:text-gray-400">
+            Identifying leaks and optimizing routing in water pipelines.
+          </p>
+        </div>
+
+        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg border">
+          <h4 class="font-bold text-lg">Waste Collection Optimization</h4>
+          <p class="text-sm text-gray-600 dark:text-gray-400">
+            Planning optimal waste pickup routes to reduce fuel and time.
+          </p>
+        </div>
+
+        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg border">
+          <h4 class="font-bold text-lg">Sensor Placement</h4>
+          <p class="text-sm text-gray-600 dark:text-gray-400">
+            Strategic sensor deployment for monitoring utilities.
+          </p>
+        </div>
+
+        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg border">
+          <h4 class="font-bold text-lg">Predictive Maintenance</h4>
+          <p class="text-sm text-gray-600 dark:text-gray-400">
+            Scheduling maintenance before failures occur.
+          </p>
+        </div>
+
+        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg border">
+          <h4 class="font-bold text-lg">Demand Response Systems</h4>
+          <p class="text-sm text-gray-600 dark:text-gray-400">
+            Reducing peak demand using dynamic pricing and control.
+          </p>
+        </div>
+
+        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg border">
+          <h4 class="font-bold text-lg">Outage Resource Allocation</h4>
+          <p class="text-sm text-gray-600 dark:text-gray-400">
+            Efficient deployment during power or water outages.
+          </p>
+        </div>
+
+        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg border">
+          <h4 class="font-bold text-lg">Smart Meter Analytics</h4>
+          <p class="text-sm text-gray-600 dark:text-gray-400">
+            Analyzing consumption data for insights.
+          </p>
+        </div>
+
+        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg border">
+          <h4 class="font-bold text-lg">Citizen Complaint Optimization</h4>
+          <p class="text-sm text-gray-600 dark:text-gray-400">
+            Prioritizing service requests efficiently.
+          </p>
+        </div>
+
+        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg border">
+          <h4 class="font-bold text-lg">City Inventory Routing</h4>
+          <p class="text-sm text-gray-600 dark:text-gray-400">
+            Optimizing supply chain movement for city assets.
+          </p>
+        </div>
+
+      </div>
     </section>
 
-    <p><a href="index.html">← Back to Home</a></p>
-  </main>
-  <script src="script.js"></script>
+    <div class="mt-10">
+      <a href="index.html" class="text-emerald-500 hover:underline">← Back to Home</a>
+    </div>
+
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer class="bg-white dark:bg-gray-900 border-t py-6 text-center text-sm text-gray-500 dark:text-gray-400">
+  © 2025 Project Swarna Nagar Team (KLETU)
+</footer>
+
+<script>
+  function toggleTheme() {
+    document.documentElement.classList.toggle('dark');
+  }
+</script>
+
 </body>
 </html>
-
