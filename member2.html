@@ -1,50 +1,133 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="en" class="dark">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Member 2 — Urban Planning</title>
-  <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Royal P - Project Swarana karavali</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            emerald: { 450: '#10b981' }
+          }
+        }
+      }
+    }
+  </script>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+  <link rel="stylesheet" href="style.css">
 </head>
-<body>
-  <header class="site-header">
-    <div class="container header-grid">
-      <div class="brand">
-        <h1>Royal. P — Urban Planning</h1>
-        <p class="lead">USN: 01fe25bcs706</p>
-      </div>
-      <nav class="nav">
-        <a href="index.html">Home</a>
-        <button id="theme-toggle" aria-pressed="false" title="Toggle theme">🌙</button>
-      </nav>
+
+<body class="bg-gray-50 text-gray-800 dark:bg-gray-900 dark:text-gray-100 flex flex-col min-h-screen">
+
+<!-- NAVBAR -->
+<nav class="bg-white/90 dark:bg-gray-900/95 backdrop-blur-md sticky top-0 z-40 border-b border-gray-200 dark:border-gray-700 shadow-sm">
+  <div class="max-w-7xl mx-auto px-4 h-16 flex justify-between items-center">
+    <div class="flex items-center cursor-pointer" onclick="window.location.href='index.html'">
+      <i class="fa-solid fa-leaf text-emerald-600 dark:text-emerald-500 text-2xl mr-2"></i>
+      <span class="text-xl font-bold"></span>
     </div>
-  </header>
-  <main class="container">
-    <section>
-      <h2>About Royal. P</h2>
-      <p>Focus area: Zoning, population analytics, and land-use optimization.</p>
-    </section>
 
-    <section>
-      <h2>Business Cases</h2>
-      <ol>
-        <li>Population density mapping for service allocation</li>
-        <li>Optimal placement of public amenities</li>
-        <li>Land-use classification from satellite imagery</li>
-        <li>Evacuation planning and simulation</li>
-        <li>Green-space distribution optimization</li>
-        <li>Urban growth prediction and scenario analysis</li>
-        <li>Infrastructure lifespan scheduling</li>
-        <li>Walkability and accessibility scoring</li>
-        <li>School catchment boundary optimization</li>
-        <li>Retail site selection using spatial analytics</li>
-      </ol>
-    </section>
+    <div class="hidden md:flex items-center space-x-8">
+      <a href="index.html" class="hover:text-emerald-500">Overview</a>
+      <a href="member1.html" class="hover:text-emerald-500">Rudresh Aiholli</a>
+      <a href="member2.html" class="text-emerald-500 font-semibold">Royal . P</a>
+      <a href="member3.html" class="hover:text-emerald-500">Prajwal R</a>
+      <button onclick="toggleTheme()" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700">
+        <i class="fa-solid fa-sun text-yellow-500"></i>
+      </button>
+    </div>
+  </div>
+</nav>
 
-    <p><a href="index.html">← Back to Home</a></p>
-  </main>
-  <script src="script.js"></script>
+<!-- HERO -->
+<main class="flex-grow">
+  <div class="bg-emerald-600 dark:bg-emerald-900/60 py-12 border-b border-emerald-500">
+    <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center">
+      <div class="md:w-3/4 text-white">
+        <h2 class="text-4xl font-bold mb-2">Royal P</h2>
+        <h3 class="text-emerald-200 text-xl font-medium">
+          Head of Urban Planning & Spatial Analytics
+        </h3>
+        <p class="mt-4 max-w-2xl text-emerald-100">
+          "Smart cities begin with smart planning. Spatial analytics and zoning
+          algorithms help us design equitable, efficient, and sustainable urban spaces."
+        </p>
+      </div>
+      <div class="md:w-1/4 flex justify-end">
+        <i class="fa-solid fa-city text-9xl text-emerald-300 opacity-30"></i>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROBLEMS -->
+  <div class="max-w-7xl mx-auto px-4 py-12">
+    <h3 class="text-2xl font-bold mb-8 border-l-4 border-emerald-500 pl-4">
+      4 Key Problems Solved
+    </h3>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+      <div class="problem-card bg-white dark:bg-gray-800 p-6 rounded-lg border cursor-pointer">
+        <span class="text-xs font-semibold bg-emerald-100 dark:bg-emerald-900 px-2 py-1 rounded">
+          GIS + Graphs
+        </span>
+        <h4 class="font-bold text-lg mt-2">Population Density Mapping</h4>
+        <p class="text-sm text-gray-600 dark:text-gray-400">
+          Analyzing population clusters to optimize service allocation.
+        </p>
+      </div>
+
+      <div class="problem-card bg-white dark:bg-gray-800 p-6 rounded-lg border cursor-pointer">
+        <span class="text-xs font-semibold bg-emerald-100 dark:bg-emerald-900 px-2 py-1 rounded">
+          Greedy
+        </span>
+        <h4 class="font-bold text-lg mt-2">Public Amenity Placement</h4>
+        <p class="text-sm text-gray-600 dark:text-gray-400">
+          Optimal placement of hospitals, schools, and parks.
+        </p>
+      </div>
+
+      <div class="problem-card bg-white dark:bg-gray-800 p-6 rounded-lg border cursor-pointer">
+        <span class="text-xs font-semibold bg-emerald-100 dark:bg-emerald-900 px-2 py-1 rounded">
+          Classification
+        </span>
+        <h4 class="font-bold text-lg mt-2">Land-use Classification</h4>
+        <p class="text-sm text-gray-600 dark:text-gray-400">
+          Categorizing land using satellite imagery.
+        </p>
+      </div>
+
+      <div class="problem-card bg-white dark:bg-gray-800 p-6 rounded-lg border cursor-pointer">
+        <span class="text-xs font-semibold bg-emerald-100 dark:bg-emerald-900 px-2 py-1 rounded">
+          Graph Traversal
+        </span>
+        <h4 class="font-bold text-lg mt-2">Evacuation Planning</h4>
+        <p class="text-sm text-gray-600 dark:text-gray-400">
+          Simulating emergency evacuation routes.
+        </p>
+      </div>
+
+      <!-- You can continue remaining 6 same pattern -->
+    </div>
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer class="bg-white dark:bg-gray-900 border-t py-8">
+  <div class="max-w-7xl mx-auto px-4 text-center text-sm text-gray-500">
+   © 2025 Project Swarana karavali (KLETU). All Rights Reserved.
+  </div>
+</footer>
+
+<script src="shared.js"></script>
 </body>
 </html>
-
-
